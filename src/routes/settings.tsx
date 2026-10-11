@@ -22,7 +22,8 @@ export const Route = createFileRoute("/settings")({
       { title: "System Settings — AgriTwin" },
       {
         name: "description",
-        content: "Configure prototype thresholds, field telemetry stream flags, and admin settings.",
+        content:
+          "Configure prototype thresholds, field telemetry stream flags, and admin settings.",
       },
     ],
   }),

@@ -47,7 +47,8 @@ const sampleImages = [
     image: "/research/crop_health_inspection.png",
     location: "Nashik Plot B-03",
     humidity: "91% RH (High Spore Window)",
-    ruleAction: "Rule #027 Triggered: Fungal sporulation alert. Halt excessive nitrogen, apply Mancozeb 2.5g/L.",
+    ruleAction:
+      "Rule #027 Triggered: Fungal sporulation alert. Halt excessive nitrogen, apply Mancozeb 2.5g/L.",
     boxes: [
       { top: "54%", left: "26%", width: "12%", height: "12%", label: "Concentric Lesion 84%" },
       { top: "60%", left: "28%", width: "10%", height: "10%", label: "Target Spot 79%" },
@@ -130,7 +131,9 @@ function DiseaseAnalysis() {
                 </h3>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-mono text-muted-foreground">Select Field Sample:</span>
+                <span className="text-xs font-mono text-muted-foreground">
+                  Select Field Sample:
+                </span>
                 <div className="flex gap-1.5">
                   {sampleImages.map((s, idx) => (
                     <button
@@ -378,8 +381,8 @@ function DiseaseAnalysis() {
               <span>Agronomic Validation Protocol</span>
             </div>
             <p className="leading-relaxed">
-              In accordance with university field evaluations, visual symptoms are never evaluated in
-              isolation. Every neural detection is conditioned on in-situ RS485 soil moisture and
+              In accordance with university field evaluations, visual symptoms are never evaluated
+              in isolation. Every neural detection is conditioned on in-situ RS485 soil moisture and
               air relative humidity before issuing spray advisories.
             </p>
           </div>

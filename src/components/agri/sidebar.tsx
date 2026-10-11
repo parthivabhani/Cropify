@@ -42,21 +42,71 @@ const drawerNav = [
   {
     category: "Farmer Tools & Reports",
     items: [
-      { to: "/assistant", label: "Kisan Copilot", icon: Mic, desc: "Multilingual voice AI advisory for farmers" },
-      { to: "/reports", label: "Advisory Reports", icon: FileText, desc: "Actionable field reports & PDF exports" },
-      { to: "/weather", label: "Live Weather & Microclimate", icon: CloudSun, desc: "IMD forecast, dew point & VPD" },
-      { to: "/crop-intelligence", label: "Crop Intelligence", icon: Sprout, desc: "GDD tracking & growth phenology" },
-      { to: "/interview", label: "Farmer Interview Log", icon: ClipboardList, desc: "Agronomist field notes & surveys" },
+      {
+        to: "/assistant",
+        label: "Kisan Copilot",
+        icon: Mic,
+        desc: "Multilingual voice AI advisory for farmers",
+      },
+      {
+        to: "/reports",
+        label: "Advisory Reports",
+        icon: FileText,
+        desc: "Actionable field reports & PDF exports",
+      },
+      {
+        to: "/weather",
+        label: "Live Weather & Microclimate",
+        icon: CloudSun,
+        desc: "IMD forecast, dew point & VPD",
+      },
+      {
+        to: "/crop-intelligence",
+        label: "Crop Intelligence",
+        icon: Sprout,
+        desc: "GDD tracking & growth phenology",
+      },
+      {
+        to: "/interview",
+        label: "Farmer Interview Log",
+        icon: ClipboardList,
+        desc: "Agronomist field notes & surveys",
+      },
     ],
   },
   {
     category: "AI Simulation & Architecture",
     items: [
-      { to: "/scenarios", label: "Scenario Simulator", icon: SlidersHorizontal, desc: "What-if fertilizer & irrigation testing" },
-      { to: "/knowledge-graph", label: "Knowledge Graph", icon: Share2, desc: "Ontology entities & semantic triples" },
-      { to: "/architecture", label: "System Architecture", icon: Network, desc: "Neuro-symbolic dual-loop diagram" },
-      { to: "/history", label: "Farm History & Logs", icon: History, desc: "Audit trail of sensor data & actions" },
-      { to: "/settings", label: "Sensor Configuration", icon: Settings, desc: "Modbus RS485 baud & calibration" },
+      {
+        to: "/scenarios",
+        label: "Scenario Simulator",
+        icon: SlidersHorizontal,
+        desc: "What-if fertilizer & irrigation testing",
+      },
+      {
+        to: "/knowledge-graph",
+        label: "Knowledge Graph",
+        icon: Share2,
+        desc: "Ontology entities & semantic triples",
+      },
+      {
+        to: "/architecture",
+        label: "System Architecture",
+        icon: Network,
+        desc: "Neuro-symbolic dual-loop diagram",
+      },
+      {
+        to: "/history",
+        label: "Farm History & Logs",
+        icon: History,
+        desc: "Audit trail of sensor data & actions",
+      },
+      {
+        to: "/settings",
+        label: "Sensor Configuration",
+        icon: Settings,
+        desc: "Modbus RS485 baud & calibration",
+      },
     ],
   },
 ] as const;
@@ -88,12 +138,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   key={to}
                   to={to}
                   activeProps={{
-                    className:
-                      "bg-primary text-primary-foreground font-semibold shadow-xs",
+                    className: "bg-primary text-primary-foreground font-semibold shadow-xs",
                   }}
                   inactiveProps={{
-                    className:
-                      "text-muted-foreground hover:text-foreground hover:bg-surface/80",
+                    className: "text-muted-foreground hover:text-foreground hover:bg-surface/80",
                   }}
                   className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-150"
                 >
@@ -105,7 +153,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
             {/* Right Controls & Quick Actions */}
             <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
-
               {/* Light Mode / Dark Mode Toggle */}
               <ThemeToggle />
 
@@ -154,7 +201,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               <AgriTwinLogo size={18} />
             </span>
             <span>
-              <strong className="text-foreground font-semibold">AgriTwin</strong> — Living Digital Twin & Neuro-Symbolic Reasoning Platform
+              <strong className="text-foreground font-semibold">AgriTwin</strong> — Living Digital
+              Twin & Neuro-Symbolic Reasoning Platform
             </span>
           </div>
 
@@ -293,7 +341,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 flex flex-col bg-background p-6 animate-in fade-in-50 duration-200">
           <div className="flex items-center justify-between pb-4 border-b border-border/60">
-            <Link to="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-2">
+            <Link
+              to="/"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2"
+            >
               <AgriTwinLogo size={24} />
               <span className="font-display font-bold text-lg text-foreground">AgriTwin</span>
             </Link>
@@ -321,17 +373,19 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             ))}
 
             <p className="text-xs font-mono uppercase text-muted-foreground pt-4">More Modules</p>
-            {drawerNav.flatMap((s) => s.items).map(({ to, label, icon: Icon }) => (
-              <Link
-                key={to}
-                to={to}
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-3 p-2.5 rounded-lg text-xs text-muted-foreground hover:text-foreground hover:bg-surface-2"
-              >
-                <Icon className="size-3.5" />
-                <span>{label}</span>
-              </Link>
-            ))}
+            {drawerNav
+              .flatMap((s) => s.items)
+              .map(({ to, label, icon: Icon }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-3 p-2.5 rounded-lg text-xs text-muted-foreground hover:text-foreground hover:bg-surface-2"
+                >
+                  <Icon className="size-3.5" />
+                  <span>{label}</span>
+                </Link>
+              ))}
           </nav>
         </div>
       )}

@@ -57,9 +57,7 @@ export function ValidationRoute() {
   // Compute calibrated posterior dynamically based on environmental context
   const rawNeuralConfidence = 82;
   const contextModifier =
-    (simHighHumidity ? 4 : -12) +
-    (simRecentRain ? 3 : -8) +
-    (simHistoricalBlight ? 2 : -5);
+    (simHighHumidity ? 4 : -12) + (simRecentRain ? 3 : -8) + (simHistoricalBlight ? 2 : -5);
   const calibratedConfidence = Math.min(99, Math.max(35, rawNeuralConfidence + contextModifier));
 
   const scenarioValidations = [
@@ -94,10 +92,30 @@ export function ValidationRoute() {
   ];
 
   const latencyBreakdown = [
-    { step: "RS485 Modbus Telemetry Ingestion", time: "45 ms", p99: "58 ms", tone: "symbolic" as const },
-    { step: "Quantized Vision Model Inference (INT8)", time: "68 ms", p99: "84 ms", tone: "neural" as const },
-    { step: "Neuro-Symbolic Constraint Evaluation", time: "14 ms", p99: "19 ms", tone: "healthy" as const },
-    { step: "Digital Twin State Synchronization", time: "53 ms", p99: "65 ms", tone: "water" as const },
+    {
+      step: "RS485 Modbus Telemetry Ingestion",
+      time: "45 ms",
+      p99: "58 ms",
+      tone: "symbolic" as const,
+    },
+    {
+      step: "Quantized Vision Model Inference (INT8)",
+      time: "68 ms",
+      p99: "84 ms",
+      tone: "neural" as const,
+    },
+    {
+      step: "Neuro-Symbolic Constraint Evaluation",
+      time: "14 ms",
+      p99: "19 ms",
+      tone: "healthy" as const,
+    },
+    {
+      step: "Digital Twin State Synchronization",
+      time: "53 ms",
+      p99: "65 ms",
+      tone: "water" as const,
+    },
   ];
 
   const baselineComparisons = [
@@ -143,7 +161,10 @@ export function ValidationRoute() {
         subtitle="Verification suite testing the three core pillars of the AgriTwin methodology: sensor-grounded Results Interpretation, quantitative System Performance, and biological Outcome Validation."
         actions={
           <div className="flex items-center gap-2">
-            <Badge variant="outline" className="border-primary/40 text-primary py-1.5 px-3 font-mono text-xs">
+            <Badge
+              variant="outline"
+              className="border-primary/40 text-primary py-1.5 px-3 font-mono text-xs"
+            >
               <FlaskConical className="size-3.5 mr-1" /> Three-Tier Validation Suite
             </Badge>
           </div>
@@ -217,9 +238,12 @@ export function ValidationRoute() {
             </span>
             <Chip tone="healthy">Calibrated</Chip>
           </div>
-          <h3 className="text-sm font-bold font-display mt-1 text-foreground">Results Interpretation</h3>
+          <h3 className="text-sm font-bold font-display mt-1 text-foreground">
+            Results Interpretation
+          </h3>
           <p className="text-xs text-muted-foreground mt-1">
-            Sensor telemetry integration, Bayesian neural confidence reweighting (82% → 91%), and SHAP feature attribution.
+            Sensor telemetry integration, Bayesian neural confidence reweighting (82% → 91%), and
+            SHAP feature attribution.
           </p>
         </div>
 
@@ -230,9 +254,12 @@ export function ValidationRoute() {
             </span>
             <Chip tone="water">Benchmarked</Chip>
           </div>
-          <h3 className="text-sm font-bold font-display mt-1 text-foreground">System Performance</h3>
+          <h3 className="text-sm font-bold font-display mt-1 text-foreground">
+            System Performance
+          </h3>
           <p className="text-xs text-muted-foreground mt-1">
-            Classifier F1 93.2%, Yield Regressor R² 0.87, 14ms rule compilation latency, and 180ms total end-to-end pipeline.
+            Classifier F1 93.2%, Yield Regressor R² 0.87, 14ms rule compilation latency, and 180ms
+            total end-to-end pipeline.
           </p>
         </div>
 
@@ -243,9 +270,12 @@ export function ValidationRoute() {
             </span>
             <Chip tone="symbolic">3-Tier Verified</Chip>
           </div>
-          <h3 className="text-sm font-bold font-display mt-1 text-foreground">Outcome Validation</h3>
+          <h3 className="text-sm font-bold font-display mt-1 text-foreground">
+            Outcome Validation
+          </h3>
           <p className="text-xs text-muted-foreground mt-1">
-            Empirical 80:20 ground truth test, Mitscherlich diminishing scenario validation, and 100% rule-override block rate.
+            Empirical 80:20 ground truth test, Mitscherlich diminishing scenario validation, and
+            100% rule-override block rate.
           </p>
         </div>
       </div>
@@ -282,7 +312,9 @@ export function ValidationRoute() {
                   In-Situ Farmer Interview & Ground-Truthing
                 </h4>
                 <p className="text-[0.72rem] text-muted-foreground leading-relaxed">
-                  Student researcher conducting direct farmer interviews in the field with GPS verification, recording real-world disease symptoms, pest cycles, and crop management practices.
+                  Student researcher conducting direct farmer interviews in the field with GPS
+                  verification, recording real-world disease symptoms, pest cycles, and crop
+                  management practices.
                 </p>
                 <div className="pt-2 border-t border-border/40 flex items-center justify-between text-[0.65rem] font-mono text-muted-foreground">
                   <span>Location: Selu, Maharashtra</span>
@@ -308,7 +340,9 @@ export function ValidationRoute() {
                   Mobile Diagnostics Field Evaluation
                 </h4>
                 <p className="text-[0.72rem] text-muted-foreground leading-relaxed">
-                  Student researchers validating mobile crop disease inference directly within actual crop rows, verifying sunlight angle handling and foliage detection accuracy.
+                  Student researchers validating mobile crop disease inference directly within
+                  actual crop rows, verifying sunlight angle handling and foliage detection
+                  accuracy.
                 </p>
                 <div className="pt-2 border-t border-border/40 flex items-center justify-between text-[0.65rem] font-mono text-muted-foreground">
                   <span>Target: Crop Row Validation</span>
@@ -334,7 +368,9 @@ export function ValidationRoute() {
                   Agronomic Survey & Field Documentation
                 </h4>
                 <p className="text-[0.72rem] text-muted-foreground leading-relaxed">
-                  Collaborative on-site survey documenting farmer pain points, localized irrigation timings, and pest treatment history to calibrate neuro-symbolic domain ontology rules.
+                  Collaborative on-site survey documenting farmer pain points, localized irrigation
+                  timings, and pest treatment history to calibrate neuro-symbolic domain ontology
+                  rules.
                 </p>
                 <div className="pt-2 border-t border-border/40 flex items-center justify-between text-[0.65rem] font-mono text-muted-foreground">
                   <span>Cohort: Local Farm Survey</span>
@@ -345,27 +381,36 @@ export function ValidationRoute() {
           </div>
 
           {/* Telemetry Stream Display Table */}
-          <Panel eyebrow="Real-Time Telemetry Stream" title="Captured Soil & Environmental Variables">
+          <Panel
+            eyebrow="Real-Time Telemetry Stream"
+            title="Captured Soil & Environmental Variables"
+          >
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 mt-2">
               <div className="p-3 rounded-lg bg-surface border border-border/60 text-center">
                 <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
                   Nitrogen (N)
                 </span>
-                <span className="text-lg font-bold font-display text-primary mt-1 block">42 mg/kg</span>
+                <span className="text-lg font-bold font-display text-primary mt-1 block">
+                  42 mg/kg
+                </span>
                 <span className="text-[0.62rem] text-healthy block mt-0.5">Optimal Band</span>
               </div>
               <div className="p-3 rounded-lg bg-surface border border-border/60 text-center">
                 <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
                   Phosphorus (P)
                 </span>
-                <span className="text-lg font-bold font-display text-primary mt-1 block">18 mg/kg</span>
+                <span className="text-lg font-bold font-display text-primary mt-1 block">
+                  18 mg/kg
+                </span>
                 <span className="text-[0.62rem] text-healthy block mt-0.5">Adequate</span>
               </div>
               <div className="p-3 rounded-lg bg-surface border border-border/60 text-center">
                 <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
                   Potassium (K)
                 </span>
-                <span className="text-lg font-bold font-display text-primary mt-1 block">185 mg/kg</span>
+                <span className="text-lg font-bold font-display text-primary mt-1 block">
+                  185 mg/kg
+                </span>
                 <span className="text-[0.62rem] text-healthy block mt-0.5">Strong Canopy</span>
               </div>
               <div className="p-3 rounded-lg bg-surface border border-border/60 text-center">
@@ -379,21 +424,29 @@ export function ValidationRoute() {
                 <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
                   Soil pH
                 </span>
-                <span className="text-lg font-bold font-display text-foreground mt-1 block">6.2</span>
+                <span className="text-lg font-bold font-display text-foreground mt-1 block">
+                  6.2
+                </span>
                 <span className="text-[0.62rem] text-healthy block mt-0.5">Near Neutral</span>
               </div>
               <div className="p-3 rounded-lg bg-surface border border-border/60 text-center">
                 <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
                   Electrical Cond.
                 </span>
-                <span className="text-lg font-bold font-display text-foreground mt-1 block">1.4 mS/cm</span>
-                <span className="text-[0.62rem] text-muted-foreground block mt-0.5">Low Salinity</span>
+                <span className="text-lg font-bold font-display text-foreground mt-1 block">
+                  1.4 mS/cm
+                </span>
+                <span className="text-[0.62rem] text-muted-foreground block mt-0.5">
+                  Low Salinity
+                </span>
               </div>
               <div className="p-3 rounded-lg bg-surface border border-border/60 text-center">
                 <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
                   Soil Temp
                 </span>
-                <span className="text-lg font-bold font-display text-foreground mt-1 block">24.8°C</span>
+                <span className="text-lg font-bold font-display text-foreground mt-1 block">
+                  24.8°C
+                </span>
                 <span className="text-[0.62rem] text-warning block mt-0.5">Spore Window</span>
               </div>
             </div>
@@ -401,7 +454,10 @@ export function ValidationRoute() {
             <div className="mt-4 p-3 rounded-lg bg-primary/5 border border-primary/20 text-xs text-muted-foreground leading-relaxed flex items-start gap-2.5">
               <Info className="size-4 text-primary shrink-0 mt-0.5" />
               <span>
-                <strong>Hardware Ingestion Pipeline:</strong> The probe transmits hexadecimal registers over RS485 Modbus RTU at 9600 baud rate. The ESP32 micro-controller validates the CRC-16 checksum, extracts NPK/Moisture/pH channels, and transmits JSON telemetry packets to the AgriTwin ingestion endpoint over Wi-Fi/MQTT.
+                <strong>Hardware Ingestion Pipeline:</strong> The probe transmits hexadecimal
+                registers over RS485 Modbus RTU at 9600 baud rate. The ESP32 micro-controller
+                validates the CRC-16 checksum, extracts NPK/Moisture/pH channels, and transmits JSON
+                telemetry packets to the AgriTwin ingestion endpoint over Wi-Fi/MQTT.
               </span>
             </div>
           </Panel>
@@ -417,7 +473,9 @@ export function ValidationRoute() {
                 <span className="px-2.5 py-0.5 rounded text-[0.7rem] font-mono font-bold bg-primary text-primary-foreground">
                   PILLAR 1
                 </span>
-                <span className="text-sm font-mono text-primary font-bold">Perception & Decision Logic</span>
+                <span className="text-sm font-mono text-primary font-bold">
+                  Perception & Decision Logic
+                </span>
               </div>
               <h2 className="text-2xl font-bold font-display text-foreground mt-1">
                 Results Interpretation & Explainability Architecture
@@ -432,14 +490,14 @@ export function ValidationRoute() {
               eyebrow="Neuro-Symbolic Posterior Calibration"
               title="How AgriTwin Interprets ML Predictions"
               aside={
-                <span className="text-xs font-mono font-bold text-primary">
-                  P(Disease|Context)
-                </span>
+                <span className="text-xs font-mono font-bold text-primary">P(Disease|Context)</span>
               }
             >
               <div className="space-y-4">
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  In pure deep learning, a computer vision model outputs ungrounded confidence scores. AgriTwin integrates live field telemetry and agronomic symbolic rules to adjust and interpret the true posterior probability:
+                  In pure deep learning, a computer vision model outputs ungrounded confidence
+                  scores. AgriTwin integrates live field telemetry and agronomic symbolic rules to
+                  adjust and interpret the true posterior probability:
                 </p>
 
                 {/* Raw vs Calibrated visualizer */}
@@ -465,8 +523,8 @@ export function ValidationRoute() {
                         calibratedConfidence > 80
                           ? "text-critical"
                           : calibratedConfidence > 60
-                          ? "text-warning"
-                          : "text-healthy"
+                            ? "text-warning"
+                            : "text-healthy"
                       }`}
                     >
                       {calibratedConfidence}%
@@ -523,7 +581,12 @@ export function ValidationRoute() {
                     <span>Agronomic Interpretation of this Output:</span>
                   </div>
                   <p className="text-muted-foreground text-[0.72rem] leading-relaxed">
-                    "The neural vision detector identified concentric ring lesions characteristic of <em>Alternaria solani</em>. Because real-time telemetry confirms 91% relative humidity, soil moisture of 68%, and rain within 48h, the pathogen's required microclimate window is 100% active. The decision engine elevates confidence to <strong>{calibratedConfidence}%</strong>, localizing the outbreak to Zone B1 while safely checking chemical constraints."
+                    "The neural vision detector identified concentric ring lesions characteristic of{" "}
+                    <em>Alternaria solani</em>. Because real-time telemetry confirms 91% relative
+                    humidity, soil moisture of 68%, and rain within 48h, the pathogen's required
+                    microclimate window is 100% active. The decision engine elevates confidence to{" "}
+                    <strong>{calibratedConfidence}%</strong>, localizing the outbreak to Zone B1
+                    while safely checking chemical constraints."
                   </p>
                 </div>
               </div>
@@ -537,68 +600,102 @@ export function ValidationRoute() {
             >
               <div className="space-y-4">
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Understanding why the model generates specific risk scores: AgriTwin provides exact feature weighting that drives the decision layer:
+                  Understanding why the model generates specific risk scores: AgriTwin provides
+                  exact feature weighting that drives the decision layer:
                 </p>
 
                 <div className="space-y-3">
                   <div>
                     <div className="flex justify-between text-xs mb-1">
-                      <span className="font-medium text-foreground">Leaf Moisture Duration (&gt;6h)</span>
+                      <span className="font-medium text-foreground">
+                        Leaf Moisture Duration (&gt;6h)
+                      </span>
                       <span className="font-mono text-primary font-bold">28% (Weight: 0.28)</span>
                     </div>
                     <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                       <div className="h-full bg-primary rounded-full" style={{ width: "28%" }} />
                     </div>
-                    <span className="text-[0.65rem] text-muted-foreground">Primary driver of fungal haustoria penetration</span>
+                    <span className="text-[0.65rem] text-muted-foreground">
+                      Primary driver of fungal haustoria penetration
+                    </span>
                   </div>
 
                   <div>
                     <div className="flex justify-between text-xs mb-1">
-                      <span className="font-medium text-foreground">Historical Plot Recurrence</span>
+                      <span className="font-medium text-foreground">
+                        Historical Plot Recurrence
+                      </span>
                       <span className="font-mono text-warning font-bold">22% (Weight: 0.22)</span>
                     </div>
                     <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                       <div className="h-full bg-warning rounded-full" style={{ width: "22%" }} />
                     </div>
-                    <span className="text-[0.65rem] text-muted-foreground">Soil-borne spores overwintering from previous tomato cycle</span>
+                    <span className="text-[0.65rem] text-muted-foreground">
+                      Soil-borne spores overwintering from previous tomato cycle
+                    </span>
                   </div>
 
                   <div>
                     <div className="flex justify-between text-xs mb-1">
-                      <span className="font-medium text-foreground">Canopy Relative Humidity (91%)</span>
+                      <span className="font-medium text-foreground">
+                        Canopy Relative Humidity (91%)
+                      </span>
                       <span className="font-mono text-water font-bold">21% (Weight: 0.21)</span>
                     </div>
                     <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                       <div className="h-full bg-water rounded-full" style={{ width: "21%" }} />
                     </div>
-                    <span className="text-[0.65rem] text-muted-foreground">Exceeds the 85% threshold required for sporulation</span>
+                    <span className="text-[0.65rem] text-muted-foreground">
+                      Exceeds the 85% threshold required for sporulation
+                    </span>
                   </div>
 
                   <div>
                     <div className="flex justify-between text-xs mb-1">
-                      <span className="font-medium text-foreground">Nitrogen Level (NPK Sensor: 42 mg/kg)</span>
-                      <span className="font-mono text-foreground font-bold">13% (Weight: 0.13)</span>
+                      <span className="font-medium text-foreground">
+                        Nitrogen Level (NPK Sensor: 42 mg/kg)
+                      </span>
+                      <span className="font-mono text-foreground font-bold">
+                        13% (Weight: 0.13)
+                      </span>
                     </div>
                     <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
-                      <div className="h-full bg-foreground/60 rounded-full" style={{ width: "13%" }} />
+                      <div
+                        className="h-full bg-foreground/60 rounded-full"
+                        style={{ width: "13%" }}
+                      />
                     </div>
-                    <span className="text-[0.65rem] text-muted-foreground">Dense vegetative canopy impedes internal airflow</span>
+                    <span className="text-[0.65rem] text-muted-foreground">
+                      Dense vegetative canopy impedes internal airflow
+                    </span>
                   </div>
 
                   <div>
                     <div className="flex justify-between text-xs mb-1">
-                      <span className="font-medium text-foreground">Crop Phenological Stage (Vegetative)</span>
-                      <span className="font-mono text-muted-foreground font-bold">10% (Weight: 0.10)</span>
+                      <span className="font-medium text-foreground">
+                        Crop Phenological Stage (Vegetative)
+                      </span>
+                      <span className="font-mono text-muted-foreground font-bold">
+                        10% (Weight: 0.10)
+                      </span>
                     </div>
                     <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
-                      <div className="h-full bg-muted-foreground rounded-full" style={{ width: "10%" }} />
+                      <div
+                        className="h-full bg-muted-foreground rounded-full"
+                        style={{ width: "10%" }}
+                      />
                     </div>
-                    <span className="text-[0.65rem] text-muted-foreground">Lower canopy leaves are most vulnerable to soil splash</span>
+                    <span className="text-[0.65rem] text-muted-foreground">
+                      Lower canopy leaves are most vulnerable to soil splash
+                    </span>
                   </div>
                 </div>
 
                 <div className="p-3 rounded-lg bg-surface border border-border/60 text-xs text-muted-foreground leading-relaxed">
-                  <strong>Core Agronomic Finding:</strong> Unlike standard deep neural networks which operate as black boxes, AgriTwin justifies every prediction with exact feature contributions, proving that the diagnostic output is grounded in agronomic physical reality.
+                  <strong>Core Agronomic Finding:</strong> Unlike standard deep neural networks
+                  which operate as black boxes, AgriTwin justifies every prediction with exact
+                  feature contributions, proving that the diagnostic output is grounded in agronomic
+                  physical reality.
                 </div>
               </div>
             </Panel>
@@ -609,49 +706,71 @@ export function ValidationRoute() {
             <Panel eyebrow="Spatial Interpretation" title="Zone-by-Zone Telemetry Variance">
               <div className="space-y-3">
                 <p className="text-xs text-muted-foreground">
-                  How AgriTwin differentiates healthy vs diseased zones across the 2.5-acre digital twin:
+                  How AgriTwin differentiates healthy vs diseased zones across the 2.5-acre digital
+                  twin:
                 </p>
                 <div className="space-y-2 text-xs">
                   <div className="p-3 rounded-lg bg-healthy/5 border border-healthy/30 flex justify-between items-center">
                     <div>
                       <span className="font-bold text-foreground block">Zone A1 (North Block)</span>
-                      <span className="text-[0.7rem] text-muted-foreground">Moisture 58% • Airflow optimal • Canopy dry</span>
+                      <span className="text-[0.7rem] text-muted-foreground">
+                        Moisture 58% • Airflow optimal • Canopy dry
+                      </span>
                     </div>
                     <div className="text-right">
                       <span className="font-mono font-bold text-healthy">8% Disease Risk</span>
-                      <span className="text-[0.65rem] text-muted-foreground block">Healthy growth</span>
+                      <span className="text-[0.65rem] text-muted-foreground block">
+                        Healthy growth
+                      </span>
                     </div>
                   </div>
 
                   <div className="p-3 rounded-lg bg-critical/10 border border-critical/30 flex justify-between items-center">
                     <div>
-                      <span className="font-bold text-foreground block">Zone B1 (Canopy Depression)</span>
-                      <span className="text-[0.7rem] text-muted-foreground">Moisture 79% • Soil saturation • Leaf wetness high</span>
+                      <span className="font-bold text-foreground block">
+                        Zone B1 (Canopy Depression)
+                      </span>
+                      <span className="text-[0.7rem] text-muted-foreground">
+                        Moisture 79% • Soil saturation • Leaf wetness high
+                      </span>
                     </div>
                     <div className="text-right">
                       <span className="font-mono font-bold text-critical">74% Disease Risk</span>
-                      <span className="text-[0.65rem] text-critical block">Active Blight Cluster</span>
+                      <span className="text-[0.65rem] text-critical block">
+                        Active Blight Cluster
+                      </span>
                     </div>
                   </div>
 
                   <div className="p-3 rounded-lg bg-warning/5 border border-warning/30 flex justify-between items-center">
                     <div>
-                      <span className="font-bold text-foreground block">Zone C1 (South-East Block)</span>
-                      <span className="text-[0.7rem] text-muted-foreground">Moisture 71% • Drip over-irrigation notice</span>
+                      <span className="font-bold text-foreground block">
+                        Zone C1 (South-East Block)
+                      </span>
+                      <span className="text-[0.7rem] text-muted-foreground">
+                        Moisture 71% • Drip over-irrigation notice
+                      </span>
                     </div>
                     <div className="text-right">
                       <span className="font-mono font-bold text-warning">34% Disease Risk</span>
-                      <span className="text-[0.65rem] text-muted-foreground block">Stress warning</span>
+                      <span className="text-[0.65rem] text-muted-foreground block">
+                        Stress warning
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
             </Panel>
 
-            <Panel eyebrow="Safety Guardrail Trace" title="Interpreting Why Spray Was Blocked (Rule #052)">
+            <Panel
+              eyebrow="Safety Guardrail Trace"
+              title="Interpreting Why Spray Was Blocked (Rule #052)"
+            >
               <div className="space-y-3">
                 <p className="text-xs text-muted-foreground">
-                  A crucial part of Results Interpretation is explaining <strong>negative decisions</strong> (why the system refused to execute an intuitive recommendation):
+                  A crucial part of Results Interpretation is explaining{" "}
+                  <strong>negative decisions</strong> (why the system refused to execute an
+                  intuitive recommendation):
                 </p>
 
                 <div className="p-3.5 rounded-lg bg-warning/10 border border-warning/30 space-y-2">
@@ -660,16 +779,23 @@ export function ValidationRoute() {
                       <AlertTriangle className="size-4" />
                       Rule #052: Rain-Fungicide Hazard Override
                     </span>
-                    <Badge variant="destructive" className="text-[0.65rem]">SPRAY BLOCKED</Badge>
+                    <Badge variant="destructive" className="text-[0.65rem]">
+                      SPRAY BLOCKED
+                    </Badge>
                   </div>
                   <p className="text-[0.72rem] text-foreground leading-relaxed">
-                    <strong>Input State:</strong> Zone B1 has 91% disease score → Standard AI proposes immediate Mancozeb 75% WP spray.
+                    <strong>Input State:</strong> Zone B1 has 91% disease score → Standard AI
+                    proposes immediate Mancozeb 75% WP spray.
                   </p>
                   <p className="text-[0.72rem] text-muted-foreground leading-relaxed">
-                    <strong>Symbolic Override:</strong> Weather API indicates 72% rain probability within 12 hours. Spraying before rainfall leads to 100% chemical runoff into soil water table, wasting ₹1,400/acre and causing aquatic toxicity without curing foliage.
+                    <strong>Symbolic Override:</strong> Weather API indicates 72% rain probability
+                    within 12 hours. Spraying before rainfall leads to 100% chemical runoff into
+                    soil water table, wasting ₹1,400/acre and causing aquatic toxicity without
+                    curing foliage.
                   </p>
                   <p className="text-[0.72rem] text-primary font-semibold">
-                    <strong>Final Prescription:</strong> Postpone spray by 24h. Ventilate canopy and reduce Zone C1 evening drip immediately.
+                    <strong>Final Prescription:</strong> Postpone spray by 24h. Ventilate canopy and
+                    reduce Zone C1 evening drip immediately.
                   </p>
                 </div>
               </div>
@@ -687,7 +813,9 @@ export function ValidationRoute() {
                 <span className="px-2.5 py-0.5 rounded text-[0.7rem] font-mono font-bold bg-water text-white">
                   PILLAR 2
                 </span>
-                <span className="text-sm font-mono text-water font-bold">Accuracy & Hardware Profiling</span>
+                <span className="text-sm font-mono text-water font-bold">
+                  Accuracy & Hardware Profiling
+                </span>
               </div>
               <h2 className="text-2xl font-bold font-display text-foreground mt-1">
                 Quantitative System & Model Performance Metrics
@@ -701,7 +829,10 @@ export function ValidationRoute() {
             <Panel eyebrow="Perception Layer" title="Neural Disease Classifier Benchmarks">
               <div className="grid grid-cols-2 gap-3 mt-2">
                 {classificationMetrics.map((m) => (
-                  <div key={m.metric} className="p-3 rounded-lg bg-surface border border-border/60 text-center">
+                  <div
+                    key={m.metric}
+                    className="p-3 rounded-lg bg-surface border border-border/60 text-center"
+                  >
                     <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
                       {m.metric}
                     </span>
@@ -712,14 +843,18 @@ export function ValidationRoute() {
                 ))}
               </div>
               <div className="mt-4 p-3 rounded-lg bg-muted/20 border border-border/40 text-[0.72rem] text-muted-foreground leading-relaxed">
-                Evaluated across 2,400 curated tomato leaf images across 4 classes (Healthy, Early Blight, Late Blight, Septoria). Evaluated using 5-Fold Stratified Cross Validation.
+                Evaluated across 2,400 curated tomato leaf images across 4 classes (Healthy, Early
+                Blight, Late Blight, Septoria). Evaluated using 5-Fold Stratified Cross Validation.
               </div>
             </Panel>
 
             <Panel eyebrow="Regression Layer" title="Yield Prediction Engine Benchmarks">
               <div className="grid grid-cols-3 gap-3 mt-2">
                 {regressionMetrics.map((m) => (
-                  <div key={m.metric} className="p-3 rounded-lg bg-surface border border-border/60 text-center">
+                  <div
+                    key={m.metric}
+                    className="p-3 rounded-lg bg-surface border border-border/60 text-center"
+                  >
                     <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
                       {m.metric}
                     </span>
@@ -730,58 +865,85 @@ export function ValidationRoute() {
                 ))}
               </div>
               <div className="mt-4 p-3 rounded-lg bg-muted/20 border border-border/40 text-[0.72rem] text-muted-foreground leading-relaxed">
-                Trained on historical Nashik tomato seasonal records. R² of 0.87 demonstrates strong variance capture against variable irrigation and nitrogen fertilization levels.
+                Trained on historical Nashik tomato seasonal records. R² of 0.87 demonstrates strong
+                variance capture against variable irrigation and nitrogen fertilization levels.
               </div>
             </Panel>
           </div>
 
           {/* System Latency & Hardware Performance */}
           <div className="grid gap-6 lg:grid-cols-2">
-            <Panel eyebrow="Latency & Execution Speed" title="Pipeline Latency Breakdown (Total: 180 ms)">
+            <Panel
+              eyebrow="Latency & Execution Speed"
+              title="Pipeline Latency Breakdown (Total: 180 ms)"
+            >
               <div className="space-y-3 mt-2">
                 {latencyBreakdown.map((l) => (
-                  <div key={l.step} className="p-3 rounded-lg bg-surface border border-border/60 flex items-center justify-between">
+                  <div
+                    key={l.step}
+                    className="p-3 rounded-lg bg-surface border border-border/60 flex items-center justify-between"
+                  >
                     <div>
                       <span className="text-xs font-semibold text-foreground block">{l.step}</span>
-                      <span className="text-[0.65rem] font-mono text-muted-foreground">99th percentile: {l.p99}</span>
+                      <span className="text-[0.65rem] font-mono text-muted-foreground">
+                        99th percentile: {l.p99}
+                      </span>
                     </div>
                     <Chip tone={l.tone}>{l.time}</Chip>
                   </div>
                 ))}
               </div>
               <p className="mt-4 text-xs text-muted-foreground leading-relaxed">
-                <strong>Real-Time Feasibility:</strong> The entire pipeline executes in under 200 ms, enabling live telemetry ingestion without stalling edge microcontroller queues or web client responsiveness.
+                <strong>Real-Time Feasibility:</strong> The entire pipeline executes in under 200
+                ms, enabling live telemetry ingestion without stalling edge microcontroller queues
+                or web client responsiveness.
               </p>
             </Panel>
 
-            <Panel eyebrow="Edge Hardware Performance" title="ESP32 & RS485 Hardware Specifications">
+            <Panel
+              eyebrow="Edge Hardware Performance"
+              title="ESP32 & RS485 Hardware Specifications"
+            >
               <div className="space-y-3 mt-2 text-xs">
                 <div className="p-3 rounded-lg bg-surface border border-border/60 flex justify-between items-center">
                   <span className="text-muted-foreground">Microcontroller Core</span>
-                  <span className="font-mono font-bold text-foreground">ESP32 Dual-Core @ 240 MHz</span>
+                  <span className="font-mono font-bold text-foreground">
+                    ESP32 Dual-Core @ 240 MHz
+                  </span>
                 </div>
                 <div className="p-3 rounded-lg bg-surface border border-border/60 flex justify-between items-center">
                   <span className="text-muted-foreground">Sensor Interface</span>
-                  <span className="font-mono font-bold text-primary">RS485 Modbus RTU (Half-Duplex)</span>
+                  <span className="font-mono font-bold text-primary">
+                    RS485 Modbus RTU (Half-Duplex)
+                  </span>
                 </div>
                 <div className="p-3 rounded-lg bg-surface border border-border/60 flex justify-between items-center">
                   <span className="text-muted-foreground">Probe Material & Ingress</span>
-                  <span className="font-mono font-bold text-foreground">316L Stainless Steel • IP68 Waterproof</span>
+                  <span className="font-mono font-bold text-foreground">
+                    316L Stainless Steel • IP68 Waterproof
+                  </span>
                 </div>
                 <div className="p-3 rounded-lg bg-surface border border-border/60 flex justify-between items-center">
                   <span className="text-muted-foreground">Active Battery Life (18650 Li-ion)</span>
-                  <span className="font-mono font-bold text-healthy">32 hours active • 14 days deep sleep</span>
+                  <span className="font-mono font-bold text-healthy">
+                    32 hours active • 14 days deep sleep
+                  </span>
                 </div>
                 <div className="p-3 rounded-lg bg-surface border border-border/60 flex justify-between items-center">
                   <span className="text-muted-foreground">Modbus Polling Cycle</span>
-                  <span className="font-mono font-bold text-water">1,000 ms continuous sampling</span>
+                  <span className="font-mono font-bold text-water">
+                    1,000 ms continuous sampling
+                  </span>
                 </div>
               </div>
             </Panel>
           </div>
 
           {/* Model Comparison Table */}
-          <Panel eyebrow="Comparative Benchmark" title="AgriTwin vs Alternative Baseline Architectures">
+          <Panel
+            eyebrow="Comparative Benchmark"
+            title="AgriTwin vs Alternative Baseline Architectures"
+          >
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-left">
                 <thead>
@@ -796,7 +958,10 @@ export function ValidationRoute() {
                 </thead>
                 <tbody className="divide-y border-border/20">
                   {baselineComparisons.map((b, idx) => (
-                    <tr key={idx} className={idx === 0 ? "bg-primary/5 font-medium" : "hover:bg-muted/5"}>
+                    <tr
+                      key={idx}
+                      className={idx === 0 ? "bg-primary/5 font-medium" : "hover:bg-muted/5"}
+                    >
                       <td className="py-3 text-foreground font-semibold flex items-center gap-1.5">
                         {idx === 0 && <CheckCircle2 className="size-3.5 text-primary" />}
                         {b.model}
@@ -805,7 +970,15 @@ export function ValidationRoute() {
                       <td className="py-3 font-mono text-foreground">{b.f1}</td>
                       <td className="py-3 text-muted-foreground">{b.explainability}</td>
                       <td className="py-3">
-                        <span className={idx === 0 ? "text-healthy font-semibold" : idx === 3 ? "text-critical font-bold" : "text-muted-foreground"}>
+                        <span
+                          className={
+                            idx === 0
+                              ? "text-healthy font-semibold"
+                              : idx === 3
+                                ? "text-critical font-bold"
+                                : "text-muted-foreground"
+                          }
+                        >
                           {b.hallucinationRate}
                         </span>
                       </td>
@@ -828,7 +1001,9 @@ export function ValidationRoute() {
                 <span className="px-2.5 py-0.5 rounded text-[0.7rem] font-mono font-bold bg-symbolic text-white">
                   PILLAR 3
                 </span>
-                <span className="text-sm font-mono text-symbolic font-bold">Physical & Safety Grounding</span>
+                <span className="text-sm font-mono text-symbolic font-bold">
+                  Physical & Safety Grounding
+                </span>
               </div>
               <h2 className="text-2xl font-bold font-display text-foreground mt-1">
                 Outcome Validation & Three-Tier Verification
@@ -847,7 +1022,9 @@ export function ValidationRoute() {
                 Statistical Prediction Validation
               </h3>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Validated against held-out 80:20 test partitions and reference laboratory ground-truth samples from ICAR databases. Precision and recall audited for false negatives.
+                Validated against held-out 80:20 test partitions and reference laboratory
+                ground-truth samples from ICAR databases. Precision and recall audited for false
+                negatives.
               </p>
               <div className="pt-2 text-[0.7rem] font-mono text-healthy font-semibold">
                 ✓ 94.2% Test Accuracy Confirmed
@@ -862,7 +1039,9 @@ export function ValidationRoute() {
                 Agronomic Scenario Physical Laws
               </h3>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Scenario simulation tested against fundamental biological laws (Mitscherlich curve, root hypoxia, waterlogging thresholds) to ensure predictions never violate physical reality.
+                Scenario simulation tested against fundamental biological laws (Mitscherlich curve,
+                root hypoxia, waterlogging thresholds) to ensure predictions never violate physical
+                reality.
               </p>
               <div className="pt-2 text-[0.7rem] font-mono text-healthy font-semibold">
                 ✓ 4/4 Scenario Audits Passed
@@ -877,7 +1056,8 @@ export function ValidationRoute() {
                 Neuro-Symbolic Safety Integrity
               </h3>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Stress-tested with 250 anomalous corner cases to ensure the symbolic rule engine strictly prevents dangerous dosage recommendations or toxic spray schedules.
+                Stress-tested with 250 anomalous corner cases to ensure the symbolic rule engine
+                strictly prevents dangerous dosage recommendations or toxic spray schedules.
               </p>
               <div className="pt-2 text-[0.7rem] font-mono text-healthy font-semibold">
                 ✓ 100% Rule Override Block Rate
@@ -904,7 +1084,9 @@ export function ValidationRoute() {
                       <td className="py-3 font-medium text-foreground">{val.intervention}</td>
                       <td className="py-3 font-mono text-primary font-bold">{val.prediction}</td>
                       <td className="py-3 text-muted-foreground">{val.expected}</td>
-                      <td className="py-3 text-[0.7rem] text-muted-foreground/80">{val.scientificBasis}</td>
+                      <td className="py-3 text-[0.7rem] text-muted-foreground/80">
+                        {val.scientificBasis}
+                      </td>
                       <td className="py-3 text-right">
                         <span className="inline-flex items-center gap-1 font-mono font-bold text-[0.65rem] text-healthy bg-healthy/10 px-2 py-0.5 rounded border border-healthy/30">
                           <CheckCircle2 className="size-3" /> {val.status}
@@ -918,35 +1100,52 @@ export function ValidationRoute() {
           </Panel>
 
           {/* Real-World Longitudinal Farm Outcome Case Study */}
-          <Panel eyebrow="Longitudinal Farm Validation" title="Real-World Field Outcome (Atharva Plot, Nashik)">
+          <Panel
+            eyebrow="Longitudinal Farm Validation"
+            title="Real-World Field Outcome (Atharva Plot, Nashik)"
+          >
             <div className="grid gap-6 md:grid-cols-[1.2fr_1fr] items-center">
               <div className="space-y-3">
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  How AgriTwin's diagnostic intervention verified real-world crop salvage over a 5-day cycle:
+                  How AgriTwin's diagnostic intervention verified real-world crop salvage over a
+                  5-day cycle:
                 </p>
                 <div className="space-y-2 text-xs">
                   <div className="p-2.5 rounded-lg bg-surface border border-border/40 flex items-start gap-3">
-                    <span className="font-mono text-[0.7rem] font-bold text-critical shrink-0">Day 1 (01 Jul)</span>
+                    <span className="font-mono text-[0.7rem] font-bold text-critical shrink-0">
+                      Day 1 (01 Jul)
+                    </span>
                     <span className="text-muted-foreground">
-                      Vision model flags Early Blight in Zone B1 (82%). System raises alert, but suppresses immediate spray due to upcoming 72% rain forecast.
+                      Vision model flags Early Blight in Zone B1 (82%). System raises alert, but
+                      suppresses immediate spray due to upcoming 72% rain forecast.
                     </span>
                   </div>
                   <div className="p-2.5 rounded-lg bg-surface border border-border/40 flex items-start gap-3">
-                    <span className="font-mono text-[0.7rem] font-bold text-water shrink-0">Day 2 (02 Jul)</span>
+                    <span className="font-mono text-[0.7rem] font-bold text-water shrink-0">
+                      Day 2 (02 Jul)
+                    </span>
                     <span className="text-muted-foreground">
-                      22mm rain event passes. Rain-delay rule proven correct; chemical wash-off and financial loss avoided.
+                      22mm rain event passes. Rain-delay rule proven correct; chemical wash-off and
+                      financial loss avoided.
                     </span>
                   </div>
                   <div className="p-2.5 rounded-lg bg-surface border border-border/40 flex items-start gap-3">
-                    <span className="font-mono text-[0.7rem] font-bold text-primary shrink-0">Day 3 (03 Jul)</span>
+                    <span className="font-mono text-[0.7rem] font-bold text-primary shrink-0">
+                      Day 3 (03 Jul)
+                    </span>
                     <span className="text-muted-foreground">
-                      Drip cycle cut in Zone C1 to drain waterlogged soil. Recommended fungicide applied to dry foliage.
+                      Drip cycle cut in Zone C1 to drain waterlogged soil. Recommended fungicide
+                      applied to dry foliage.
                     </span>
                   </div>
                   <div className="p-2.5 rounded-lg bg-surface border border-border/40 flex items-start gap-3">
-                    <span className="font-mono text-[0.7rem] font-bold text-healthy shrink-0">Day 5 (05 Jul)</span>
+                    <span className="font-mono text-[0.7rem] font-bold text-healthy shrink-0">
+                      Day 5 (05 Jul)
+                    </span>
                     <span className="text-muted-foreground">
-                      Lesions successfully contained. <strong>Health score recovered from 54 → 61 (+7 pts)</strong>, preventing an estimated 0.35 t/acre yield loss.
+                      Lesions successfully contained.{" "}
+                      <strong>Health score recovered from 54 → 61 (+7 pts)</strong>, preventing an
+                      estimated 0.35 t/acre yield loss.
                     </span>
                   </div>
                 </div>
@@ -957,16 +1156,24 @@ export function ValidationRoute() {
                   Measured Outcome Impact
                 </span>
                 <div>
-                  <span className="text-4xl font-bold font-display text-healthy block">+7 Points</span>
-                  <span className="text-xs text-muted-foreground mt-1 block">Health Score Recovery (54 → 61)</span>
+                  <span className="text-4xl font-bold font-display text-healthy block">
+                    +7 Points
+                  </span>
+                  <span className="text-xs text-muted-foreground mt-1 block">
+                    Health Score Recovery (54 → 61)
+                  </span>
                 </div>
                 <div className="pt-3 border-t border-healthy/20 grid grid-cols-2 gap-2 text-left text-xs">
                   <div>
-                    <span className="text-[0.65rem] text-muted-foreground block">Yield Protected:</span>
+                    <span className="text-[0.65rem] text-muted-foreground block">
+                      Yield Protected:
+                    </span>
                     <span className="font-mono font-bold text-foreground">0.35 t/acre</span>
                   </div>
                   <div>
-                    <span className="text-[0.65rem] text-muted-foreground block">Chemical Cost Saved:</span>
+                    <span className="text-[0.65rem] text-muted-foreground block">
+                      Chemical Cost Saved:
+                    </span>
                     <span className="font-mono font-bold text-foreground">₹1,400/acre</span>
                   </div>
                 </div>
@@ -977,7 +1184,10 @@ export function ValidationRoute() {
       )}
 
       {/* REFERENCED DATABASES & PROVENANCE */}
-      <Panel eyebrow="Data Inventory & Provenance" title="Referenced Databases & Live Telemetry Feeds">
+      <Panel
+        eyebrow="Data Inventory & Provenance"
+        title="Referenced Databases & Live Telemetry Feeds"
+      >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {dataSources.map((ds) => (
             <div key={ds.name} className="panel bg-background/25 border-border/60 p-4 space-y-3">

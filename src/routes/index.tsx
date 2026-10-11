@@ -56,7 +56,9 @@ export function LandingPage() {
 
   // Mitscherlich agronomy yield response formula
   const calculatedYield = (
-    2.8 * (1 - Math.exp(-0.035 * interactiveN)) * (interactiveMoisture > 75 ? 0.88 : 1.0)
+    2.8 *
+    (1 - Math.exp(-0.035 * interactiveN)) *
+    (interactiveMoisture > 75 ? 0.88 : 1.0)
   ).toFixed(2);
 
   const isExcessMoisture = interactiveMoisture > 75;
@@ -193,14 +195,14 @@ export function LandingPage() {
               {/* Main Headline */}
               <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold font-display tracking-tight text-foreground leading-[1.06]">
                 Save Soil, <br />
-                <span className="text-primary font-serif italic font-normal">
-                  Save Tomorrow.
-                </span>
+                <span className="text-primary font-serif italic font-normal">Save Tomorrow.</span>
               </h1>
 
               {/* Editorial Subtitle */}
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-xl font-sans">
-                An autonomous neuro-symbolic digital twin combining in-situ 7-in-1 soil probe telemetry, optical foliar pathology, and verifiable agronomic physical rules for precision tomato agriculture.
+                An autonomous neuro-symbolic digital twin combining in-situ 7-in-1 soil probe
+                telemetry, optical foliar pathology, and verifiable agronomic physical rules for
+                precision tomato agriculture.
               </p>
 
               {/* Action Buttons: Direct Hop-On to Main App */}
@@ -225,7 +227,10 @@ export function LandingPage() {
               {/* Grounded Research Note (Factual, Zero Made-Up Numbers) */}
               <div className="pt-2 flex items-center gap-2 text-xs text-muted-foreground font-mono">
                 <CheckCircle2 className="size-4 text-primary shrink-0" />
-                <span>Calibrated with physical Modbus sensors across Maharashtra tomato plots (Nashik & Selu).</span>
+                <span>
+                  Calibrated with physical Modbus sensors across Maharashtra tomato plots (Nashik &
+                  Selu).
+                </span>
               </div>
             </div>
 
@@ -254,7 +259,9 @@ export function LandingPage() {
                   <span>RS485</span>
                 </div>
                 <p className="text-xs font-bold text-foreground">Available N: 68 mg/kg</p>
-                <p className="text-[0.68rem] text-muted-foreground">Optimal vegetative saturation</p>
+                <p className="text-[0.68rem] text-muted-foreground">
+                  Optimal vegetative saturation
+                </p>
               </div>
 
               <div className="absolute top-1/2 -translate-y-1/2 -left-3 sm:-left-6 z-20 p-3 rounded-2xl bg-surface/95 border border-border shadow-md backdrop-blur-md max-w-[200px] space-y-1 hover:scale-105 transition-all">
@@ -281,19 +288,27 @@ export function LandingPage() {
           <div className="mt-14 pt-8 border-t border-border grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
             <div className="p-4 rounded-2xl bg-surface-2/60 border border-border/80">
               <p className="text-2xl sm:text-4xl font-display font-bold text-foreground">94.2%</p>
-              <p className="text-xs text-muted-foreground font-medium mt-0.5">Diagnostic Accuracy</p>
+              <p className="text-xs text-muted-foreground font-medium mt-0.5">
+                Diagnostic Accuracy
+              </p>
             </div>
             <div className="p-4 rounded-2xl bg-surface-2/60 border border-border/80">
               <p className="text-2xl sm:text-4xl font-display font-bold text-primary">7-in-1</p>
               <p className="text-xs text-muted-foreground font-medium mt-0.5">In-Situ Soil Probe</p>
             </div>
             <div className="p-4 rounded-2xl bg-surface-2/60 border border-border/80">
-              <p className="text-2xl sm:text-4xl font-display font-bold text-foreground">Dual-Loop</p>
-              <p className="text-xs text-muted-foreground font-medium mt-0.5">Neuro-Symbolic Engine</p>
+              <p className="text-2xl sm:text-4xl font-display font-bold text-foreground">
+                Dual-Loop
+              </p>
+              <p className="text-xs text-muted-foreground font-medium mt-0.5">
+                Neuro-Symbolic Engine
+              </p>
             </div>
             <div className="p-4 rounded-2xl bg-surface-2/60 border border-border/80">
               <p className="text-2xl sm:text-4xl font-display font-bold text-healthy">0 ms</p>
-              <p className="text-xs text-muted-foreground font-medium mt-0.5">Rule Verification Latency</p>
+              <p className="text-xs text-muted-foreground font-medium mt-0.5">
+                Rule Verification Latency
+              </p>
             </div>
           </div>
         </section>
@@ -309,11 +324,13 @@ export function LandingPage() {
                 <span>CORE PILLARS</span>
               </div>
               <h2 className="text-3xl sm:text-5xl font-bold font-display text-foreground tracking-tight">
-                We’re Building a <span className="text-primary font-serif italic">Greener</span>, Cleaner, Stronger World.
+                We’re Building a <span className="text-primary font-serif italic">Greener</span>,
+                Cleaner, Stronger World.
               </h2>
             </div>
             <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
-              Through real field IoT hardware, computer vision pathology, and symbolic agronomic guarantees, we empower farmers to protect crops with zero guesswork.
+              Through real field IoT hardware, computer vision pathology, and symbolic agronomic
+              guarantees, we empower farmers to protect crops with zero guesswork.
             </p>
           </div>
 
@@ -330,7 +347,9 @@ export function LandingPage() {
                     Sustainable Soil Intelligence
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Direct in-situ monitoring of 7-in-1 Modbus RS485 soil probes. We track available NPK, moisture tension, soil pH, and conductivity every 60 seconds to protect the root microbiome.
+                    Direct in-situ monitoring of 7-in-1 Modbus RS485 soil probes. We track available
+                    NPK, moisture tension, soil pH, and conductivity every 60 seconds to protect the
+                    root microbiome.
                   </p>
                 </div>
               </div>
@@ -351,7 +370,9 @@ export function LandingPage() {
                     Zero-Hallucination AI
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Dual-loop neuro-symbolic reasoning engine. Neural perception proposes hypotheses, but formal symbolic rules verify Mitscherlich yield limits and chemical safety intervals before any action is approved.
+                    Dual-loop neuro-symbolic reasoning engine. Neural perception proposes
+                    hypotheses, but formal symbolic rules verify Mitscherlich yield limits and
+                    chemical safety intervals before any action is approved.
                   </p>
                 </div>
               </div>
@@ -372,7 +393,9 @@ export function LandingPage() {
                     Farmer Empowerment
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Multilingual Kisan voice assistant speaking Marathi, Hindi, and English. Generates instant PDF spray advisories, microclimate forecasts, and geotagged field notes accessible on any smartphone.
+                    Multilingual Kisan voice assistant speaking Marathi, Hindi, and English.
+                    Generates instant PDF spray advisories, microclimate forecasts, and geotagged
+                    field notes accessible on any smartphone.
                   </p>
                 </div>
               </div>
@@ -400,7 +423,8 @@ export function LandingPage() {
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-muted-foreground max-w-md">
-              Click any module below to dive straight into live field reasoning, spatial maps, pathology diagnosis, or research archives.
+              Click any module below to dive straight into live field reasoning, spatial maps,
+              pathology diagnosis, or research archives.
             </p>
           </div>
 
@@ -423,7 +447,8 @@ export function LandingPage() {
                   Farm Digital Twin
                 </h3>
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  Interactive spatial map of farm plots with in-situ 7-in-1 soil probe telemetry, zone moisture grids, and crop vigor indices.
+                  Interactive spatial map of farm plots with in-situ 7-in-1 soil probe telemetry,
+                  zone moisture grids, and crop vigor indices.
                 </p>
               </div>
               <div className="pt-6 flex items-center justify-between text-xs font-semibold text-primary">
@@ -450,7 +475,8 @@ export function LandingPage() {
                   Disease Doctor
                 </h3>
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  Optical leaf lesion scanner diagnosing early blight, late blight, and leaf miner with instant severity scoring and organic remediation.
+                  Optical leaf lesion scanner diagnosing early blight, late blight, and leaf miner
+                  with instant severity scoring and organic remediation.
                 </p>
               </div>
               <div className="pt-6 flex items-center justify-between text-xs font-semibold text-primary">
@@ -477,7 +503,8 @@ export function LandingPage() {
                   Neuro-Symbolic Reasoning
                 </h3>
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  Transparent rule verification engine. Neural hypotheses are checked against first-principles agronomic constraints to eliminate hallucinations.
+                  Transparent rule verification engine. Neural hypotheses are checked against
+                  first-principles agronomic constraints to eliminate hallucinations.
                 </p>
               </div>
               <div className="pt-6 flex items-center justify-between text-xs font-semibold text-primary">
@@ -504,7 +531,8 @@ export function LandingPage() {
                   Student Research Fieldwork
                 </h3>
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  Authentic field investigations from Nashik and Selu agricultural belts: geotagged farmer surveys, well audits, and soil sensor calibration.
+                  Authentic field investigations from Nashik and Selu agricultural belts: geotagged
+                  farmer surveys, well audits, and soil sensor calibration.
                 </p>
               </div>
               <div className="pt-6 flex items-center justify-between text-xs font-semibold text-amber-600">
@@ -531,7 +559,8 @@ export function LandingPage() {
                   Validation Lab
                 </h3>
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  Empirical benchmarks covering Results Interpretation (3M), System Performance (2M), and Outcome Validation (2M) with real field proofs.
+                  Empirical benchmarks covering Results Interpretation (3M), System Performance
+                  (2M), and Outcome Validation (2M) with real field proofs.
                 </p>
               </div>
               <div className="pt-6 flex items-center justify-between text-xs font-semibold text-primary">
@@ -558,7 +587,8 @@ export function LandingPage() {
                   Kisan Assistant Copilot
                 </h3>
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  Multilingual agronomy conversational agent delivering real-time weather alerts, fertigation advisories, and crop spray guidance.
+                  Multilingual agronomy conversational agent delivering real-time weather alerts,
+                  fertigation advisories, and crop spray guidance.
                 </p>
               </div>
               <div className="pt-6 flex items-center justify-between text-xs font-semibold text-primary">
@@ -572,7 +602,10 @@ export function LandingPage() {
         {/* =======================================================================
             4. INTERACTIVE WHAT-IF SOIL PLAYGROUND (Greenly Style Dynamic Stage)
             ======================================================================= */}
-        <section id="playground" className="p-8 sm:p-12 rounded-[2.5rem] bg-card border border-border shadow-xs space-y-8">
+        <section
+          id="playground"
+          className="p-8 sm:p-12 rounded-[2.5rem] bg-card border border-border shadow-xs space-y-8"
+        >
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-primary mb-1">
@@ -589,7 +622,9 @@ export function LandingPage() {
           </div>
 
           <p className="text-sm text-muted-foreground max-w-3xl leading-relaxed">
-            Drag the real-time soil telemetry sliders below to evaluate how the neuro-symbolic engine predicts tomato yield response and dynamically raises physiological safety warnings before you enter the main app.
+            Drag the real-time soil telemetry sliders below to evaluate how the neuro-symbolic
+            engine predicts tomato yield response and dynamically raises physiological safety
+            warnings before you enter the main app.
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center pt-2">
@@ -657,7 +692,9 @@ export function LandingPage() {
                     <span className="text-4xl font-display font-bold text-foreground">
                       {calculatedYield}
                     </span>
-                    <span className="text-sm font-semibold text-muted-foreground">tonnes / acre</span>
+                    <span className="text-sm font-semibold text-muted-foreground">
+                      tonnes / acre
+                    </span>
                   </div>
                 </div>
                 <span className="px-3 py-1 rounded-full bg-surface border border-border text-xs font-mono text-primary font-semibold">
@@ -712,7 +749,10 @@ export function LandingPage() {
         {/* =======================================================================
             5. STUDENT RESEARCH FIELD EVIDENCE PREVIEW (Authentic Photos, NO DATES)
             ======================================================================= */}
-        <section id="research" className="p-8 sm:p-12 rounded-[2.5rem] bg-surface-2/60 border border-border shadow-xs space-y-8">
+        <section
+          id="research"
+          className="p-8 sm:p-12 rounded-[2.5rem] bg-surface-2/60 border border-border shadow-xs space-y-8"
+        >
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <div className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold uppercase tracking-wider text-amber-600 mb-1">
@@ -733,7 +773,8 @@ export function LandingPage() {
           </div>
 
           <p className="text-sm text-muted-foreground max-w-2xl leading-relaxed">
-            AgriTwin is grounded in real empirical fieldwork conducted across agricultural belts in Nashik and Selu. Here is authentic field testing captured directly on-site.
+            AgriTwin is grounded in real empirical fieldwork conducted across agricultural belts in
+            Nashik and Selu. Here is authentic field testing captured directly on-site.
           </p>
 
           {/* 3 Authentic Photo Cards (Strictly NO DATES mentioned anywhere) */}
@@ -754,7 +795,8 @@ export function LandingPage() {
                   Farmer Interview & Protocol Audit
                 </h4>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Documenting local fertigation habits, spray schedules, and soil texture with verified growers.
+                  Documenting local fertigation habits, spray schedules, and soil texture with
+                  verified growers.
                 </p>
               </div>
             </div>
@@ -775,7 +817,8 @@ export function LandingPage() {
                   Field Telemetry & Sensor Benchmarking
                 </h4>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Direct in-ground verification of Modbus RS485 soil moisture and NPK sensor stability across rows.
+                  Direct in-ground verification of Modbus RS485 soil moisture and NPK sensor
+                  stability across rows.
                 </p>
               </div>
             </div>
@@ -796,7 +839,8 @@ export function LandingPage() {
                   Optical Foliar Health Assessment
                 </h4>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Evaluating early blight necrotic spots and canopy microclimate on commercial tomato plots.
+                  Evaluating early blight necrotic spots and canopy microclimate on commercial
+                  tomato plots.
                 </p>
               </div>
             </div>
@@ -818,7 +862,8 @@ export function LandingPage() {
             </h2>
 
             <p className="text-sm sm:text-base text-emerald-100/90 leading-relaxed max-w-xl mx-auto">
-              Hop into the live farm digital twin model to explore real-time telemetry, run irrigation simulations, or test disease diagnostics.
+              Hop into the live farm digital twin model to explore real-time telemetry, run
+              irrigation simulations, or test disease diagnostics.
             </p>
 
             <div className="pt-4 flex flex-wrap items-center justify-center gap-4">

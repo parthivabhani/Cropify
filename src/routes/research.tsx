@@ -45,7 +45,9 @@ interface ResearchPhoto {
 }
 
 export function StudentResearchPage() {
-  const [activeFilter, setActiveFilter] = useState<"all" | "interviews" | "testing" | "infrastructure">("all");
+  const [activeFilter, setActiveFilter] = useState<
+    "all" | "interviews" | "testing" | "infrastructure"
+  >("all");
   const [selectedPhoto, setSelectedPhoto] = useState<ResearchPhoto | null>(null);
 
   const photos: ResearchPhoto[] = [
@@ -171,9 +173,8 @@ export function StudentResearchPage() {
     },
   ];
 
-  const filteredPhotos = activeFilter === "all"
-    ? photos
-    : photos.filter((p) => p.category === activeFilter);
+  const filteredPhotos =
+    activeFilter === "all" ? photos : photos.filter((p) => p.category === activeFilter);
 
   return (
     <div className="space-y-8 animate-rise pb-12">
@@ -191,7 +192,9 @@ export function StudentResearchPage() {
             <FileCheck className="size-5" />
           </div>
           <div>
-            <span className="text-xl font-bold font-display text-foreground block">8 Field Proofs</span>
+            <span className="text-xl font-bold font-display text-foreground block">
+              8 Field Proofs
+            </span>
             <span className="text-xs text-muted-foreground">Original Research Photos</span>
           </div>
         </div>
@@ -201,7 +204,9 @@ export function StudentResearchPage() {
             <ShieldCheck className="size-5" />
           </div>
           <div>
-            <span className="text-xl font-bold font-display text-foreground block">100% Ground Truth</span>
+            <span className="text-xl font-bold font-display text-foreground block">
+              100% Ground Truth
+            </span>
             <span className="text-xs text-muted-foreground">In-Situ Verified</span>
           </div>
         </div>
@@ -211,7 +216,9 @@ export function StudentResearchPage() {
             <MapPin className="size-5" />
           </div>
           <div>
-            <span className="text-xl font-bold font-display text-foreground block">Selu & Nashik</span>
+            <span className="text-xl font-bold font-display text-foreground block">
+              Selu & Nashik
+            </span>
             <span className="text-xs text-muted-foreground">Maharashtra Agronomy Belt</span>
           </div>
         </div>
@@ -221,7 +228,9 @@ export function StudentResearchPage() {
             <Users className="size-5" />
           </div>
           <div>
-            <span className="text-xl font-bold font-display text-foreground block">Farmer Direct</span>
+            <span className="text-xl font-bold font-display text-foreground block">
+              Farmer Direct
+            </span>
             <span className="text-xs text-muted-foreground">Structured Field Surveys</span>
           </div>
         </div>

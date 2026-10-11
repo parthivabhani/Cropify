@@ -177,8 +177,8 @@ export function Disclaimer({ className }: { className?: string }) {
   return (
     <p className={cn("text-xs leading-relaxed text-muted-foreground", className)}>
       AI recommendations are decision-support insights and should be confirmed against local
-      agricultural agronomist guidance before real-world application. Telemetry and metrics are derived
-      from field sensors and calibrated data sources.
+      agricultural agronomist guidance before real-world application. Telemetry and metrics are
+      derived from field sensors and calibrated data sources.
     </p>
   );
 }

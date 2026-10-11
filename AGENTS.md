@@ -4,6 +4,7 @@ AgriTwin is an autonomous neuro-symbolic digital twin system for precision agric
 It couples real-time 7-in-1 Modbus RS485 soil sensor telemetry with deep learning vision models and formal agronomic logic constraints.
 
 ### Core Modules
+
 - **Farm Digital Twin**: Spatial plot monitoring, 7-in-1 sensor grids, boundary mapping.
 - **Disease Doctor**: Optical pathology leaf lesion diagnostics (early blight, late blight).
 - **Neuro-Symbolic Reasoning**: Dual-loop neural perception + symbolic agronomy rules.

@@ -72,7 +72,8 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --shadow-glow: 0 0 0 1px oklch(0.76 0.175 160 / 0.25), 0 20px 50px -15px oklch(0.76 0.175 160 / 0.25);
+  --shadow-glow:
+    0 0 0 1px oklch(0.76 0.175 160 / 0.25), 0 20px 50px -15px oklch(0.76 0.175 160 / 0.25);
   --shadow-panel: 0 1px 0 0 oklch(1 0 0 / 0.06) inset, 0 20px 50px -25px oklch(0 0 0 / 0.8);
 
   --animate-pulse-soft: pulse-soft 3.6s ease-in-out infinite;
@@ -86,39 +87,39 @@
 
   /* Botanical Modern Light Aesthetic (Directly inspired by Carbonex, Enjoy Nature, Vertical Garden & Astro) */
   --background: oklch(0.985 0.008 120); /* #f9faf6 soft warm botanical linen */
-  --foreground: oklch(0.18 0.035 150);  /* #0d2319 deep forest charcoal */
-  --surface: oklch(1.0 0 0);            /* #ffffff pure crisp white */
-  --surface-2: oklch(0.965 0.012 125);  /* #f1f4ec elevated soft sage */
+  --foreground: oklch(0.18 0.035 150); /* #0d2319 deep forest charcoal */
+  --surface: oklch(1 0 0); /* #ffffff pure crisp white */
+  --surface-2: oklch(0.965 0.012 125); /* #f1f4ec elevated soft sage */
 
-  --card: oklch(1.0 0 0);
+  --card: oklch(1 0 0);
   --card-foreground: oklch(0.18 0.035 150);
-  --popover: oklch(1.0 0 0);
+  --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.035 150);
 
-  --primary: oklch(0.52 0.185 145);     /* #15803d rich vibrant emerald botanical green */
+  --primary: oklch(0.52 0.185 145); /* #15803d rich vibrant emerald botanical green */
   --primary-foreground: oklch(0.99 0.005 145);
-  --secondary: oklch(0.94 0.02 125);    /* soft sage pill */
-  --secondary-foreground: oklch(0.20 0.04 150);
+  --secondary: oklch(0.94 0.02 125); /* soft sage pill */
+  --secondary-foreground: oklch(0.2 0.04 150);
   --muted: oklch(0.95 0.012 120);
   --muted-foreground: oklch(0.46 0.03 140); /* #475a50 clear readable slate */
   --accent: oklch(0.94 0.025 135);
   --accent-foreground: oklch(0.18 0.04 150);
 
-  --destructive: oklch(0.58 0.22 25);   /* #e11d48 crimson rose */
+  --destructive: oklch(0.58 0.22 25); /* #e11d48 crimson rose */
   --destructive-foreground: oklch(0.99 0.01 92);
 
-  --border: oklch(0.89 0.015 125);      /* #e2e7dc clean subtle boundary */
+  --border: oklch(0.89 0.015 125); /* #e2e7dc clean subtle boundary */
   --input: oklch(0.95 0.012 125);
   --ring: oklch(0.52 0.185 145 / 0.4);
 
-  --healthy: oklch(0.54 0.19 145);      /* #16a34a lush green */
-  --warning: oklch(0.68 0.16 75);       /* #d97706 warm harvest amber */
+  --healthy: oklch(0.54 0.19 145); /* #16a34a lush green */
+  --warning: oklch(0.68 0.16 75); /* #d97706 warm harvest amber */
   --warning-foreground: oklch(0.18 0.05 70);
-  --critical: oklch(0.58 0.22 25);      /* #e11d48 coral */
-  --water: oklch(0.58 0.15 220);        /* #0284c7 clear sky water */
-  --soil: oklch(0.58 0.13 65);          /* #b45309 fertile earth */
-  --neural: oklch(0.54 0.14 185);       /* #0f766e deep cypress teal */
-  --symbolic: oklch(0.54 0.18 295);     /* #7e22ce deep royal iris */
+  --critical: oklch(0.58 0.22 25); /* #e11d48 coral */
+  --water: oklch(0.58 0.15 220); /* #0284c7 clear sky water */
+  --soil: oklch(0.58 0.13 65); /* #b45309 fertile earth */
+  --neural: oklch(0.54 0.14 185); /* #0f766e deep cypress teal */
+  --symbolic: oklch(0.54 0.18 295); /* #7e22ce deep royal iris */
 
   --chart-1: oklch(0.54 0.19 145);
   --chart-2: oklch(0.58 0.15 220);
@@ -139,41 +140,43 @@
   --sidebar-ring: oklch(0.52 0.185 145 / 0.4);
 }
 
+:root.dark,
+html.dark,
 .dark {
   color-scheme: dark;
 
   /* Botanical Obsidian Dark Aesthetic (High-end, glowing, rich cyber-mint precision) */
-  --background: oklch(0.12 0.022 150);       /* #0a140e deep obsidian canopy */
-  --foreground: oklch(0.96 0.01 120);        /* #f3f5ee warm sand white */
-  --surface: oklch(0.16 0.025 150);          /* #122017 elevated obsidian surface */
-  --surface-2: oklch(0.20 0.03 150);         /* #192b20 secondary dark pill */
+  --background: oklch(0.12 0.022 150); /* #0a140e deep obsidian canopy */
+  --foreground: oklch(0.96 0.01 120); /* #f3f5ee warm sand white */
+  --surface: oklch(0.16 0.025 150); /* #122017 elevated obsidian surface */
+  --surface-2: oklch(0.2 0.03 150); /* #192b20 secondary dark pill */
 
-  --card: oklch(0.15 0.025 150);             /* #111e15 rich dark card */
+  --card: oklch(0.15 0.025 150); /* #111e15 rich dark card */
   --card-foreground: oklch(0.96 0.01 120);
   --popover: oklch(0.15 0.025 150);
   --popover-foreground: oklch(0.96 0.01 120);
 
-  --primary: oklch(0.74 0.21 148);           /* #34d399 luminous cyber emerald/mint */
-  --primary-foreground: oklch(0.10 0.03 150);
+  --primary: oklch(0.74 0.21 148); /* #34d399 luminous cyber emerald/mint */
+  --primary-foreground: oklch(0.1 0.03 150);
   --secondary: oklch(0.22 0.03 150);
   --secondary-foreground: oklch(0.96 0.01 120);
-  --muted: oklch(0.20 0.025 150);
-  --muted-foreground: oklch(0.68 0.025 140);  /* clear readable soft sage */
+  --muted: oklch(0.2 0.025 150);
+  --muted-foreground: oklch(0.68 0.025 140); /* clear readable soft sage */
   --accent: oklch(0.24 0.035 150);
   --accent-foreground: oklch(0.96 0.01 120);
 
   --destructive: oklch(0.65 0.24 25);
   --destructive-foreground: oklch(0.99 0.01 92);
 
-  --border: oklch(0.26 0.025 150 / 0.85);    /* sleek subtle dark boundary */
-  --input: oklch(0.20 0.025 150);
+  --border: oklch(0.26 0.025 150 / 0.85); /* sleek subtle dark boundary */
+  --input: oklch(0.2 0.025 150);
   --ring: oklch(0.74 0.21 148 / 0.4);
 
   --healthy: oklch(0.74 0.21 148);
   --warning: oklch(0.78 0.17 75);
   --warning-foreground: oklch(0.15 0.05 70);
   --critical: oklch(0.65 0.24 25);
-  --water: oklch(0.70 0.16 220);
+  --water: oklch(0.7 0.16 220);
   --soil: oklch(0.68 0.14 65);
   --neural: oklch(0.68 0.15 185);
   --symbolic: oklch(0.68 0.19 295);
@@ -184,8 +187,8 @@
   --sidebar: oklch(0.14 0.025 150);
   --sidebar-foreground: oklch(0.96 0.01 120);
   --sidebar-primary: oklch(0.74 0.21 148);
-  --sidebar-primary-foreground: oklch(0.10 0.03 150);
-  --sidebar-accent: oklch(0.20 0.03 150);
+  --sidebar-primary-foreground: oklch(0.1 0.03 150);
+  --sidebar-accent: oklch(0.2 0.03 150);
   --sidebar-accent-foreground: oklch(0.96 0.01 120);
   --sidebar-border: oklch(0.26 0.025 150 / 0.85);
   --sidebar-ring: oklch(0.74 0.21 148 / 0.4);
@@ -229,7 +232,9 @@
   color: var(--card-foreground);
   border: 1px solid var(--border);
   border-radius: var(--radius-2xl);
-  box-shadow: 0 4px 20px -6px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02);
+  box-shadow:
+    0 4px 20px -6px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
 @utility glass {
@@ -245,7 +250,9 @@
   color: var(--card-foreground);
   border: 1px solid var(--border);
   border-radius: var(--radius-3xl);
-  box-shadow: 0 12px 36px -12px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.03);
+  box-shadow:
+    0 12px 36px -12px rgba(0, 0, 0, 0.12),
+    0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
 @utility glass-pill {
