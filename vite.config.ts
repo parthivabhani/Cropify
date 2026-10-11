@@ -9,5 +9,5 @@ export default defineConfig({
     server: { entry: "server" },
   },
   // Deploy target: Vercel (Build Output API in .vercel/output). Override with NITRO_PRESET.
-  nitro: { preset: process.env.NITRO_PRESET ?? "vercel" },
+  nitro: { preset: process.env["NITRO_PRESET"] ?? "vercel" },
 });
