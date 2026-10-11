@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import {
   MapPin,
   CheckCircle2,
@@ -49,6 +50,11 @@ export function StudentResearchPage() {
     "all" | "interviews" | "testing" | "infrastructure"
   >("all");
   const [selectedPhoto, setSelectedPhoto] = useState<ResearchPhoto | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Prevent background scrolling and handle Escape key when photo lightbox is open
   useEffect(() => {
@@ -237,7 +243,7 @@ export function StudentResearchPage() {
     activeFilter === "all" ? photos : photos.filter((p) => p.category === activeFilter);
 
   return (
-    <div className="space-y-8 animate-rise pb-12">
+    <div className="space-y-8 pb-12">
       {/* Page Header */}
       <PageHeader
         eyebrow="Academic Fieldwork & Ground Truthing"
@@ -416,29 +422,31 @@ export function StudentResearchPage() {
         ))}
       </div>
 
-      {/* Lightbox Modal for Full-Resolution Photo Inspection — safely positioned with always-visible close buttons */}
-      {selectedPhoto && (
-        <>
-          {/* Permanent Floating Close Button — Fixed to viewport top-right, guaranteed never off-screen */}
-          <button
-            type="button"
-            onClick={() => setSelectedPhoto(null)}
-            className="fixed top-3 right-3 sm:top-5 sm:right-6 z-[90] flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-background/95 hover:bg-surface-2 text-foreground border border-border/80 shadow-2xl backdrop-blur-md cursor-pointer transition-all hover:scale-105 active:scale-95 group"
-            aria-label="Close photo preview"
-          >
-            <X className="size-4 text-primary group-hover:rotate-90 transition-transform duration-200" />
-            <span className="text-xs font-semibold">Close (Esc)</span>
-          </button>
-
+      {/* Lightbox Modal for Full-Resolution Photo Inspection — portaled directly to document.body, centered in viewport */}
+      {mounted &&
+        selectedPhoto &&
+        createPortal(
           <div
             onClick={(e) => {
               if (e.target === e.currentTarget) setSelectedPhoto(null);
             }}
-            className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-background/90 backdrop-blur-xl p-3 sm:p-5 md:p-6 pt-14 sm:pt-20 pb-12 animate-in fade-in duration-200"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 md:p-6 bg-black/85 backdrop-blur-xl animate-in fade-in duration-200"
+            style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0 }}
           >
+            {/* Permanent Floating Close Button — Fixed to viewport top-right, guaranteed never off-screen */}
+            <button
+              type="button"
+              onClick={() => setSelectedPhoto(null)}
+              className="fixed top-3 right-3 sm:top-5 sm:right-6 z-[110] flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-background/95 hover:bg-surface-2 text-foreground border border-border/80 shadow-2xl backdrop-blur-md cursor-pointer transition-all hover:scale-105 active:scale-95 group"
+              aria-label="Close photo preview"
+            >
+              <X className="size-4 text-primary group-hover:rotate-90 transition-transform duration-200" />
+              <span className="text-xs font-semibold">Close (Esc)</span>
+            </button>
+
             <div
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl glass-card border border-border/80 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[82vh] animate-in zoom-in-95 duration-200"
+              className="relative w-full max-w-4xl glass-card border border-border/80 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh] my-auto animate-in zoom-in-95 duration-200"
             >
               {/* Modal Header */}
               <div className="flex items-center justify-between p-3.5 sm:p-4 border-b border-border/60 shrink-0 bg-surface-1/70">
@@ -464,13 +472,13 @@ export function StudentResearchPage() {
                 </button>
               </div>
 
-              {/* Modal Body with prominent photo and compact details */}
+              {/* Modal Body with centered photo and details */}
               <div className="flex-1 overflow-y-auto p-3.5 sm:p-5 flex flex-col items-center gap-3.5">
-                <div className="w-full max-h-[50vh] sm:max-h-[56vh] rounded-xl sm:rounded-2xl overflow-hidden border border-border/60 bg-black/80 flex items-center justify-center p-1 sm:p-2">
+                <div className="w-full max-h-[58vh] sm:max-h-[64vh] rounded-xl sm:rounded-2xl overflow-hidden border border-border/60 bg-black/80 flex items-center justify-center p-1 sm:p-2">
                   <img
                     src={selectedPhoto.image}
                     alt={selectedPhoto.title}
-                    className="max-w-full max-h-[48vh] sm:max-h-[54vh] object-contain rounded-lg"
+                    className="max-w-full max-h-[56vh] sm:max-h-[62vh] object-contain rounded-lg"
                   />
                 </div>
 
@@ -496,9 +504,9 @@ export function StudentResearchPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </>
-      )}
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }
