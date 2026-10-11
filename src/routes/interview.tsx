@@ -12,7 +12,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/interview")({
   head: () => ({
     meta: [
-      { title: "Farmer Interview — AgriTwin" },
+      { title: "Farmer Interview — Cropify" },
       {
         name: "description",
         content: "Capture qualitative farm knowledge directly from farmer field visits.",

@@ -18,7 +18,7 @@ const BoundaryMapping = lazy(() =>
 export const Route = createFileRoute("/farm-twin")({
   head: () => ({
     meta: [
-      { title: "Farm Digital Twin — AgriTwin" },
+      { title: "Farm Digital Twin — Cropify" },
       {
         name: "description",
         content: "Interactive living digital twin of the research farm block.",

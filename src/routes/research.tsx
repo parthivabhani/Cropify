@@ -19,7 +19,7 @@ import { Chip, PageHeader } from "@/components/agri/primitives";
 export const Route = createFileRoute("/research")({
   head: () => ({
     meta: [
-      { title: "Student Research & Field Evidence — AgriTwin" },
+      { title: "Student Research & Field Evidence — Cropify" },
       {
         name: "description",
         content:

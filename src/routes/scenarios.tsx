@@ -17,7 +17,7 @@ import {
 export const Route = createFileRoute("/scenarios")({
   head: () => ({
     meta: [
-      { title: "Scenario Simulator — AgriTwin" },
+      { title: "Scenario Simulator — Cropify" },
       {
         name: "description",
         content: "Test agricultural decisions using reactive crop simulation modeling.",

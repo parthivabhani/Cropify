@@ -6,7 +6,7 @@ import { PageHeader, Panel, Chip, Disclaimer } from "@/components/agri/primitive
 export const Route = createFileRoute("/architecture")({
   head: () => ({
     meta: [
-      { title: "Technical Architecture — AgriTwin" },
+      { title: "Technical Architecture — Cropify" },
       {
         name: "description",
         content: "Details of the Neuro-Symbolic agricultural AI decision architecture.",
@@ -104,7 +104,7 @@ function ArchitectureRoute() {
       <PageHeader
         eyebrow="System Design"
         title="Technical Architecture"
-        subtitle="Overview of AgriTwin's system boundaries and data exchange. Click architectural nodes to review individual constraints and technology stacks."
+        subtitle="Overview of Cropify's system boundaries and data exchange. Click architectural nodes to review individual constraints and technology stacks."
       />
 
       <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">

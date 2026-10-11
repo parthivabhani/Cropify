@@ -13,17 +13,17 @@ import {
   Footprints,
 } from "lucide-react";
 import { HeroLandscape, ProbeCrossSection } from "@/components/agri/landscape-art";
-import { AgriTwinLogo } from "@/components/agri/logo";
+import { CropifyLogo } from "@/components/agri/logo";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AgriTwin — A digital twin for the tomato field" },
+      { title: "Cropify — A digital twin for the tomato field" },
       {
         name: "description",
         content:
-          "AgriTwin pairs in-field soil sensors, leaf disease detection and agronomy rules into one living model of a tomato farm.",
+          "Cropify pairs in-field soil sensors, leaf disease detection and agronomy rules into one living model of a tomato farm.",
       },
     ],
   }),
@@ -143,10 +143,8 @@ export function LandingPage() {
       {/* ── 1. HERO ─────────────────────────────────────────────── */}
       <section className="relative mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center gap-10 px-5 pt-8 pb-16 sm:px-8 lg:grid-cols-[1fr_1.1fr] lg:gap-6 lg:py-10">
         <div className="absolute top-6 left-5 flex items-center gap-2 text-forest-2 sm:left-8 lg:top-8">
-          <AgriTwinLogo size={26} />
-          <span className="font-display text-lg font-semibold tracking-wide text-ink">
-            AGRITWIN
-          </span>
+          <CropifyLogo size={26} />
+          <span className="font-display text-lg font-semibold tracking-wide text-ink">CROPIFY</span>
         </div>
 
         <div className="relative z-10 order-2 pt-4 lg:order-1 lg:pt-16">
@@ -161,7 +159,7 @@ export function LandingPage() {
             <span className="text-forest-2">tomatoes</span>
           </h1>
           <p className="mt-7 max-w-md text-base leading-relaxed text-ink/70">
-            AgriTwin keeps a living copy of the farm. A soil probe in the ground, a camera on the
+            Cropify keeps a living copy of the farm. A soil probe in the ground, a camera on the
             leaves, and a set of agronomy rules that check every suggestion before it reaches the
             farmer.
           </p>
@@ -573,7 +571,7 @@ export function LandingPage() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 text-center font-display text-[19vw] leading-none font-bold text-linen/[0.05] select-none"
         >
-          AGRITWIN
+          CROPIFY
         </p>
         <div className="relative mx-auto max-w-3xl py-16 text-center">
           <h2 className="font-display text-4xl leading-tight font-medium sm:text-6xl">
@@ -595,7 +593,7 @@ export function LandingPage() {
 
         <footer className="relative mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 border-t border-linen/15 pt-6 text-xs text-linen/55 sm:flex-row">
           <span className="flex items-center gap-2 text-linen/80">
-            <AgriTwinLogo size={18} className="text-leaf" /> AgriTwin
+            <CropifyLogo size={18} className="text-leaf" /> Cropify
           </span>
           <span>Neuro-symbolic digital twin for tomato farms · Nashik & Selu field study</span>
         </footer>

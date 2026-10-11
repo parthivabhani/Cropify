@@ -25,7 +25,7 @@ import { farm, weatherSeries } from "@/lib/agri-data";
 export const Route = createFileRoute("/weather")({
   head: () => ({
     meta: [
-      { title: "Weather Intelligence — AgriTwin" },
+      { title: "Weather Intelligence — Cropify" },
       {
         name: "description",
         content: "Localized microclimate tracking and disease risk forecasting.",

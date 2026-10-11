@@ -22,7 +22,7 @@ import {
 export const Route = createFileRoute("/crop-intelligence")({
   head: () => ({
     meta: [
-      { title: "Crop & Yield Intelligence — AgriTwin" },
+      { title: "Crop & Yield Intelligence — Cropify" },
       {
         name: "description",
         content: "Yield regression, composite health analysis, and feature importance.",

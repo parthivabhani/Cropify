@@ -20,7 +20,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { useState, type ComponentType } from "react";
-import { AgriTwinLogo } from "./logo";
+import { CropifyLogo } from "./logo";
 import { ThemeToggle } from "./theme-toggle";
 
 type NavItem = { to: string; label: string; icon: ComponentType<{ className?: string }> };
@@ -63,9 +63,9 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
     <div className="flex h-full flex-col">
       <Link to="/" onClick={onNavigate} className="flex items-center gap-2.5 px-3 pt-1 pb-6">
         <span className="text-sidebar-primary">
-          <AgriTwinLogo size={26} />
+          <CropifyLogo size={26} />
         </span>
-        <span className="font-display text-xl font-semibold tracking-tight">AgriTwin</span>
+        <span className="font-display text-xl font-semibold tracking-tight">Cropify</span>
       </Link>
 
       <nav className="flex-1 space-y-6 overflow-y-auto pr-1">

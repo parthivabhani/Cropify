@@ -15,7 +15,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     setIsDark(nextDark);
     document.documentElement.classList.toggle("dark", nextDark);
     try {
-      localStorage.setItem("agritwin-theme", nextDark ? "dark" : "light");
+      localStorage.setItem("cropify-theme", nextDark ? "dark" : "light");
     } catch {
       // storage unavailable (private mode) — theme still applies for this visit
     }

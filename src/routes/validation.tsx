@@ -33,7 +33,7 @@ import { Badge } from "@/components/ui/badge";
 export const Route = createFileRoute("/validation")({
   head: () => ({
     meta: [
-      { title: "Research Validation Lab — AgriTwin" },
+      { title: "Research Validation Lab — Cropify" },
       {
         name: "description",
         content:
@@ -120,7 +120,7 @@ export function ValidationRoute() {
 
   const baselineComparisons = [
     {
-      model: "AgriTwin (Neuro-Symbolic)",
+      model: "Cropify (Neuro-Symbolic)",
       accuracy: "94.2%",
       f1: "93.2%",
       explainability: "High (Logic Trace)",
@@ -158,7 +158,7 @@ export function ValidationRoute() {
       <PageHeader
         eyebrow="Scientific Verification"
         title="Research Validation & Decision Audits"
-        subtitle="Verification suite testing the three core pillars of the AgriTwin methodology: sensor-grounded Results Interpretation, quantitative System Performance, and biological Outcome Validation."
+        subtitle="Verification suite testing the three core pillars of the Cropify methodology: sensor-grounded Results Interpretation, quantitative System Performance, and biological Outcome Validation."
         actions={
           <div className="flex items-center gap-2">
             <Badge
@@ -457,7 +457,7 @@ export function ValidationRoute() {
                 <strong>Hardware Ingestion Pipeline:</strong> The probe transmits hexadecimal
                 registers over RS485 Modbus RTU at 9600 baud rate. The ESP32 micro-controller
                 validates the CRC-16 checksum, extracts NPK/Moisture/pH channels, and transmits JSON
-                telemetry packets to the AgriTwin ingestion endpoint over Wi-Fi/MQTT.
+                telemetry packets to the Cropify ingestion endpoint over Wi-Fi/MQTT.
               </span>
             </div>
           </Panel>
@@ -488,7 +488,7 @@ export function ValidationRoute() {
             {/* Interactive Confidence Calibration Simulator */}
             <Panel
               eyebrow="Neuro-Symbolic Posterior Calibration"
-              title="How AgriTwin Interprets ML Predictions"
+              title="How Cropify Interprets ML Predictions"
               aside={
                 <span className="text-xs font-mono font-bold text-primary">P(Disease|Context)</span>
               }
@@ -496,7 +496,7 @@ export function ValidationRoute() {
               <div className="space-y-4">
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   In pure deep learning, a computer vision model outputs ungrounded confidence
-                  scores. AgriTwin integrates live field telemetry and agronomic symbolic rules to
+                  scores. Cropify integrates live field telemetry and agronomic symbolic rules to
                   adjust and interpret the true posterior probability:
                 </p>
 
@@ -600,8 +600,8 @@ export function ValidationRoute() {
             >
               <div className="space-y-4">
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Understanding why the model generates specific risk scores: AgriTwin provides
-                  exact feature weighting that drives the decision layer:
+                  Understanding why the model generates specific risk scores: Cropify provides exact
+                  feature weighting that drives the decision layer:
                 </p>
 
                 <div className="space-y-3">
@@ -693,7 +693,7 @@ export function ValidationRoute() {
 
                 <div className="p-3 rounded-lg bg-surface border border-border/60 text-xs text-muted-foreground leading-relaxed">
                   <strong>Core Agronomic Finding:</strong> Unlike standard deep neural networks
-                  which operate as black boxes, AgriTwin justifies every prediction with exact
+                  which operate as black boxes, Cropify justifies every prediction with exact
                   feature contributions, proving that the diagnostic output is grounded in agronomic
                   physical reality.
                 </div>
@@ -706,7 +706,7 @@ export function ValidationRoute() {
             <Panel eyebrow="Spatial Interpretation" title="Zone-by-Zone Telemetry Variance">
               <div className="space-y-3">
                 <p className="text-xs text-muted-foreground">
-                  How AgriTwin differentiates healthy vs diseased zones across the 2.5-acre digital
+                  How Cropify differentiates healthy vs diseased zones across the 2.5-acre digital
                   twin:
                 </p>
                 <div className="space-y-2 text-xs">
@@ -942,7 +942,7 @@ export function ValidationRoute() {
           {/* Model Comparison Table */}
           <Panel
             eyebrow="Comparative Benchmark"
-            title="AgriTwin vs Alternative Baseline Architectures"
+            title="Cropify vs Alternative Baseline Architectures"
           >
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-left">
@@ -1107,7 +1107,7 @@ export function ValidationRoute() {
             <div className="grid gap-6 md:grid-cols-[1.2fr_1fr] items-center">
               <div className="space-y-3">
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  How AgriTwin's diagnostic intervention verified real-world crop salvage over a
+                  How Cropify's diagnostic intervention verified real-world crop salvage over a
                   5-day cycle:
                 </p>
                 <div className="space-y-2 text-xs">

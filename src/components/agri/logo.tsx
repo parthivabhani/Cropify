@@ -1,5 +1,5 @@
 // Two leaves on one stem — the real plant and its digital twin.
-export function AgriTwinLogo({ size = 28, className }: { size?: number; className?: string }) {
+export function CropifyLogo({ size = 28, className }: { size?: number; className?: string }) {
   return (
     <svg
       width={size}

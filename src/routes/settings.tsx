@@ -19,7 +19,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/settings")({
   head: () => ({
     meta: [
-      { title: "System Settings — AgriTwin" },
+      { title: "System Settings — Cropify" },
       {
         name: "description",
         content:

@@ -1,5 +1,5 @@
 /**
- * AgriTwin shared field source telemetry and domain data layer.
+ * Cropify shared field source telemetry and domain data layer.
  *
  * Grounded in field sensors, agronomic rules, and empirical validation.
  */

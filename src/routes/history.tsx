@@ -7,7 +7,7 @@ import { timeline } from "@/lib/agri-data";
 export const Route = createFileRoute("/history")({
   head: () => ({
     meta: [
-      { title: "Farm History & Logs — AgriTwin" },
+      { title: "Farm History & Logs — Cropify" },
       {
         name: "description",
         content: "Chronological ledger of farm actions, observations, and outcomes.",

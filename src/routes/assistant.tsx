@@ -21,7 +21,7 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/assistant")({
   head: () => ({
     meta: [
-      { title: "AI Voice Assistant — AgriTwin" },
+      { title: "AI Voice Assistant — Cropify" },
       {
         name: "description",
         content: "Multilingual farmer voice assistant with symbolic context check.",
@@ -375,7 +375,7 @@ function AssistantRoute() {
     <div className="space-y-8 text-foreground">
       <PageHeader
         eyebrow="Farmer Interface"
-        title="AgriTwin Voice Assistant"
+        title="Cropify Voice Assistant"
         subtitle="A voice-first chat engine bridging natural language with exact logical constraints. Farmers can ask questions in Hindi, Hinglish, Marathi, and English."
         actions={
           <div className="flex items-center gap-3">
@@ -421,7 +421,7 @@ function AssistantRoute() {
                   }`}
                 >
                   <span className="text-[0.65rem] text-muted-foreground mb-1">
-                    {msg.sender === "farmer" ? "Farmer" : "AgriTwin Assistant"} · {msg.lang}
+                    {msg.sender === "farmer" ? "Farmer" : "Cropify Assistant"} · {msg.lang}
                   </span>
                   <div
                     className={`rounded-xl px-4 py-2.5 text-sm ${
@@ -450,7 +450,7 @@ function AssistantRoute() {
               ))}
               {isTyping && (
                 <div className="flex items-center gap-2 mr-auto text-xs text-muted-foreground p-3 bg-surface-2 rounded-xl border border-border/40 animate-pulse">
-                  <RefreshCw className="size-3 animate-spin" /> AgriTwin is reasoning...
+                  <RefreshCw className="size-3 animate-spin" /> Cropify is reasoning...
                 </div>
               )}
             </div>
@@ -470,7 +470,7 @@ function AssistantRoute() {
         </div>
 
         <div className="space-y-6">
-          <Panel eyebrow="Speech Telemetry" title="AgriTwin Voice HUD" className="text-center py-8">
+          <Panel eyebrow="Speech Telemetry" title="Cropify Voice HUD" className="text-center py-8">
             <div className="flex flex-col items-center gap-6">
               {/* Pulsing microphone layout */}
               <button

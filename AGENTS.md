@@ -1,6 +1,6 @@
-# AgriTwin AI — Agent Guidelines
+# Cropify — Agent Guidelines
 
-AgriTwin is an autonomous neuro-symbolic digital twin system for precision agriculture.
+Cropify is an autonomous neuro-symbolic digital twin system for precision agriculture.
 It couples real-time 7-in-1 Modbus RS485 soil sensor telemetry with deep learning vision models and formal agronomic logic constraints.
 
 ### Core Modules

@@ -24,7 +24,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/disease-analysis")({
   head: () => ({
     meta: [
-      { title: "Disease Doctor — AgriTwin Computer Vision Lab" },
+      { title: "Disease Doctor — Cropify Computer Vision Lab" },
       {
         name: "description",
         content:

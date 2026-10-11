@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * AgriTwin design system — "field notebook".
+ * Cropify design system — "field notebook".
  * Light: linen paper, forest ink, lime highlights (Carbonex / Vertical Garden).
  * Dark: near-black instrument panels with pastel lime, mist and coral signals (Mount).
  */
@@ -390,7 +390,7 @@ html.dark,
     margin: 0.8cm;
   }
 
-  #agritwin-report-pdf-capture {
+  #cropify-report-pdf-capture {
     background-color: #ffffff !important;
     color: #0f172a !important;
     border: 1.5px solid #cbd5e1 !important;
@@ -401,74 +401,74 @@ html.dark,
     margin: 0 auto !important;
   }
 
-  #agritwin-report-pdf-capture h2 {
+  #cropify-report-pdf-capture h2 {
     color: #0f172a !important;
   }
 
-  #agritwin-report-pdf-capture h3 {
+  #cropify-report-pdf-capture h3 {
     color: #16a34a !important; /* forest green print color */
     border-bottom: 1.5px solid #e2e8f0 !important;
   }
 
-  #agritwin-report-pdf-capture p,
-  #agritwin-report-pdf-capture span,
-  #agritwin-report-pdf-capture strong,
-  #agritwin-report-pdf-capture li {
+  #cropify-report-pdf-capture p,
+  #cropify-report-pdf-capture span,
+  #cropify-report-pdf-capture strong,
+  #cropify-report-pdf-capture li {
     color: #334155 !important;
   }
 
-  #agritwin-report-pdf-capture .text-primary {
+  #cropify-report-pdf-capture .text-primary {
     color: #16a34a !important;
   }
 
-  #agritwin-report-pdf-capture .text-critical {
+  #cropify-report-pdf-capture .text-critical {
     color: #b91c1c !important;
   }
 
-  #agritwin-report-pdf-capture .text-warning {
+  #cropify-report-pdf-capture .text-warning {
     color: #d97706 !important;
   }
 
-  #agritwin-report-pdf-capture .text-muted-foreground {
+  #cropify-report-pdf-capture .text-muted-foreground {
     color: #64748b !important;
   }
 
-  #agritwin-report-pdf-capture .border-border\/60,
-  #agritwin-report-pdf-capture .border-border\/25,
-  #agritwin-report-pdf-capture .border-border\/20,
-  #agritwin-report-pdf-capture .border-border\/40 {
+  #cropify-report-pdf-capture .border-border\/60,
+  #cropify-report-pdf-capture .border-border\/25,
+  #cropify-report-pdf-capture .border-border\/20,
+  #cropify-report-pdf-capture .border-border\/40 {
     border-color: #cbd5e1 !important;
   }
 
   /* Force all panel components, list items, and primary panels to light background & clean borders */
-  #agritwin-report-pdf-capture .panel,
-  #agritwin-report-pdf-capture li,
-  #agritwin-report-pdf-capture [class*="bg-primary/5"],
-  #agritwin-report-pdf-capture [class*="bg-background"] {
+  #cropify-report-pdf-capture .panel,
+  #cropify-report-pdf-capture li,
+  #cropify-report-pdf-capture [class*="bg-primary/5"],
+  #cropify-report-pdf-capture [class*="bg-background"] {
     background-color: #f8fafc !important;
     border: 1.5px solid #cbd5e1 !important;
     color: #0f172a !important;
     box-shadow: none !important;
   }
 
-  #agritwin-report-pdf-capture .bg-warning\/5,
-  #agritwin-report-pdf-capture [class*="bg-warning"] {
+  #cropify-report-pdf-capture .bg-warning\/5,
+  #cropify-report-pdf-capture [class*="bg-warning"] {
     background-color: #fffbeb !important;
     border: 1px solid #fef3c7 !important;
   }
 
-  #agritwin-report-pdf-capture .bg-warning\/5 p,
-  #agritwin-report-pdf-capture [class*="bg-warning"] p {
+  #cropify-report-pdf-capture .bg-warning\/5 p,
+  #cropify-report-pdf-capture [class*="bg-warning"] p {
     color: #92400e !important;
   }
 
-  #agritwin-report-pdf-capture .bg-warning\/5 strong,
-  #agritwin-report-pdf-capture [class*="bg-warning"] strong {
+  #cropify-report-pdf-capture .bg-warning\/5 strong,
+  #cropify-report-pdf-capture [class*="bg-warning"] strong {
     color: #78350f !important;
   }
 
   /* Decorative header color band at the top of A4 page */
-  #agritwin-report-pdf-capture .absolute {
+  #cropify-report-pdf-capture .absolute {
     background: #16a34a !important;
   }
 }

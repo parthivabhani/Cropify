@@ -17,7 +17,7 @@ import {
 export const Route = createFileRoute("/reports")({
   head: () => ({
     meta: [
-      { title: "Farm Intelligence Reports — AgriTwin" },
+      { title: "Farm Intelligence Reports — Cropify" },
       { name: "description", content: "Generate research-grade agricultural diagnostic reports." },
     ],
   }),
@@ -41,7 +41,7 @@ const translations = {
     checklistTitle: "3. Diagnostic Recommendations Checklist",
     disclaimerTitle: "Scientific Responsibility Disclaimer:",
     disclaimerText:
-      "The predictions and rule validations contained in this document are decision support heuristics generated dynamically via the AgriTwin diagnostic system. Validate chemical dosage recommendations against local extension guidelines prior to execution.",
+      "The predictions and rule validations contained in this document are decision support heuristics generated dynamically via the Cropify diagnostic system. Validate chemical dosage recommendations against local extension guidelines prior to execution.",
     radarTitle: "Farm Diagnostic Telemetry Analysis (Zone comparison)",
   },
   Hindi: {
@@ -98,7 +98,7 @@ const translations = {
     checklistTitle: "3. Diagnostic Recommendations Checklist",
     disclaimerTitle: "Scientific Responsibility Disclaimer:",
     disclaimerText:
-      "The predictions and rule validations contained in this document are decision support heuristics generated dynamically via the AgriTwin diagnostic system. Validate chemical dosage recommendations against local extension guidelines prior to execution.",
+      "The predictions and rule validations contained in this document are decision support heuristics generated dynamically via the Cropify diagnostic system. Validate chemical dosage recommendations against local extension guidelines prior to execution.",
     radarTitle: "Farm Diagnostic Telemetry Analysis (Zone comparison)",
   },
 };
@@ -295,7 +295,7 @@ function ReportsRoute() {
         </div>
       ) : (
         <div
-          id="agritwin-report-pdf-capture"
+          id="cropify-report-pdf-capture"
           className="space-y-6 max-w-[900px] mx-auto bg-surface/50 border-2 border-primary rounded-2xl p-6 md:p-10 overflow-hidden relative"
         >
           {/* Neon Accent Glow strip at the top */}

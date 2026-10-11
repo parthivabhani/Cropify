@@ -20,7 +20,7 @@ import {
 export const Route = createFileRoute("/reasoning")({
   head: () => ({
     meta: [
-      { title: "Reasoning Engine — AgriTwin" },
+      { title: "Reasoning Engine — Cropify" },
       {
         name: "description",
         content:

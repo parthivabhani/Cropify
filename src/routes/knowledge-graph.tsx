@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/knowledge-graph")({
   head: () => ({
     meta: [
-      { title: "Knowledge Graph — AgriTwin" },
+      { title: "Knowledge Graph — Cropify" },
       {
         name: "description",
         content: "Interactive visualization of crop-pathogen agronomic relationship networks.",
@@ -72,7 +72,7 @@ function KnowledgeGraphRoute() {
       <PageHeader
         eyebrow="Semantic Relations"
         title="Knowledge Graph"
-        subtitle="AgriTwin utilizes a structured database linking crops to diseases, environmental thresholds, and active treatment options. Selecting nodes reveals local relationship vectors."
+        subtitle="Cropify utilizes a structured database linking crops to diseases, environmental thresholds, and active treatment options. Selecting nodes reveals local relationship vectors."
         actions={
           <div className="flex gap-2">
             <Button
@@ -236,7 +236,7 @@ function KnowledgeGraphRoute() {
                   <p className="label-eyebrow">Ontology Definition</p>
                   <p className="text-muted-foreground leading-relaxed">
                     This semantic entity represents a physical field parameter or class node mapped
-                    inside the AgriTwin agricultural reasoning schema.
+                    inside the Cropify agricultural reasoning schema.
                   </p>
                 </div>
               </div>

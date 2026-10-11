@@ -76,13 +76,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AgriTwin — Neuro-Symbolic Agricultural Decision Intelligence" },
+      { title: "Cropify — Neuro-Symbolic Agricultural Decision Intelligence" },
       {
         name: "description",
         content:
-          "AgriTwin turns a real farm into a living digital twin, combining machine learning with agricultural reasoning and scenario simulation.",
+          "Cropify turns a real farm into a living digital twin, combining machine learning with agricultural reasoning and scenario simulation.",
       },
-      { name: "author", content: "AgriTwin Research" },
+      { name: "author", content: "Cropify Research" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -108,7 +108,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 // Applies the saved theme before first paint so pages never flash the wrong palette.
-const themeInitScript = `try{if(localStorage.getItem("agritwin-theme")==="dark")document.documentElement.classList.add("dark")}catch(e){}`;
+const themeInitScript = `try{if(localStorage.getItem("cropify-theme")==="dark")document.documentElement.classList.add("dark")}catch(e){}`;
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
