@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-// GPS translation parameters centered on Nashik
+// GPS translation parameters centered on reference coordinates
 const BASE_LAT = 20.011;
 const BASE_LNG = 73.7903;
 
@@ -138,7 +138,7 @@ function getCenterCoordsString(coords: { lat: number; lng: number }[]): string {
   return `${avgLat.toFixed(4)}° N, ${avgLng.toFixed(4)}° E`;
 }
 
-// Initial demo fields to layout Nashik blocks
+// Initial demo fields to layout reference blocks
 const initialFieldsList: Field[] = [
   {
     id: "f1",
@@ -540,7 +540,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
         toast.dismiss("gps-lock");
         console.warn("GPS lookup error:", err);
         toast.error("Could not obtain device location", {
-          description: err.message || "Centering map on Nashik reference agricultural plot.",
+          description: err.message || "Centering map on reference agricultural plot.",
         });
         if (mapRef.current) {
           mapRef.current.setView([BASE_LAT, BASE_LNG], 17, { animate: true });

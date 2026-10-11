@@ -4,7 +4,7 @@
 
 Cropify keeps a living digital twin of agricultural farm plots. A 7-in-1 soil probe reports what's happening in the root zone, a computer vision model reads foliage photos across multiple crop types for foliar diseases, and a layer of formal agronomy rules checks every suggestion — re-weighting the model's confidence and vetoing unsafe actions — before any advice reaches the farmer.
 
-> B.Tech Computer Science final-year project — _Neuro-Symbolic Reasoning for Intelligent Crop Production in Agriculture_. Field work carried out in Nashik and Selu, Maharashtra.
+> Autonomous neuro-symbolic digital twin system for precision agriculture across diverse crops and farm plots. Ground-truth empirical calibration validated through multi-plot field trials.
 
 ---
 

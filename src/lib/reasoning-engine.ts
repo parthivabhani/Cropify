@@ -359,8 +359,8 @@ export function runReasoning(f: FieldInputs): ReasoningResult {
 
 export const scenarioPresets: { id: string; label: string; note: string; inputs: FieldInputs }[] = [
   {
-    id: "nashik-humid",
-    label: "Humid week, Nashik",
+    id: "humid-week",
+    label: "Humid monsoon week",
     note: "Ringed brown spots after two days of rain; spray planned but more rain coming.",
     inputs: {
       lesionPattern: "concentric-brown",

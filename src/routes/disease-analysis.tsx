@@ -45,7 +45,7 @@ const sampleImages = [
     rawConfidence: 82,
     bayesianConfidence: 91,
 
-    location: "Nashik Plot B-03",
+    location: "Field Block B-03",
     humidity: "91% RH (High Spore Window)",
     ruleAction:
       "Rule #027 Triggered: Fungal sporulation alert. Halt excessive nitrogen, apply Mancozeb 2.5g/L.",
@@ -64,7 +64,7 @@ const sampleImages = [
     rawConfidence: 96,
     bayesianConfidence: 98,
 
-    location: "Nashik Plot A-14",
+    location: "Field Block A-14",
     humidity: "62% RH (Normal)",
     ruleAction: "All Symbolic Constraints Passed: Continue vegetative drip irrigation schedule.",
     lesions: [],
@@ -78,7 +78,7 @@ const sampleImages = [
     rawConfidence: 88,
     bayesianConfidence: 93,
 
-    location: "Selu Plot C-08",
+    location: "Field Block C-08",
     humidity: "86% RH (Moderate Spore Window)",
     ruleAction:
       "Rule #034 Triggered: Early pathogen containment. Apply copper-based protectant spray within 36 hours.",
@@ -248,7 +248,7 @@ function DiseaseAnalysis() {
                 size="sm"
                 onClick={() => {
                   setVoiceDesc(
-                    "Nashik farmer observation: Heavy 91% morning dew observed. Brown target lesions coalescing on third vegetative tier.",
+                    "Field scout observation: Heavy 91% morning dew observed. Brown target lesions coalescing on third vegetative tier.",
                   );
                   toast.success("Field survey audio transcription loaded.");
                 }}

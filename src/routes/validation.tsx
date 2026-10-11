@@ -290,7 +290,7 @@ export function ValidationRoute() {
                 Farm Visit & 7-in-1 Soil NPK Sensor Hardware Kit
               </h2>
             </div>
-            <Chip tone="healthy">Field Verified • Nashik Plot</Chip>
+            <Chip tone="healthy">Field Verified • Active Plot</Chip>
           </div>
 
           {/* Documentary Photo Evidence Cards - Real Fieldwork Photos from SRC Research Images */}
@@ -299,7 +299,7 @@ export function ValidationRoute() {
               <div className="aspect-[4/3] w-full overflow-hidden bg-muted relative">
                 <img
                   src="/research/selu_farmer_interview_geotag.png"
-                  alt="Student researcher conducting farmer interview in Selu, Maharashtra"
+                  alt="Student researcher conducting farmer interview during field trial"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
@@ -317,7 +317,7 @@ export function ValidationRoute() {
                   management practices.
                 </p>
                 <div className="pt-2 border-t border-border/40 flex items-center justify-between text-[0.65rem] font-mono text-muted-foreground">
-                  <span>Location: Selu, Maharashtra</span>
+                  <span>Location: Field Trial Site (GPS Verified)</span>
                   <span className="text-healthy font-semibold">Verified Proof</span>
                 </div>
               </div>
@@ -893,7 +893,7 @@ export function ValidationRoute() {
                 ))}
               </div>
               <div className="mt-4 p-3 rounded-lg bg-muted/20 border border-border/40 text-[0.72rem] text-muted-foreground leading-relaxed">
-                Trained on historical Nashik seasonal crop records. R² of 0.87 demonstrates strong
+                Trained on historical multi-season crop records. R² of 0.87 demonstrates strong
                 variance capture against variable irrigation and nitrogen fertilization levels.
               </div>
             </Panel>
@@ -1130,7 +1130,7 @@ export function ValidationRoute() {
           {/* Real-World Longitudinal Farm Outcome Case Study */}
           <Panel
             eyebrow="Longitudinal Farm Validation"
-            title="Real-World Field Outcome (Atharva Plot, Nashik)"
+            title="Real-World Field Outcome (Active Demonstration Plot)"
           >
             <div className="grid gap-6 md:grid-cols-[1.2fr_1fr] items-center">
               <div className="space-y-3">

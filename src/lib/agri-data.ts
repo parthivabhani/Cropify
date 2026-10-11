@@ -15,9 +15,9 @@ export type Provenance =
   | "Field Observation";
 
 export const farm = {
-  name: "Atharva Plot — North Block",
-  farmer: "Dindori Farmer Cohort",
-  location: "Nashik District, Maharashtra",
+  name: "Field Demonstration Plot — North Block",
+  farmer: "Participating Grower",
+  location: "Agricultural Plot Alpha",
   coordinates: "20.0110° N, 73.7903° E",
   sizeAcres: 2.5,
   crop: "Multi-Crop / Horticulture",

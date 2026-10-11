@@ -294,16 +294,16 @@ function AssistantRoute() {
     ) {
       if (lang === "Hinglish") {
         reply =
-          "Nashik weather report: Temperature 27°C hai, relative humidity 91% aur pichle 2 din se regular rain chal rahi hai.";
+          "Live farm weather report: Temperature 27°C hai, relative humidity 91% aur pichle 2 din se regular rain chal rahi hai.";
       } else if (lang === "Hindi") {
         reply =
-          "नासिक मौसम रिपोर्ट: तापमान 27°C है, सापेक्ष आर्द्रता 91% है और पिछले 2 दिनों से बारिश दर्ज की गई है।";
+          "खेत मौसम रिपोर्ट: तापमान 27°C है, सापेक्ष आर्द्रता 91% है और पिछले 2 दिनों से बारिश दर्ज की गई है।";
       } else if (lang === "Marathi") {
         reply =
-          "नाशिक हवामान रिपोर्ट: तापमान २७°C आहे, हवेतील दमटपणा ९१% असून गेल्या २ दिवसांत पाऊस झाला आहे.";
+          "शेत हवामान रिपोर्ट: तापमान २७°C आहे, हवेतील दमटपणा ९१% असून गेल्या २ दिवसांत पाऊस झाला आहे.";
       } else {
         reply =
-          "Nashik weather update: Temperature is 27°C, relative humidity is 91%, with active rainfall recorded in the last 48 hours.";
+          "Live farm weather update: Temperature is 27°C, relative humidity is 91%, with active rainfall recorded in the last 48 hours.";
       }
       evidence = "Weather API Telemetry";
     } else {

@@ -57,7 +57,7 @@ function FarmTwin() {
       <PageHeader
         eyebrow="Observe & Digitise"
         title="Farm Digital Twin"
-        subtitle="A living digital representation of the real farm plot in Nashik. Zones are mapped with soil moisture, crop conditions, and localized risk scores."
+        subtitle="A living digital representation of your farm plot. Zones are mapped with real-time 7-in-1 soil telemetry, crop conditions, and localized agronomic risk scores."
         actions={
           <Button
             variant={isEditing ? "outline" : "default"}

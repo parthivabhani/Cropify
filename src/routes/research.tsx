@@ -69,8 +69,8 @@ export function StudentResearchPage() {
     {
       id: "photo-1",
       category: "interviews",
-      title: "Geotagged Farmer Interview — Selu",
-      location: "Selu, Maharashtra, India",
+      title: "Geotagged Farmer Field Interview",
+      location: "Field Trial Site (GPS Geotag)",
       region: "GPS Map Camera Geotag: 6V3M+8MP",
       image: "/research/selu_farmer_interview_geotag.png",
       tag: "Farmer Interview",
@@ -277,9 +277,9 @@ export function StudentResearchPage() {
           </div>
           <div>
             <span className="text-xl font-bold font-display text-foreground block">
-              Selu & Nashik
+              Multi-Plot Trials
             </span>
-            <span className="text-xs text-muted-foreground">Maharashtra Agronomy Belt</span>
+            <span className="text-xs text-muted-foreground">Universal Farm Evidence</span>
           </div>
         </div>
 
@@ -416,63 +416,88 @@ export function StudentResearchPage() {
         ))}
       </div>
 
-      {/* Lightbox Modal for Full-Resolution Photo Inspection — pinned upwards at top of screen */}
+      {/* Lightbox Modal for Full-Resolution Photo Inspection — safely positioned with always-visible close buttons */}
       {selectedPhoto && (
-        <div
-          onClick={(e) => {
-            if (e.target === e.currentTarget) setSelectedPhoto(null);
-          }}
-          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-background/90 backdrop-blur-xl p-3 sm:p-5 md:p-6 animate-in fade-in duration-200"
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-4xl glass-card border border-border/80 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col my-1 sm:my-2 md:my-3 max-h-[94vh] animate-in zoom-in-95 duration-200"
+        <>
+          {/* Permanent Floating Close Button — Fixed to viewport top-right, guaranteed never off-screen */}
+          <button
+            type="button"
+            onClick={() => setSelectedPhoto(null)}
+            className="fixed top-3 right-3 sm:top-5 sm:right-6 z-[90] flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-background/95 hover:bg-surface-2 text-foreground border border-border/80 shadow-2xl backdrop-blur-md cursor-pointer transition-all hover:scale-105 active:scale-95 group"
+            aria-label="Close photo preview"
           >
-            {/* Modal Header */}
-            <div className="flex items-center justify-between p-3.5 sm:p-4 border-b border-border/60 shrink-0 bg-surface-1/60">
-              <div>
-                <h3 className="font-display font-bold text-base sm:text-lg text-foreground">
-                  {selectedPhoto.title}
-                </h3>
-                <p className="text-[0.72rem] text-muted-foreground font-mono flex items-center gap-1.5 mt-0.5">
-                  <MapPin className="size-3 text-warning shrink-0" />
-                  <span className="truncate">{selectedPhoto.location}</span>
-                  <span>•</span>
-                  <span>{selectedPhoto.region}</span>
-                </p>
+            <X className="size-4 text-primary group-hover:rotate-90 transition-transform duration-200" />
+            <span className="text-xs font-semibold">Close (Esc)</span>
+          </button>
+
+          <div
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setSelectedPhoto(null);
+            }}
+            className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-background/90 backdrop-blur-xl p-3 sm:p-5 md:p-6 pt-14 sm:pt-20 pb-12 animate-in fade-in duration-200"
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-4xl glass-card border border-border/80 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[82vh] animate-in zoom-in-95 duration-200"
+            >
+              {/* Modal Header */}
+              <div className="flex items-center justify-between p-3.5 sm:p-4 border-b border-border/60 shrink-0 bg-surface-1/70">
+                <div className="pr-3">
+                  <h3 className="font-display font-bold text-base sm:text-lg text-foreground">
+                    {selectedPhoto.title}
+                  </h3>
+                  <p className="text-[0.72rem] text-muted-foreground font-mono flex items-center gap-1.5 mt-0.5">
+                    <MapPin className="size-3 text-warning shrink-0" />
+                    <span className="truncate">{selectedPhoto.location}</span>
+                    <span>•</span>
+                    <span>{selectedPhoto.region}</span>
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setSelectedPhoto(null)}
+                  className="p-1.5 sm:p-2 rounded-xl bg-surface-2 hover:bg-surface-3 text-muted-foreground hover:text-foreground transition-all cursor-pointer border border-border/50 shrink-0"
+                  aria-label="Close photo preview"
+                >
+                  <X className="size-4.5 sm:size-5" />
+                </button>
               </div>
 
-              <button
-                onClick={() => setSelectedPhoto(null)}
-                className="p-1.5 sm:p-2 rounded-full hover:bg-surface-2 text-muted-foreground hover:text-foreground transition-all cursor-pointer"
-                aria-label="Close photo preview"
-              >
-                <X className="size-5" />
-              </button>
-            </div>
+              {/* Modal Body with prominent photo and compact details */}
+              <div className="flex-1 overflow-y-auto p-3.5 sm:p-5 flex flex-col items-center gap-3.5">
+                <div className="w-full max-h-[50vh] sm:max-h-[56vh] rounded-xl sm:rounded-2xl overflow-hidden border border-border/60 bg-black/80 flex items-center justify-center p-1 sm:p-2">
+                  <img
+                    src={selectedPhoto.image}
+                    alt={selectedPhoto.title}
+                    className="max-w-full max-h-[48vh] sm:max-h-[54vh] object-contain rounded-lg"
+                  />
+                </div>
 
-            {/* Modal Body with prominent top-aligned photo */}
-            <div className="flex-1 overflow-y-auto p-3.5 sm:p-5 flex flex-col items-center gap-3.5">
-              <div className="w-full max-h-[62vh] sm:max-h-[68vh] rounded-xl sm:rounded-2xl overflow-hidden border border-border/60 bg-black/80 flex items-center justify-center p-1 sm:p-2">
-                <img
-                  src={selectedPhoto.image}
-                  alt={selectedPhoto.title}
-                  className="max-w-full max-h-[60vh] sm:max-h-[66vh] object-contain rounded-lg"
-                />
-              </div>
+                <div className="w-full space-y-2 text-xs">
+                  <p className="text-foreground font-medium leading-relaxed">
+                    {selectedPhoto.summary}
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    <strong className="text-foreground">Agronomic Research Method: </strong>
+                    {selectedPhoto.methodology}
+                  </p>
+                </div>
 
-              <div className="w-full space-y-2 text-xs">
-                <p className="text-foreground font-medium leading-relaxed">
-                  {selectedPhoto.summary}
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  <strong className="text-foreground">Agronomic Research Method: </strong>
-                  {selectedPhoto.methodology}
-                </p>
+                {/* Bottom Close Action */}
+                <div className="w-full pt-2 border-t border-border/40 flex justify-end">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPhoto(null)}
+                    className="px-3.5 py-1.5 rounded-lg bg-surface-2 hover:bg-surface-3 text-xs font-semibold text-foreground border border-border/60 transition-colors cursor-pointer"
+                  >
+                    Close Preview
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );

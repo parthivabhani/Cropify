@@ -1,17 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import {
-  ArrowRight,
-  ArrowDown,
-  ArrowUpRight,
-  AlertTriangle,
-  Check,
-  Users,
-  Droplets,
-  Radio,
-  MapPin,
-  Footprints,
-} from "lucide-react";
+import { ArrowRight, ArrowDown, ArrowUpRight, AlertTriangle, Check } from "lucide-react";
 import { HeroLandscape, ProbeCrossSection } from "@/components/agri/landscape-art";
 import { CropifyLogo } from "@/components/agri/logo";
 import { cn } from "@/lib/utils";
@@ -81,7 +70,7 @@ const modules = [
   {
     to: "/research",
     title: "Student Research",
-    body: "Geotagged farmer interviews, well audits and sensor benchmarks from Nashik and Selu.",
+    body: "Geotagged farmer field interviews, hydrological audits, and live 7-in-1 sensor benchmarks.",
   },
   {
     to: "/validation",
@@ -90,37 +79,37 @@ const modules = [
   },
 ] as const;
 
-// Illustrated cards for the clothesline — the real photos live on the Student Research page.
+// Research fieldwork photos for the clothesline polaroids.
 const fieldWork = [
   {
-    icon: Users,
+    image: "/research/selu_farmer_interview_geotag.png",
     title: "Farmer interviews",
     note: "Spray habits, yields, soil",
-    bg: "bg-[#12352a] text-linen",
+    bg: "bg-[#12352a]",
   },
   {
-    icon: Droplets,
+    image: "/research/field_irrigation_well.png",
     title: "Irrigation audits",
     note: "Wells, tanks and drip lines",
-    bg: "bg-[#cfe0f0] text-ink",
+    bg: "bg-[#cfe0f0]",
   },
   {
-    icon: Radio,
+    image: "/research/image_copy_10.png",
     title: "Sensor field tests",
-    note: "Probe vs. lab readings",
-    bg: "bg-leaf text-ink",
+    note: "7-in-1 probe in crop row",
+    bg: "bg-leaf",
   },
   {
-    icon: MapPin,
+    image: "/research/student_field_testing.png",
     title: "Geotagged surveys",
     note: "Every visit on the map",
-    bg: "bg-[#d9d3ec] text-ink",
+    bg: "bg-[#d9d3ec]",
   },
   {
-    icon: Footprints,
+    image: "/research/farmland_pasture_landscape.png",
     title: "Boundary walks",
     note: "Plots mapped on foot",
-    bg: "bg-[#f0c9b5] text-ink",
+    bg: "bg-[#f0c9b5]",
   },
 ];
 
@@ -159,7 +148,7 @@ export function LandingPage() {
             <br />
             smarter
             <br />
-            <span className="text-forest-2">every crop</span>
+            <span className="text-forest-2">crops</span>
           </h1>
           <p className="mt-7 max-w-md text-base leading-relaxed text-ink/70">
             Cropify keeps a living copy of the farm. A soil probe in the ground, a camera on the
@@ -189,7 +178,7 @@ export function LandingPage() {
             {[
               ["7", "soil readings", "per probe"],
               ["94%", "leaf disease", "accuracy"],
-              ["2", "field sites", "Nashik · Selu"],
+              ["Universal", "farm telemetry", "any crop & plot"],
             ].map(([n, a, b]) => (
               <div key={a} className="flex flex-col gap-1.5">
                 <dt className="font-display text-4xl font-light text-forest-2/70 sm:text-5xl">
@@ -507,9 +496,10 @@ export function LandingPage() {
           </svg>
           <div className="relative grid grid-cols-5 gap-5">
             {fieldWork.map((p, i) => (
-              <figure
+              <Link
                 key={p.title}
-                className="relative rounded-2xl bg-white p-3 pb-4 shadow-[0_20px_40px_-20px_rgba(23,36,28,0.45)] transition-transform hover:z-10 hover:scale-105"
+                to="/research"
+                className="group relative rounded-2xl bg-white p-3 pb-4 shadow-[0_20px_40px_-20px_rgba(23,36,28,0.45)] transition-all duration-300 hover:z-20 hover:scale-105 hover:shadow-2xl block cursor-pointer"
                 style={{
                   marginTop: (lineSag[i] ?? 0) - 8,
                   transform: `rotate(${lineTilt[i] ?? 0}deg)`,
@@ -518,19 +508,22 @@ export function LandingPage() {
                 <span className="absolute -top-4 left-1/2 h-7 w-4 -translate-x-1/2 rounded-sm bg-forest-2 shadow">
                   <span className="absolute top-1.5 left-1/2 size-1.5 -translate-x-1/2 rounded-full bg-linen" />
                 </span>
-                <div
-                  className={cn(
-                    "grain flex aspect-[4/3.4] w-full items-center justify-center overflow-hidden rounded-xl",
-                    p.bg,
-                  )}
-                >
-                  <p.icon className="size-12" strokeWidth={1.4} />
+                <div className="relative aspect-[4/3.4] w-full overflow-hidden rounded-xl bg-forest-2/15 shadow-inner">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity" />
                 </div>
                 <figcaption className="mt-3 px-1">
-                  <p className="font-display text-base font-medium">{p.title}</p>
-                  <p className="text-xs text-ink/55">{p.note}</p>
+                  <p className="font-display text-base font-semibold text-ink group-hover:text-forest-2 transition-colors">
+                    {p.title}
+                  </p>
+                  <p className="text-xs text-ink/65 font-medium mt-0.5">{p.note}</p>
                 </figcaption>
-              </figure>
+              </Link>
             ))}
           </div>
         </div>
@@ -538,22 +531,24 @@ export function LandingPage() {
         {/* Mobile: swipeable row */}
         <div className="mt-10 flex snap-x gap-4 overflow-x-auto px-5 pb-4 md:hidden">
           {fieldWork.map((p) => (
-            <figure
+            <Link
               key={p.title}
-              className="w-56 shrink-0 snap-center rounded-2xl bg-white p-2.5 shadow-lg"
+              to="/research"
+              className="w-56 shrink-0 snap-center rounded-2xl bg-white p-2.5 shadow-lg block"
             >
-              <div
-                className={cn(
-                  "flex aspect-[4/3.4] w-full items-center justify-center rounded-xl",
-                  p.bg,
-                )}
-              >
-                <p.icon className="size-10" strokeWidth={1.4} />
+              <div className="relative aspect-[4/3.4] w-full overflow-hidden rounded-xl bg-forest-2/15 shadow-inner">
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
               </div>
-              <figcaption className="mt-2 px-1 font-display text-sm font-medium">
-                {p.title}
+              <figcaption className="mt-2 px-1">
+                <p className="font-display text-sm font-semibold text-ink">{p.title}</p>
+                <p className="text-[0.72rem] text-ink/65 font-medium">{p.note}</p>
               </figcaption>
-            </figure>
+            </Link>
           ))}
         </div>
 
@@ -598,7 +593,10 @@ export function LandingPage() {
           <span className="flex items-center gap-2 text-linen/80">
             <CropifyLogo size={18} className="text-leaf" /> Cropify
           </span>
-          <span>Neuro-symbolic digital twin for multi-crop farms · Nashik & Selu field study</span>
+          <span>
+            Autonomous neuro-symbolic digital twin for universal precision agriculture & multi-crop
+            farms
+          </span>
         </footer>
       </section>
     </div>

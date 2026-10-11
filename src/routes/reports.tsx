@@ -309,7 +309,7 @@ function ReportsRoute() {
               </span>
               <h2 className="text-2xl font-bold font-display mt-1 text-foreground">{farm.name}</h2>
               <p className="text-xs text-muted-foreground mt-1">
-                Coordinates: {farm.coordinates} · Nashik District, MH
+                Coordinates: {farm.coordinates} · Field Plot Alpha
               </p>
             </div>
             <div className="text-right text-xs text-muted-foreground">
