@@ -19,7 +19,12 @@ export function AgriTwinLogo({ size = 28 }: { size?: number }) {
         strokeWidth="1.6"
         strokeLinejoin="round"
       />
-      <path d="M24 37c0-6-3-10-8-12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+      <path
+        d="M24 37c0-6-3-10-8-12"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+      />
       <g className="text-primary" stroke="currentColor" strokeWidth="1.3">
         <path d="M16 25 24 16l8 6" strokeLinecap="round" />
         <path d="M24 16v-6" strokeLinecap="round" />

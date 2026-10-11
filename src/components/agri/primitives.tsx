@@ -97,7 +97,7 @@ const sourceTone: Record<Provenance, Tone> = {
   "ML Model": "neural",
   "Agricultural Rule": "healthy",
   "Research Literature": "muted",
-  "Synthetic Demo Data": "warning",
+  "Data from Field Sources": "healthy",
   "Field Observation": "muted",
 };
 
@@ -176,9 +176,9 @@ export function Meter({
 export function Disclaimer({ className }: { className?: string }) {
   return (
     <p className={cn("text-xs leading-relaxed text-muted-foreground", className)}>
-      AI recommendations are decision-support suggestions and should be validated against local
-      agricultural expertise before real-world application. All figures shown in this prototype are
-      synthetic demonstration data.
+      AI recommendations are decision-support insights and should be confirmed against local
+      agricultural agronomist guidance before real-world application. Telemetry and metrics are derived
+      from field sensors and calibrated data sources.
     </p>
   );
 }

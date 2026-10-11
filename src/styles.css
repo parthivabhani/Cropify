@@ -11,8 +11,9 @@
  */
 
 @theme inline {
-  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
   --radius-sm: calc(var(--radius) - 4px);
@@ -71,8 +72,8 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --shadow-glow: 0 0 0 1px oklch(0.82 0.2 130 / 0.18), 0 18px 60px -20px oklch(0.82 0.2 130 / 0.28);
-  --shadow-panel: 0 1px 0 0 oklch(1 0 0 / 0.04) inset, 0 24px 60px -32px oklch(0 0 0 / 0.85);
+  --shadow-glow: 0 0 0 1px oklch(0.76 0.175 160 / 0.25), 0 20px 50px -15px oklch(0.76 0.175 160 / 0.25);
+  --shadow-panel: 0 1px 0 0 oklch(1 0 0 / 0.06) inset, 0 20px 50px -25px oklch(0 0 0 / 0.8);
 
   --animate-pulse-soft: pulse-soft 3.6s ease-in-out infinite;
   --animate-flow: flow 4s linear infinite;
@@ -81,61 +82,113 @@
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 1.1rem;
 
-  --background: oklch(0.19 0.028 158);
-  --foreground: oklch(0.95 0.012 95);
-  --surface: oklch(0.23 0.031 160);
-  --surface-2: oklch(0.27 0.034 161);
+  /* Botanical Modern Light Aesthetic (Directly inspired by Carbonex, Enjoy Nature, Vertical Garden & Astro) */
+  --background: oklch(0.985 0.008 120); /* #f9faf6 soft warm botanical linen */
+  --foreground: oklch(0.18 0.035 150);  /* #0d2319 deep forest charcoal */
+  --surface: oklch(1.0 0 0);            /* #ffffff pure crisp white */
+  --surface-2: oklch(0.965 0.012 125);  /* #f1f4ec elevated soft sage */
 
-  --card: oklch(0.235 0.031 160);
-  --card-foreground: oklch(0.95 0.012 95);
-  --popover: oklch(0.235 0.031 160);
-  --popover-foreground: oklch(0.95 0.012 95);
+  --card: oklch(1.0 0 0);
+  --card-foreground: oklch(0.18 0.035 150);
+  --popover: oklch(1.0 0 0);
+  --popover-foreground: oklch(0.18 0.035 150);
 
-  --primary: oklch(0.82 0.2 130);
-  --primary-foreground: oklch(0.19 0.05 150);
-  --secondary: oklch(0.3 0.036 162);
-  --secondary-foreground: oklch(0.94 0.012 95);
-  --muted: oklch(0.28 0.03 161);
-  --muted-foreground: oklch(0.74 0.022 130);
-  --accent: oklch(0.32 0.05 158);
-  --accent-foreground: oklch(0.95 0.012 95);
+  --primary: oklch(0.52 0.185 145);     /* #15803d rich vibrant emerald botanical green */
+  --primary-foreground: oklch(0.99 0.005 145);
+  --secondary: oklch(0.94 0.02 125);    /* soft sage pill */
+  --secondary-foreground: oklch(0.20 0.04 150);
+  --muted: oklch(0.95 0.012 120);
+  --muted-foreground: oklch(0.46 0.03 140); /* #475a50 clear readable slate */
+  --accent: oklch(0.94 0.025 135);
+  --accent-foreground: oklch(0.18 0.04 150);
 
-  --destructive: oklch(0.62 0.21 25);
-  --destructive-foreground: oklch(0.97 0.01 95);
+  --destructive: oklch(0.58 0.22 25);   /* #e11d48 crimson rose */
+  --destructive-foreground: oklch(0.99 0.01 92);
 
-  --border: oklch(0.35 0.028 160 / 0.7);
-  --input: oklch(0.33 0.028 160);
-  --ring: oklch(0.82 0.2 130 / 0.55);
+  --border: oklch(0.89 0.015 125);      /* #e2e7dc clean subtle boundary */
+  --input: oklch(0.95 0.012 125);
+  --ring: oklch(0.52 0.185 145 / 0.4);
 
-  --healthy: oklch(0.82 0.2 130);
-  --warning: oklch(0.79 0.16 78);
-  --warning-foreground: oklch(0.22 0.05 70);
-  --critical: oklch(0.63 0.21 25);
-  --water: oklch(0.72 0.13 235);
-  --soil: oklch(0.75 0.08 70);
-  --neural: oklch(0.72 0.14 210);
-  --symbolic: oklch(0.83 0.15 100);
+  --healthy: oklch(0.54 0.19 145);      /* #16a34a lush green */
+  --warning: oklch(0.68 0.16 75);       /* #d97706 warm harvest amber */
+  --warning-foreground: oklch(0.18 0.05 70);
+  --critical: oklch(0.58 0.22 25);      /* #e11d48 coral */
+  --water: oklch(0.58 0.15 220);        /* #0284c7 clear sky water */
+  --soil: oklch(0.58 0.13 65);          /* #b45309 fertile earth */
+  --neural: oklch(0.54 0.14 185);       /* #0f766e deep cypress teal */
+  --symbolic: oklch(0.54 0.18 295);     /* #7e22ce deep royal iris */
 
-  --chart-1: oklch(0.82 0.2 130);
-  --chart-2: oklch(0.72 0.13 235);
-  --chart-3: oklch(0.79 0.16 78);
-  --chart-4: oklch(0.63 0.21 25);
-  --chart-5: oklch(0.68 0.09 160);
+  --chart-1: oklch(0.54 0.19 145);
+  --chart-2: oklch(0.58 0.15 220);
+  --chart-3: oklch(0.68 0.16 75);
+  --chart-4: oklch(0.58 0.22 25);
+  --chart-5: oklch(0.54 0.18 295);
 
-  --sidebar: oklch(0.165 0.026 158);
-  --sidebar-foreground: oklch(0.9 0.012 95);
-  --sidebar-primary: oklch(0.82 0.2 130);
-  --sidebar-primary-foreground: oklch(0.18 0.05 150);
-  --sidebar-accent: oklch(0.26 0.033 160);
-  --sidebar-accent-foreground: oklch(0.95 0.012 95);
-  --sidebar-border: oklch(0.31 0.026 160 / 0.7);
-  --sidebar-ring: oklch(0.82 0.2 130 / 0.5);
+  --chart-grid: rgba(0, 0, 0, 0.06);
+  --chart-axis: #52665a;
+
+  --sidebar: oklch(0.99 0.005 120);
+  --sidebar-foreground: oklch(0.18 0.035 150);
+  --sidebar-primary: oklch(0.52 0.185 145);
+  --sidebar-primary-foreground: oklch(0.99 0.005 145);
+  --sidebar-accent: oklch(0.94 0.02 125);
+  --sidebar-accent-foreground: oklch(0.18 0.04 150);
+  --sidebar-border: oklch(0.89 0.015 125);
+  --sidebar-ring: oklch(0.52 0.185 145 / 0.4);
 }
 
 .dark {
   color-scheme: dark;
+
+  /* Botanical Obsidian Dark Aesthetic (High-end, glowing, rich cyber-mint precision) */
+  --background: oklch(0.12 0.022 150);       /* #0a140e deep obsidian canopy */
+  --foreground: oklch(0.96 0.01 120);        /* #f3f5ee warm sand white */
+  --surface: oklch(0.16 0.025 150);          /* #122017 elevated obsidian surface */
+  --surface-2: oklch(0.20 0.03 150);         /* #192b20 secondary dark pill */
+
+  --card: oklch(0.15 0.025 150);             /* #111e15 rich dark card */
+  --card-foreground: oklch(0.96 0.01 120);
+  --popover: oklch(0.15 0.025 150);
+  --popover-foreground: oklch(0.96 0.01 120);
+
+  --primary: oklch(0.74 0.21 148);           /* #34d399 luminous cyber emerald/mint */
+  --primary-foreground: oklch(0.10 0.03 150);
+  --secondary: oklch(0.22 0.03 150);
+  --secondary-foreground: oklch(0.96 0.01 120);
+  --muted: oklch(0.20 0.025 150);
+  --muted-foreground: oklch(0.68 0.025 140);  /* clear readable soft sage */
+  --accent: oklch(0.24 0.035 150);
+  --accent-foreground: oklch(0.96 0.01 120);
+
+  --destructive: oklch(0.65 0.24 25);
+  --destructive-foreground: oklch(0.99 0.01 92);
+
+  --border: oklch(0.26 0.025 150 / 0.85);    /* sleek subtle dark boundary */
+  --input: oklch(0.20 0.025 150);
+  --ring: oklch(0.74 0.21 148 / 0.4);
+
+  --healthy: oklch(0.74 0.21 148);
+  --warning: oklch(0.78 0.17 75);
+  --warning-foreground: oklch(0.15 0.05 70);
+  --critical: oklch(0.65 0.24 25);
+  --water: oklch(0.70 0.16 220);
+  --soil: oklch(0.68 0.14 65);
+  --neural: oklch(0.68 0.15 185);
+  --symbolic: oklch(0.68 0.19 295);
+
+  --chart-grid: rgba(255, 255, 255, 0.07);
+  --chart-axis: #94a3b8;
+
+  --sidebar: oklch(0.14 0.025 150);
+  --sidebar-foreground: oklch(0.96 0.01 120);
+  --sidebar-primary: oklch(0.74 0.21 148);
+  --sidebar-primary-foreground: oklch(0.10 0.03 150);
+  --sidebar-accent: oklch(0.20 0.03 150);
+  --sidebar-accent-foreground: oklch(0.96 0.01 120);
+  --sidebar-border: oklch(0.26 0.025 150 / 0.85);
+  --sidebar-ring: oklch(0.74 0.21 148 / 0.4);
 }
 
 @layer base {
@@ -149,9 +202,17 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     background-image:
-      radial-gradient(900px 500px at 100% -10%, oklch(0.82 0.2 130 / 0.07), transparent 60%),
-      radial-gradient(700px 500px at -10% 100%, oklch(0.72 0.13 235 / 0.06), transparent 60%);
+      radial-gradient(1000px 500px at 50% -5%, rgba(34, 197, 94, 0.07), transparent 70%),
+      radial-gradient(900px 600px at 95% 20%, rgba(245, 158, 11, 0.04), transparent 60%),
+      radial-gradient(900px 600px at 5% 60%, rgba(16, 185, 129, 0.05), transparent 70%);
     background-attachment: fixed;
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(1000px 500px at 50% -5%, rgba(52, 211, 153, 0.12), transparent 70%),
+      radial-gradient(900px 600px at 95% 20%, rgba(16, 185, 129, 0.08), transparent 60%),
+      radial-gradient(900px 600px at 5% 60%, rgba(5, 150, 105, 0.09), transparent 70%);
   }
 
   h1,
@@ -159,26 +220,39 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
   }
 }
 
 @utility panel {
-  background: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--surface) 92%, transparent),
-    color-mix(in oklab, var(--background) 88%, transparent)
-  );
+  background: var(--card);
+  color: var(--card-foreground);
   border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-panel);
-  backdrop-filter: blur(14px);
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 4px 20px -6px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
 @utility glass {
-  background: color-mix(in oklab, var(--surface) 55%, transparent);
-  border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
-  backdrop-filter: blur(18px) saturate(140%);
+  background: color-mix(in oklch, var(--surface) 92%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(24px) saturate(140%);
+  box-shadow: 0 8px 30px -8px rgba(0, 0, 0, 0.08);
+}
+
+@utility glass-card {
+  background: var(--card);
+  color: var(--card-foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-3xl);
+  box-shadow: 0 12px 36px -12px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+@utility glass-pill {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.06);
 }
 
 @utility metric {
@@ -237,5 +311,115 @@
 @keyframes dash {
   to {
     stroke-dashoffset: -40;
+  }
+}
+
+@media print {
+  /* Prevent browser from stripping background colors and graphics */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    --chart-grid: #e2e8f0 !important;
+    --chart-axis: #475569 !important;
+  }
+
+  /* Hide toast notifications in print output */
+  [data-sonner-toaster],
+  .sonner-toast,
+  .toast {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  @page {
+    margin: 0.8cm;
+  }
+
+  #agritwin-report-pdf-capture {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    border: 1.5px solid #cbd5e1 !important;
+    box-shadow: none !important;
+    padding: 30px !important;
+    border-radius: 12px !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  #agritwin-report-pdf-capture h2 {
+    color: #0f172a !important;
+  }
+
+  #agritwin-report-pdf-capture h3 {
+    color: #16a34a !important; /* forest green print color */
+    border-bottom: 1.5px solid #e2e8f0 !important;
+  }
+
+  #agritwin-report-pdf-capture p,
+  #agritwin-report-pdf-capture span,
+  #agritwin-report-pdf-capture strong,
+  #agritwin-report-pdf-capture li {
+    color: #334155 !important;
+  }
+
+  #agritwin-report-pdf-capture .text-primary {
+    color: #16a34a !important;
+  }
+
+  #agritwin-report-pdf-capture .text-critical {
+    color: #b91c1c !important;
+  }
+
+  #agritwin-report-pdf-capture .text-warning {
+    color: #d97706 !important;
+  }
+
+  #agritwin-report-pdf-capture .text-muted-foreground {
+    color: #64748b !important;
+  }
+
+  #agritwin-report-pdf-capture .border-border\/60,
+  #agritwin-report-pdf-capture .border-border\/25,
+  #agritwin-report-pdf-capture .border-border\/20,
+  #agritwin-report-pdf-capture .border-border\/40 {
+    border-color: #cbd5e1 !important;
+  }
+
+  /* Force all panel components, list items, and primary panels to light background & clean borders */
+  #agritwin-report-pdf-capture .panel,
+  #agritwin-report-pdf-capture li,
+  #agritwin-report-pdf-capture [class*="bg-primary/5"],
+  #agritwin-report-pdf-capture [class*="bg-background"] {
+    background-color: #f8fafc !important;
+    border: 1.5px solid #cbd5e1 !important;
+    color: #0f172a !important;
+    box-shadow: none !important;
+  }
+
+  #agritwin-report-pdf-capture .bg-warning\/5,
+  #agritwin-report-pdf-capture [class*="bg-warning"] {
+    background-color: #fffbeb !important;
+    border: 1px solid #fef3c7 !important;
+  }
+
+  #agritwin-report-pdf-capture .bg-warning\/5 p,
+  #agritwin-report-pdf-capture [class*="bg-warning"] p {
+    color: #92400e !important;
+  }
+
+  #agritwin-report-pdf-capture .bg-warning\/5 strong,
+  #agritwin-report-pdf-capture [class*="bg-warning"] strong {
+    color: #78350f !important;
+  }
+
+  /* Decorative header color band at the top of A4 page */
+  #agritwin-report-pdf-capture .absolute {
+    background: #16a34a !important;
   }
 }

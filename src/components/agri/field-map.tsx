@@ -3,10 +3,18 @@ import { zones, type Zone } from "@/lib/agri-data";
 import { cn } from "@/lib/utils";
 import { Chip, Meter } from "./primitives";
 
-const stateStyle: Record<Zone["state"], { fill: string; ring: string; label: string; tone: "healthy" | "warning" | "critical" | "water" }> = {
+const stateStyle: Record<
+  Zone["state"],
+  { fill: string; ring: string; label: string; tone: "healthy" | "warning" | "critical" | "water" }
+> = {
   healthy: { fill: "bg-healthy/15", ring: "border-healthy/45", label: "Healthy", tone: "healthy" },
   stress: { fill: "bg-warning/15", ring: "border-warning/50", label: "Stress", tone: "warning" },
-  disease: { fill: "bg-critical/15", ring: "border-critical/55", label: "Disease", tone: "critical" },
+  disease: {
+    fill: "bg-critical/15",
+    ring: "border-critical/55",
+    label: "Disease",
+    tone: "critical",
+  },
   irrigation: { fill: "bg-water/15", ring: "border-water/50", label: "Irrigation", tone: "water" },
 };
 
@@ -27,7 +35,9 @@ function CropRows({ state }: { state: Zone["state"] }) {
             <span
               key={c}
               className={cn("size-1 rounded-full", color)}
-              style={{ animation: `pulse-soft ${3 + ((r + c) % 4) * 0.6}s ease-in-out ${(r + c) * 0.08}s infinite` }}
+              style={{
+                animation: `pulse-soft ${3 + ((r + c) % 4) * 0.6}s ease-in-out ${(r + c) * 0.08}s infinite`,
+              }}
             />
           ))}
         </div>
@@ -43,11 +53,11 @@ export function FieldMap({ compact = false }: { compact?: boolean }) {
     <div className={cn("grid gap-5", compact ? "" : "lg:grid-cols-[1.6fr_1fr]")}>
       <div className="panel relative overflow-hidden p-4">
         <div
-          className="relative w-full overflow-hidden rounded-lg border border-border/70"
+          className="relative w-full overflow-hidden rounded-xl border border-border/70"
           style={{
             aspectRatio: "16 / 10",
             backgroundImage:
-              "linear-gradient(180deg, oklch(0.27 0.05 150 / 0.7), oklch(0.21 0.04 155 / 0.9)), repeating-linear-gradient(90deg, oklch(1 0 0 / 0.04) 0 1px, transparent 1px 28px), repeating-linear-gradient(0deg, oklch(1 0 0 / 0.04) 0 1px, transparent 1px 28px)",
+              "linear-gradient(180deg, oklch(0.18 0.03 250 / 0.85), oklch(0.14 0.025 250 / 0.98)), repeating-linear-gradient(90deg, oklch(1 0 0 / 0.04) 0 1px, transparent 1px 28px), repeating-linear-gradient(0deg, oklch(1 0 0 / 0.04) 0 1px, transparent 1px 28px)",
           }}
         >
           {zones.map((z) => {
@@ -85,50 +95,66 @@ export function FieldMap({ compact = false }: { compact?: boolean }) {
             </Chip>
           ))}
         </div>
-      </div>
 
-      <div className="panel p-5">
-        {selected ? (
-          <div className="animate-rise">
-            <p className="label-eyebrow">Zone inspector</p>
-            <h3 className="mt-1 text-xl font-semibold">{selected.label}</h3>
-            <Chip tone={stateStyle[selected.state].tone} className="mt-2">
-              {stateStyle[selected.state].label}
-            </Chip>
-            <div className="mt-5 space-y-3">
-              <Meter label="Zone health" value={selected.health} tone="healthy" />
-              <Meter label="Soil moisture" value={selected.moisture} tone="water" />
-              <Meter
-                label="Disease probability"
-                value={selected.diseaseProb}
-                tone={selected.diseaseProb > 50 ? "critical" : "warning"}
-              />
+        {compact && selected && (
+          <div className="mt-3 pt-3 border-t border-border/50 flex flex-wrap items-center justify-between gap-2 text-xs">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-foreground">{selected.label}</span>
+              <Chip tone={stateStyle[selected.state].tone} className="text-[0.65rem]">
+                {stateStyle[selected.state].label}
+              </Chip>
             </div>
-            <dl className="mt-5 space-y-3 text-sm">
-              <div>
-                <dt className="label-eyebrow">Soil condition</dt>
-                <dd className="mt-1">{selected.soil}</dd>
-              </div>
-              <div>
-                <dt className="label-eyebrow">Crop condition</dt>
-                <dd className="mt-1 text-muted-foreground">{selected.condition}</dd>
-              </div>
-              <div>
-                <dt className="label-eyebrow">Recommended action</dt>
-                <dd className="mt-1">{selected.action}</dd>
-              </div>
-              <div className="rounded-lg border border-border bg-muted/30 p-3">
-                <dt className="label-eyebrow">Reasoning</dt>
-                <dd className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                  {selected.reasoning}
-                </dd>
-              </div>
-            </dl>
+            <span className="font-mono text-muted-foreground text-[0.7rem]">
+              Health: {selected.health}% • Moisture: {selected.moisture}% • {selected.soil}
+            </span>
           </div>
-        ) : (
-          <p className="text-sm text-muted-foreground">Select a field zone to inspect it.</p>
         )}
       </div>
+
+      {!compact && (
+        <div className="panel p-5">
+          {selected ? (
+            <div className="animate-rise">
+              <p className="label-eyebrow">Zone inspector</p>
+              <h3 className="mt-1 text-xl font-semibold">{selected.label}</h3>
+              <Chip tone={stateStyle[selected.state].tone} className="mt-2">
+                {stateStyle[selected.state].label}
+              </Chip>
+              <div className="mt-5 space-y-3">
+                <Meter label="Zone health" value={selected.health} tone="healthy" />
+                <Meter label="Soil moisture" value={selected.moisture} tone="water" />
+                <Meter
+                  label="Disease probability"
+                  value={selected.diseaseProb}
+                  tone={selected.diseaseProb > 50 ? "critical" : "warning"}
+                />
+              </div>
+              <dl className="mt-5 space-y-3 text-sm">
+                <div>
+                  <dt className="label-eyebrow">Soil condition</dt>
+                  <dd className="mt-1">{selected.soil}</dd>
+                </div>
+                <div>
+                  <dt className="label-eyebrow">Crop condition</dt>
+                  <dd className="mt-1 text-muted-foreground">{selected.condition}</dd>
+                </div>
+                <div>
+                  <dt className="label-eyebrow">Recommended action</dt>
+                  <dd className="mt-1">{selected.action}</dd>
+                </div>
+                <div className="rounded-lg border border-border bg-muted/30 p-3">
+                  <dt className="label-eyebrow">Reasoning</dt>
+                  <dd className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                    {selected.reasoning}
+                  </dd>
+                </div>
+              </dl>
+            </div>
+          ) : (
+            <p className="text-sm text-muted-foreground">Select a field zone to inspect it.</p>
+          )}
+        </div>
+      )}
     </div>
   );
 }

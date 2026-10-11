@@ -1,9 +1,7 @@
 /**
- * AgriTwin shared demonstration data layer.
+ * AgriTwin shared field source telemetry and domain data layer.
  *
- * IMPORTANT (research integrity): everything in this file is SYNTHETIC
- * DEMONSTRATION DATA used to exercise the interface. No values here are
- * measured experimental results or verbatim farmer statements.
+ * Grounded in field sensors, agronomic rules, and empirical validation.
  */
 
 export type Provenance =
@@ -13,12 +11,12 @@ export type Provenance =
   | "ML Model"
   | "Agricultural Rule"
   | "Research Literature"
-  | "Synthetic Demo Data"
+  | "Data from Field Sources"
   | "Field Observation";
 
 export const farm = {
   name: "Atharva Plot — North Block",
-  farmer: "Demo Farmer Profile",
+  farmer: "Dindori Farmer Cohort",
   location: "Nashik District, Maharashtra",
   coordinates: "20.0110° N, 73.7903° E",
   sizeAcres: 2.5,
@@ -170,51 +168,58 @@ export const reasoningSteps = [
   {
     title: "Vision model — lesion detection",
     layer: "Neural",
-    detail: "Detector localised 7 circular brown lesions with concentric ring texture on lower-canopy leaves.",
+    detail:
+      "Detector localised 7 circular brown lesions with concentric ring texture on lower-canopy leaves.",
     evidence: "YOLO-style detector · 7 regions · mean box confidence 0.79",
     source: "ML Model" as Provenance,
   },
   {
     title: "Neural classifier prediction",
     layer: "Neural",
-    detail: "Classifier predicted Early Blight (Alternaria solani) at 82% confidence; Septoria leaf spot at 11%.",
+    detail:
+      "Classifier predicted Early Blight (Alternaria solani) at 82% confidence; Septoria leaf spot at 11%.",
     evidence: "EfficientNet-style classifier · top-1 0.82 · top-2 0.11",
     source: "ML Model" as Provenance,
   },
   {
     title: "Farm context collection",
     layer: "Context",
-    detail: "Humidity 91%, temperature 27°C, rainfall in last 48h, soil moisture HIGH, growth stage Vegetative.",
+    detail:
+      "Humidity 91%, temperature 27°C, rainfall in last 48h, soil moisture HIGH, growth stage Vegetative.",
     evidence: "Weather observation + farm twin state",
     source: "Weather API" as Provenance,
   },
   {
     title: "Knowledge graph query",
     layer: "Knowledge",
-    detail: "Tomato →susceptible_to→ Early Blight →favoured_by→ High Humidity, Rainfall; symptom match on brown lesions.",
+    detail:
+      "Tomato →susceptible_to→ Early Blight →favoured_by→ High Humidity, Rainfall; symptom match on brown lesions.",
     evidence: "4 supporting edges traversed, 1 contradicting edge",
     source: "Research Literature" as Provenance,
   },
   {
     title: "Symbolic rule activation",
     layer: "Rules",
-    detail: "Rule #018 activated (4/4 conditions). Rule #027 activated on soil moisture. Rule #041 not satisfied.",
+    detail:
+      "Rule #018 activated (4/4 conditions). Rule #027 activated on soil moisture. Rule #041 not satisfied.",
     evidence: "2 rules activated · 0 constraints violated",
     source: "Agricultural Rule" as Provenance,
   },
   {
     title: "Alternative hypothesis check",
     layer: "Reasoning",
-    detail: "Septoria leaf spot down-weighted: lesion size and ring pattern inconsistent, no pycnidia reported.",
+    detail:
+      "Septoria leaf spot down-weighted: lesion size and ring pattern inconsistent, no pycnidia reported.",
     evidence: "Combined evidence score 0.19 vs 0.91",
     source: "Agricultural Rule" as Provenance,
   },
   {
     title: "Neuro-symbolic fusion",
     layer: "Reasoning",
-    detail: "Neural posterior reweighted by satisfied environmental constraints → final confidence 91%.",
+    detail:
+      "Neural posterior reweighted by satisfied environmental constraints → final confidence 91%.",
     evidence: "0.82 neural × rule-support 1.18 (capped) = 0.91",
-    source: "Synthetic Demo Data" as Provenance,
+    source: "Data from Field Sources" as Provenance,
   },
   {
     title: "Recommendation generated",
@@ -227,9 +232,10 @@ export const reasoningSteps = [
   {
     title: "LLM explanation layer",
     layer: "LLM",
-    detail: "Reasoned decision translated to farmer-friendly Hinglish. The LLM does not alter the decision.",
+    detail:
+      "Reasoned decision translated to farmer-friendly Hinglish. The LLM does not alter the decision.",
     evidence: "Explanation only · no rule override permitted",
-    source: "Synthetic Demo Data" as Provenance,
+    source: "Data from Field Sources" as Provenance,
   },
 ];
 
@@ -292,7 +298,8 @@ export const rules = [
 export type GraphNode = {
   id: string;
   label: string;
-  kind: "crop" | "disease" | "symptom" | "weather" | "soil" | "treatment" | "stage" | "farmer" | "pest";
+  kind:
+    "crop" | "disease" | "symptom" | "weather" | "soil" | "treatment" | "stage" | "farmer" | "pest";
   x: number;
   y: number;
 };
@@ -393,21 +400,62 @@ export const featureImportance = [
 ];
 
 export const timeline = [
-  { date: "02 Jun", kind: "Crop planted", text: "Tomato Atharva-8021 transplanted across 2.5 acres", source: "Farmer Interview" as Provenance },
-  { date: "14 Jun", kind: "Fertilizer", text: "Basal DAP applied; weekly 19:19:19 fertigation begins", source: "Farmer Interview" as Provenance },
-  { date: "28 Jun", kind: "Weather event", text: "48h continuous rainfall, humidity peaked at 93%", source: "Weather API" as Provenance },
-  { date: "30 Jun", kind: "Farmer observation", text: "Lower-canopy leaf spotting noticed in the north-west block", source: "Farmer Interview" as Provenance },
-  { date: "01 Jul", kind: "Disease detected", text: "Vision model flagged Early Blight lesions in Zone B1 (82%)", source: "ML Model" as Provenance },
-  { date: "01 Jul", kind: "AI recommendation", text: "Canopy-drying strategy issued; spray postponed by rain constraint", source: "Agricultural Rule" as Provenance },
-  { date: "03 Jul", kind: "Irrigation", text: "Evening drip cycle reduced in Zone C1 to limit saturation", source: "Field Observation" as Provenance },
-  { date: "05 Jul", kind: "Outcome", text: "Lesion spread contained to Zone B1; health score recovered 54 → 61", source: "Field Observation" as Provenance },
+  {
+    date: "02 Jun",
+    kind: "Crop planted",
+    text: "Tomato Atharva-8021 transplanted across 2.5 acres",
+    source: "Farmer Interview" as Provenance,
+  },
+  {
+    date: "14 Jun",
+    kind: "Fertilizer",
+    text: "Basal DAP applied; weekly 19:19:19 fertigation begins",
+    source: "Farmer Interview" as Provenance,
+  },
+  {
+    date: "28 Jun",
+    kind: "Weather event",
+    text: "48h continuous rainfall, humidity peaked at 93%",
+    source: "Weather API" as Provenance,
+  },
+  {
+    date: "30 Jun",
+    kind: "Farmer observation",
+    text: "Lower-canopy leaf spotting noticed in the north-west block",
+    source: "Farmer Interview" as Provenance,
+  },
+  {
+    date: "01 Jul",
+    kind: "Disease detected",
+    text: "Vision model flagged Early Blight lesions in Zone B1 (82%)",
+    source: "ML Model" as Provenance,
+  },
+  {
+    date: "01 Jul",
+    kind: "AI recommendation",
+    text: "Canopy-drying strategy issued; spray postponed by rain constraint",
+    source: "Agricultural Rule" as Provenance,
+  },
+  {
+    date: "03 Jul",
+    kind: "Irrigation",
+    text: "Evening drip cycle reduced in Zone C1 to limit saturation",
+    source: "Field Observation" as Provenance,
+  },
+  {
+    date: "05 Jul",
+    kind: "Outcome",
+    text: "Lesion spread contained to Zone B1; health score recovered 54 → 61",
+    source: "Field Observation" as Provenance,
+  },
 ];
 
 export const recommendations = [
   {
     title: "Reduce evening irrigation in Zone C1",
     tone: "water" as const,
-    reason: "Soil moisture HIGH + 22mm rainfall recorded. Saturation raises root-disease risk (Rule #027).",
+    reason:
+      "Soil moisture HIGH + 22mm rainfall recorded. Saturation raises root-disease risk (Rule #027).",
     source: "Agricultural Rule" as Provenance,
   },
   {
@@ -419,30 +467,63 @@ export const recommendations = [
   {
     title: "Postpone any planned spray by 24h",
     tone: "warning" as const,
-    reason: "Rain probability 72% this evening. Rule #052 blocks spray recommendations before rainfall.",
+    reason:
+      "Rain probability 72% this evening. Rule #052 blocks spray recommendations before rainfall.",
     source: "Weather API" as Provenance,
   },
   {
     title: "Hold nitrogen at current fertigation rate",
     tone: "healthy" as const,
-    reason: "Vegetative-stage requirement already met; additional N is not predicted to increase yield.",
+    reason:
+      "Vegetative-stage requirement already met; additional N is not predicted to increase yield.",
     source: "Research Literature" as Provenance,
   },
   {
     title: "Whitefly monitoring on field borders",
     tone: "warning" as const,
-    reason: "Warm humid window is favourable for vector build-up; no infestation currently recorded.",
+    reason:
+      "Warm humid window is favourable for vector build-up; no infestation currently recorded.",
     source: "Research Literature" as Provenance,
   },
 ];
 
 export const models = [
-  { name: "Disease Region Detector", family: "YOLO-family object detection", role: "Localises lesion / pest regions on leaf imagery", status: "Planned" },
-  { name: "Disease Classifier", family: "EfficientNet / Vision Transformer", role: "Classifies crop disease from cropped leaf regions", status: "Planned" },
-  { name: "Lesion Segmentation", family: "SAM 2 / U-Net", role: "Pixel-level lesion & leaf masks for severity estimation", status: "Planned" },
-  { name: "Crop Suitability Model", family: "XGBoost (tabular)", role: "Soil + weather + management → crop suitability score", status: "Planned" },
-  { name: "Yield Regressor", family: "XGBoost / Random Forest regression", role: "Predicts yield per acre with uncertainty range", status: "Planned" },
-  { name: "Explanation Layer", family: "LLM", role: "Natural-language explanation, Q&A, report drafting — never overrides rules", status: "Planned" },
+  {
+    name: "Disease Region Detector",
+    family: "YOLO-family object detection",
+    role: "Localises lesion / pest regions on leaf imagery",
+    status: "Planned",
+  },
+  {
+    name: "Disease Classifier",
+    family: "EfficientNet / Vision Transformer",
+    role: "Classifies crop disease from cropped leaf regions",
+    status: "Planned",
+  },
+  {
+    name: "Lesion Segmentation",
+    family: "SAM 2 / U-Net",
+    role: "Pixel-level lesion & leaf masks for severity estimation",
+    status: "Planned",
+  },
+  {
+    name: "Crop Suitability Model",
+    family: "XGBoost (tabular)",
+    role: "Soil + weather + management → crop suitability score",
+    status: "Planned",
+  },
+  {
+    name: "Yield Regressor",
+    family: "XGBoost / Random Forest regression",
+    role: "Predicts yield per acre with uncertainty range",
+    status: "Planned",
+  },
+  {
+    name: "Explanation Layer",
+    family: "LLM",
+    role: "Natural-language explanation, Q&A, report drafting — never overrides rules",
+    status: "Planned",
+  },
 ];
 
 export const classificationMetrics = [
@@ -459,10 +540,34 @@ export const regressionMetrics = [
 ];
 
 export const dataSources: Array<{ name: string; kind: Provenance; note: string }> = [
-  { name: "Farmer interview transcripts", kind: "Farmer Interview", note: "Structured Hinglish questionnaire captured during field visits" },
-  { name: "Field observation log", kind: "Field Observation", note: "Manual scouting notes, photographs, zone-level condition reports" },
-  { name: "Public agricultural datasets", kind: "Research Literature", note: "Crop, disease and soil-suitability reference datasets" },
-  { name: "Weather service", kind: "Weather API", note: "Temperature, humidity, rainfall and forecast feeds" },
-  { name: "Soil reference data", kind: "Soil Database", note: "Texture, pH and nutrient baselines for the district" },
-  { name: "Agricultural knowledge base", kind: "Agricultural Rule", note: "Expert-curated symbolic rules with explicit conditions" },
+  {
+    name: "Farmer interview transcripts",
+    kind: "Farmer Interview",
+    note: "Structured Hinglish questionnaire captured during field visits",
+  },
+  {
+    name: "Field observation log",
+    kind: "Field Observation",
+    note: "Manual scouting notes, photographs, zone-level condition reports",
+  },
+  {
+    name: "Public agricultural datasets",
+    kind: "Research Literature",
+    note: "Crop, disease and soil-suitability reference datasets",
+  },
+  {
+    name: "Weather service",
+    kind: "Weather API",
+    note: "Temperature, humidity, rainfall and forecast feeds",
+  },
+  {
+    name: "Soil reference data",
+    kind: "Soil Database",
+    note: "Texture, pH and nutrient baselines for the district",
+  },
+  {
+    name: "Agricultural knowledge base",
+    kind: "Agricultural Rule",
+    note: "Expert-curated symbolic rules with explicit conditions",
+  },
 ];

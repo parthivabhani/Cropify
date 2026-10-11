@@ -10,33 +10,232 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ArchitectureRouteImport } from './routes/architecture'
+import { Route as AssistantRouteImport } from './routes/assistant'
+import { Route as CropIntelligenceRouteImport } from './routes/crop-intelligence'
+import { Route as DiseaseAnalysisRouteImport } from './routes/disease-analysis'
+import { Route as FarmTwinRouteImport } from './routes/farm-twin'
+import { Route as HistoryRouteImport } from './routes/history'
+import { Route as InterviewRouteImport } from './routes/interview'
+import { Route as KnowledgeGraphRouteImport } from './routes/knowledge-graph'
+import { Route as ReasoningRouteImport } from './routes/reasoning'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as ResearchRouteImport } from './routes/research'
+import { Route as ScenariosRouteImport } from './routes/scenarios'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as ValidationRouteImport } from './routes/validation'
+import { Route as WeatherRouteImport } from './routes/weather'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ArchitectureRoute = ArchitectureRouteImport.update({
+  id: '/architecture',
+  path: '/architecture',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssistantRoute = AssistantRouteImport.update({
+  id: '/assistant',
+  path: '/assistant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CropIntelligenceRoute = CropIntelligenceRouteImport.update({
+  id: '/crop-intelligence',
+  path: '/crop-intelligence',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiseaseAnalysisRoute = DiseaseAnalysisRouteImport.update({
+  id: '/disease-analysis',
+  path: '/disease-analysis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FarmTwinRoute = FarmTwinRouteImport.update({
+  id: '/farm-twin',
+  path: '/farm-twin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InterviewRoute = InterviewRouteImport.update({
+  id: '/interview',
+  path: '/interview',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KnowledgeGraphRoute = KnowledgeGraphRouteImport.update({
+  id: '/knowledge-graph',
+  path: '/knowledge-graph',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReasoningRoute = ReasoningRouteImport.update({
+  id: '/reasoning',
+  path: '/reasoning',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchRoute = ResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScenariosRoute = ScenariosRouteImport.update({
+  id: '/scenarios',
+  path: '/scenarios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ValidationRoute = ValidationRouteImport.update({
+  id: '/validation',
+  path: '/validation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WeatherRoute = WeatherRouteImport.update({
+  id: '/weather',
+  path: '/weather',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/architecture': typeof ArchitectureRoute
+  '/assistant': typeof AssistantRoute
+  '/crop-intelligence': typeof CropIntelligenceRoute
+  '/disease-analysis': typeof DiseaseAnalysisRoute
+  '/farm-twin': typeof FarmTwinRoute
+  '/history': typeof HistoryRoute
+  '/interview': typeof InterviewRoute
+  '/knowledge-graph': typeof KnowledgeGraphRoute
+  '/reasoning': typeof ReasoningRoute
+  '/reports': typeof ReportsRoute
+  '/research': typeof ResearchRoute
+  '/scenarios': typeof ScenariosRoute
+  '/settings': typeof SettingsRoute
+  '/validation': typeof ValidationRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/architecture': typeof ArchitectureRoute
+  '/assistant': typeof AssistantRoute
+  '/crop-intelligence': typeof CropIntelligenceRoute
+  '/disease-analysis': typeof DiseaseAnalysisRoute
+  '/farm-twin': typeof FarmTwinRoute
+  '/history': typeof HistoryRoute
+  '/interview': typeof InterviewRoute
+  '/knowledge-graph': typeof KnowledgeGraphRoute
+  '/reasoning': typeof ReasoningRoute
+  '/reports': typeof ReportsRoute
+  '/research': typeof ResearchRoute
+  '/scenarios': typeof ScenariosRoute
+  '/settings': typeof SettingsRoute
+  '/validation': typeof ValidationRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/architecture': typeof ArchitectureRoute
+  '/assistant': typeof AssistantRoute
+  '/crop-intelligence': typeof CropIntelligenceRoute
+  '/disease-analysis': typeof DiseaseAnalysisRoute
+  '/farm-twin': typeof FarmTwinRoute
+  '/history': typeof HistoryRoute
+  '/interview': typeof InterviewRoute
+  '/knowledge-graph': typeof KnowledgeGraphRoute
+  '/reasoning': typeof ReasoningRoute
+  '/reports': typeof ReportsRoute
+  '/research': typeof ResearchRoute
+  '/scenarios': typeof ScenariosRoute
+  '/settings': typeof SettingsRoute
+  '/validation': typeof ValidationRoute
+  '/weather': typeof WeatherRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/architecture'
+    | '/assistant'
+    | '/crop-intelligence'
+    | '/disease-analysis'
+    | '/farm-twin'
+    | '/history'
+    | '/interview'
+    | '/knowledge-graph'
+    | '/reasoning'
+    | '/reports'
+    | '/research'
+    | '/scenarios'
+    | '/settings'
+    | '/validation'
+    | '/weather'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/architecture'
+    | '/assistant'
+    | '/crop-intelligence'
+    | '/disease-analysis'
+    | '/farm-twin'
+    | '/history'
+    | '/interview'
+    | '/knowledge-graph'
+    | '/reasoning'
+    | '/reports'
+    | '/research'
+    | '/scenarios'
+    | '/settings'
+    | '/validation'
+    | '/weather'
+  id:
+    | '__root__'
+    | '/'
+    | '/architecture'
+    | '/assistant'
+    | '/crop-intelligence'
+    | '/disease-analysis'
+    | '/farm-twin'
+    | '/history'
+    | '/interview'
+    | '/knowledge-graph'
+    | '/reasoning'
+    | '/reports'
+    | '/research'
+    | '/scenarios'
+    | '/settings'
+    | '/validation'
+    | '/weather'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ArchitectureRoute: typeof ArchitectureRoute
+  AssistantRoute: typeof AssistantRoute
+  CropIntelligenceRoute: typeof CropIntelligenceRoute
+  DiseaseAnalysisRoute: typeof DiseaseAnalysisRoute
+  FarmTwinRoute: typeof FarmTwinRoute
+  HistoryRoute: typeof HistoryRoute
+  InterviewRoute: typeof InterviewRoute
+  KnowledgeGraphRoute: typeof KnowledgeGraphRoute
+  ReasoningRoute: typeof ReasoningRoute
+  ReportsRoute: typeof ReportsRoute
+  ResearchRoute: typeof ResearchRoute
+  ScenariosRoute: typeof ScenariosRoute
+  SettingsRoute: typeof SettingsRoute
+  ValidationRoute: typeof ValidationRoute
+  WeatherRoute: typeof WeatherRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +247,131 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/architecture': {
+      id: '/architecture'
+      path: '/architecture'
+      fullPath: '/architecture'
+      preLoaderRoute: typeof ArchitectureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assistant': {
+      id: '/assistant'
+      path: '/assistant'
+      fullPath: '/assistant'
+      preLoaderRoute: typeof AssistantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crop-intelligence': {
+      id: '/crop-intelligence'
+      path: '/crop-intelligence'
+      fullPath: '/crop-intelligence'
+      preLoaderRoute: typeof CropIntelligenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disease-analysis': {
+      id: '/disease-analysis'
+      path: '/disease-analysis'
+      fullPath: '/disease-analysis'
+      preLoaderRoute: typeof DiseaseAnalysisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/farm-twin': {
+      id: '/farm-twin'
+      path: '/farm-twin'
+      fullPath: '/farm-twin'
+      preLoaderRoute: typeof FarmTwinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/interview': {
+      id: '/interview'
+      path: '/interview'
+      fullPath: '/interview'
+      preLoaderRoute: typeof InterviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/knowledge-graph': {
+      id: '/knowledge-graph'
+      path: '/knowledge-graph'
+      fullPath: '/knowledge-graph'
+      preLoaderRoute: typeof KnowledgeGraphRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reasoning': {
+      id: '/reasoning'
+      path: '/reasoning'
+      fullPath: '/reasoning'
+      preLoaderRoute: typeof ReasoningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research': {
+      id: '/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof ResearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scenarios': {
+      id: '/scenarios'
+      path: '/scenarios'
+      fullPath: '/scenarios'
+      preLoaderRoute: typeof ScenariosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/validation': {
+      id: '/validation'
+      path: '/validation'
+      fullPath: '/validation'
+      preLoaderRoute: typeof ValidationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/weather': {
+      id: '/weather'
+      path: '/weather'
+      fullPath: '/weather'
+      preLoaderRoute: typeof WeatherRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ArchitectureRoute: ArchitectureRoute,
+  AssistantRoute: AssistantRoute,
+  CropIntelligenceRoute: CropIntelligenceRoute,
+  DiseaseAnalysisRoute: DiseaseAnalysisRoute,
+  FarmTwinRoute: FarmTwinRoute,
+  HistoryRoute: HistoryRoute,
+  InterviewRoute: InterviewRoute,
+  KnowledgeGraphRoute: KnowledgeGraphRoute,
+  ReasoningRoute: ReasoningRoute,
+  ReportsRoute: ReportsRoute,
+  ResearchRoute: ResearchRoute,
+  ScenariosRoute: ScenariosRoute,
+  SettingsRoute: SettingsRoute,
+  ValidationRoute: ValidationRoute,
+  WeatherRoute: WeatherRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
