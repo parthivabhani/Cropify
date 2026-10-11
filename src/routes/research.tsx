@@ -237,6 +237,36 @@ export function StudentResearchPage() {
         "In-situ ground-truth testing verifying physical probe insertion depth, root-zone N-P-K electro-chemical response, and wireless telemetry sync under direct field conditions.",
       verificationStatus: "In-Situ Field Telemetry Verified",
     },
+    {
+      id: "photo-12",
+      category: "testing",
+      title: "In-Field Soil Moisture & Microclimate Telemetry Benchmarking",
+      location: "Active Crop Field Plot",
+      region: "Root-Zone Drip Line Irrigation Sector",
+      image: "/research/image_copy_11.png",
+      tag: "Dual-Probe Calibration",
+      tagTone: "water",
+      summary:
+        "Direct in-situ validation of soil moisture and ambient microclimate conditions along active drip irrigation rows. The dual-prong soil sensor probe reads real-time ground moisture (65%), ambient temperature (29.4°C), and relative humidity (42%) synced with the mobile telemetry app.",
+      methodology:
+        "Cross-calibrating physical analog soil capacitance and resistance with digital twin telemetry ingestion to verify moisture thresholds during active drip cycles.",
+      verificationStatus: "Dual-Probe Calibrated",
+    },
+    {
+      id: "photo-13",
+      category: "testing",
+      title: "Microcontroller Soil Nutrient Acquisition Rig (Arduino & Field Sensor)",
+      location: "Field Telemetry Testbed",
+      region: "Vegetative Crop Canopy Root-Zone",
+      image: "/research/image_copy_12.png",
+      tag: "Edge Microcontroller Rig",
+      tagTone: "healthy",
+      summary:
+        "Field deployment of an Arduino Uno edge microcontroller rig coupled with the soil sensor probe and portable power bank in active farm soil. Validates live acquisition and wireless synchronization of Soil Nutrient Levels: Nitrogen (42 mg/kg), Phosphorus (18 mg/kg), and Potassium (76 mg/kg) to the mobile digital twin app.",
+      methodology:
+        "Hardware-in-the-field acquisition testing assessing ADC conversion accuracy, analog probe voltage stability, and live wireless sync of N-P-K nutrient readings under outdoor soil conditions.",
+      verificationStatus: "Microcontroller In-Field Verified",
+    },
   ];
 
   const filteredPhotos =
@@ -259,7 +289,7 @@ export function StudentResearchPage() {
           </div>
           <div>
             <span className="text-xl font-bold font-display text-foreground block">
-              11 Field Proofs
+              13 Field Proofs
             </span>
             <span className="text-xs text-muted-foreground">Original Research Photos</span>
           </div>
