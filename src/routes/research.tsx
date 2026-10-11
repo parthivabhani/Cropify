@@ -171,6 +171,36 @@ export function StudentResearchPage() {
         "Field perimeter survey mapping solar angle exposure and shade dynamics influencing localized ambient temperatures.",
       verificationStatus: "Perimeter Audited",
     },
+    {
+      id: "photo-9",
+      category: "testing",
+      title: "7-in-1 Modbus Soil Sensor Hardware Benchmarking",
+      location: "Hardware Lab Bench, Maharashtra",
+      region: "RS485 Telemetry Rig & Raspberry Pi Testbed",
+      image: "/research/soil_sensor_hardware_rig.png",
+      tag: "Sensor Hardware Rig",
+      tagTone: "water",
+      summary:
+        "Laboratory calibration of the industrial 7-in-1 Modbus RS485 soil sensor probe connected via USB serial adapter to a Raspberry Pi controller, streaming real-time moisture (46%), temperature (28.5°C), humidity (70%), and N-P-K nutrient readings to the AgriTwin/Cropify telemetry dashboard.",
+      methodology:
+        "Live hardware serial polling (Modbus RTU over RS485 at 9600 baud) benchmarking analog soil electrical conductivity against calibrated digital twin soil sensor registers.",
+      verificationStatus: "Hardware Telemetry Verified",
+    },
+    {
+      id: "photo-10",
+      category: "testing",
+      title: "Real-Time Edge Sensor Telemetry & AgriTwin Integration",
+      location: "Student Research Lab, Maharashtra",
+      region: "Edge Telemetry Validation Bench",
+      image: "/research/sensor_telemetry_live_stream.png",
+      tag: "Edge Telemetry Testing",
+      tagTone: "healthy",
+      summary:
+        "Student researcher validating live end-to-end telemetry synchronization from the 7-in-1 stainless probe and Raspberry Pi controller into the digital twin interface, confirming real-time telemetry ingestion and alert boundaries under test conditions.",
+      methodology:
+        "End-to-end hardware-in-the-loop validation assessing packet latency, register parity, and real-time telemetry threshold triggers for automated soil nutrient profiling.",
+      verificationStatus: "Edge Rig Validated",
+    },
   ];
 
   const filteredPhotos =
@@ -193,7 +223,7 @@ export function StudentResearchPage() {
           </div>
           <div>
             <span className="text-xl font-bold font-display text-foreground block">
-              8 Field Proofs
+              10 Field Proofs
             </span>
             <span className="text-xs text-muted-foreground">Original Research Photos</span>
           </div>

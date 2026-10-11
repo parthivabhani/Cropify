@@ -294,7 +294,7 @@ export function ValidationRoute() {
           </div>
 
           {/* Documentary Photo Evidence Cards - Real Fieldwork Photos from SRC Research Images */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="panel overflow-hidden border-border/80 group">
               <div className="aspect-[4/3] w-full overflow-hidden bg-muted relative">
                 <img
@@ -375,6 +375,33 @@ export function ValidationRoute() {
                 <div className="pt-2 border-t border-border/40 flex items-center justify-between text-[0.65rem] font-mono text-muted-foreground">
                   <span>Cohort: Local Farm Survey</span>
                   <span className="text-warning font-semibold">Surveyed</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="panel overflow-hidden border-border/80 group">
+              <div className="aspect-[4/3] w-full overflow-hidden bg-muted relative">
+                <img
+                  src="/research/soil_sensor_hardware_rig.png"
+                  alt="7-in-1 Modbus RS485 soil sensor telemetry bench connected to Raspberry Pi"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute top-2 left-2 bg-background/80 backdrop-blur-md px-2 py-0.5 rounded text-[0.65rem] font-mono font-bold text-foreground">
+                  7-in-1 Sensor Rig
+                </div>
+              </div>
+              <div className="p-4 space-y-2">
+                <h4 className="text-xs font-bold font-display text-foreground">
+                  Modbus RS485 Hardware Benchmarking
+                </h4>
+                <p className="text-[0.72rem] text-muted-foreground leading-relaxed">
+                  Real-time bench validation of industrial 7-in-1 soil probe telemetry via USB RS485
+                  serial into Raspberry Pi controller, streaming NPK, moisture, and temperature.
+                </p>
+                <div className="pt-2 border-t border-border/40 flex items-center justify-between text-[0.65rem] font-mono text-muted-foreground">
+                  <span>Hardware: Modbus RTU / RPi</span>
+                  <span className="text-healthy font-semibold">Bench Verified</span>
                 </div>
               </div>
             </div>
