@@ -306,16 +306,16 @@ export type GraphNode = {
 
 export const graphNodes: GraphNode[] = [
   { id: "crop", label: "Field Crops (Multi-Crop)", kind: "crop", x: 50, y: 50 },
-  { id: "earlyblight", label: "Early Blight", kind: "disease", x: 76, y: 30 },
-  { id: "septoria", label: "Septoria Leaf Spot", kind: "disease", x: 82, y: 66 },
-  { id: "lesion", label: "Brown Lesions", kind: "symptom", x: 58, y: 14 },
-  { id: "humidity", label: "High Humidity", kind: "weather", x: 26, y: 18 },
-  { id: "rain", label: "Recent Rainfall", kind: "weather", x: 14, y: 42 },
-  { id: "soil", label: "Black Loam · pH 6.2", kind: "soil", x: 20, y: 76 },
-  { id: "drip", label: "Drip Irrigation", kind: "treatment", x: 46, y: 86 },
-  { id: "stage", label: "Vegetative Stage", kind: "stage", x: 68, y: 88 },
-  { id: "whitefly", label: "Whitefly", kind: "pest", x: 92, y: 48 },
-  { id: "obs", label: "Farmer Observation", kind: "farmer", x: 6, y: 62 },
+  { id: "earlyblight", label: "Early Blight", kind: "disease", x: 76, y: 28 },
+  { id: "septoria", label: "Septoria Leaf Spot", kind: "disease", x: 85, y: 72 },
+  { id: "lesion", label: "Brown Lesions", kind: "symptom", x: 56, y: 12 },
+  { id: "humidity", label: "High Humidity", kind: "weather", x: 25, y: 18 },
+  { id: "rain", label: "Recent Rainfall", kind: "weather", x: 15, y: 43 },
+  { id: "soil", label: "Black Loam · pH 6.2", kind: "soil", x: 24, y: 88 },
+  { id: "drip", label: "Drip Irrigation", kind: "treatment", x: 44, y: 88 },
+  { id: "stage", label: "Vegetative Stage", kind: "stage", x: 64, y: 92 },
+  { id: "whitefly", label: "Whitefly", kind: "pest", x: 88, y: 50 },
+  { id: "obs", label: "Farmer Observation", kind: "farmer", x: 15, y: 75 },
 ];
 
 export const graphEdges: Array<{ from: string; to: string; rel: string; farmer?: boolean }> = [

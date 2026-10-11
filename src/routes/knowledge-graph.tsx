@@ -5,6 +5,10 @@ import { PageHeader, Panel, Chip, Disclaimer, type Tone } from "@/components/agr
 import { graphNodes, graphEdges, type GraphNode } from "@/lib/agri-data";
 import { Button } from "@/components/ui/button";
 import { tr } from "@/lib/i18n";
+import {
+  KnowledgeGraphCanvas,
+  KnowledgeGraphLegend,
+} from "@/components/agri/knowledge-graph-canvas";
 
 export const Route = createFileRoute("/knowledge-graph")({
   head: () => ({
@@ -105,112 +109,25 @@ function KnowledgeGraphRoute() {
         }
       />
 
-      <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
+      <div className="grid gap-6">
         <Panel
           eyebrow={tr("Visual Graph")}
           title={tr("Ontology Web Map")}
           aside={<Chip tone="symbolic">{tr("Interactive Canvas")}</Chip>}
         >
-          <div
-            className="relative w-full border border-border/80 rounded-xl overflow-hidden bg-black/40"
-            style={{ aspectRatio: "16 / 10" }}
-          >
-            {/* SVG Link lines */}
-            <svg className="absolute inset-0 size-full pointer-events-none">
-              <defs>
-                <marker
-                  id="arrow"
-                  viewBox="0 0 10 10"
-                  refX="15"
-                  refY="5"
-                  markerWidth="6"
-                  markerHeight="6"
-                  orient="auto-start-reverse"
-                >
-                  <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--color-border)" opacity={0.6} />
-                </marker>
-              </defs>
-              {activeEdges.map((edge, idx) => {
-                const src = nodeMap.get(edge.from);
-                const dest = nodeMap.get(edge.to);
-                if (!src || !dest) return null;
-
-                const isHighlighted =
-                  selectedNode && (selectedNode.id === edge.from || selectedNode.id === edge.to);
-
-                return (
-                  <line
-                    key={idx}
-                    x1={`${src.x}%`}
-                    y1={`${src.y}%`}
-                    x2={`${dest.x}%`}
-                    y2={`${dest.y}%`}
-                    stroke={
-                      isHighlighted
-                        ? edge.farmer
-                          ? "var(--color-neural)"
-                          : "var(--color-primary)"
-                        : "var(--color-border)"
-                    }
-                    strokeWidth={isHighlighted ? 2 : 1}
-                    strokeDasharray={edge.farmer ? "4 4" : undefined}
-                    opacity={selectedNode && !isHighlighted ? 0.2 : 0.75}
-                    markerEnd="url(#arrow)"
-                    className={isHighlighted ? "animate-pulse-soft" : ""}
-                  />
-                );
-              })}
-            </svg>
-
-            {/* Render Node Buttons */}
-            {graphNodes.map((node) => {
-              const colors = kindColors[node.kind];
-              const isSelected = selectedNode?.id === node.id;
-              const isConnected = connectedNodeIds.has(node.id);
-              const isDimmed = selectedNode && !isConnected;
-
-              return (
-                <button
-                  key={node.id}
-                  onClick={() => setSelectedNode(node)}
-                  className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-lg border px-3 py-1.5 text-[0.65rem] font-mono tracking-wider transition-all duration-300 ${
-                    colors.fill
-                  } ${colors.border} ${colors.text} ${
-                    isSelected ? "ring-2 ring-primary/80 scale-105" : ""
-                  } ${isDimmed ? "opacity-30 scale-95" : "opacity-100"}`}
-                  style={{ left: `${node.x}%`, top: `${node.y}%` }}
-                >
-                  <span className="font-semibold block">{tr(node.label)}</span>
-                  <span className="text-[0.55rem] text-muted-foreground uppercase">
-                    {tr(node.kind)}
-                  </span>
-                </button>
-              );
-            })}
-            <div className="absolute bottom-3 left-3 flex flex-wrap gap-2 text-[0.55rem] bg-surface/80 p-2 rounded-lg border border-border">
-              <span className="flex items-center gap-1">
-                <span className="size-1.5 rounded-full bg-healthy" /> {tr("Crop")}
-              </span>
-              <span className="flex items-center gap-1">
-                <span className="size-1.5 rounded-full bg-critical" /> {tr("Disease")}
-              </span>
-              <span className="flex items-center gap-1">
-                <span className="size-1.5 rounded-full bg-warning" /> {tr("Symptom")}
-              </span>
-              <span className="flex items-center gap-1">
-                <span className="size-1.5 rounded-full bg-water" /> {tr("Weather")}
-              </span>
-              <span className="flex items-center gap-1">
-                <span className="size-1.5 rounded-full bg-primary" /> {tr("Treatment")}
-              </span>
-              <span className="flex items-center gap-1">
-                <span className="size-1.5 rounded-full bg-neural" /> {tr("Claim")}
-              </span>
-            </div>
+          <div className="overflow-hidden rounded-2xl border border-border bg-background/40">
+            <KnowledgeGraphCanvas
+              nodes={graphNodes}
+              edges={activeEdges}
+              selectedId={selectedNode?.id ?? null}
+              connectedIds={connectedNodeIds}
+              onSelect={setSelectedNode}
+            />
           </div>
+          <KnowledgeGraphLegend />
         </Panel>
 
-        <div className="space-y-6">
+        <div className="grid items-start gap-6 md:grid-cols-2">
           {selectedNode ? (
             <Panel eyebrow={tr("Node Inspector")} title={tr(selectedNode.label)}>
               <Chip tone={kindColors[selectedNode.kind].text.split("-")[1] as Tone}>

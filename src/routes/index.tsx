@@ -217,14 +217,6 @@ export function LandingPage() {
             <g clipPath="url(#hero-blob)">
               <HeroLandscape />
             </g>
-            <path
-              d="M-10 520c120-40 180 40 300 10s170-120 360-70"
-              fill="none"
-              stroke="#f4f1e8"
-              strokeWidth="5"
-              strokeLinecap="round"
-              opacity="0.9"
-            />
           </svg>
 
           <LeafShape
