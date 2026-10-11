@@ -1,13 +1,24 @@
-// TanStack Start Vite Configuration
-// Bundles: TanStack Start, React, TailwindCSS, Nitro SSR wrapper, and tsConfigPaths.
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+// Vite configuration for Cropify (TanStack Start + React + Tailwind v4).
+import { defineConfig } from "vite";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import viteReact from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import tsConfigPaths from "vite-tsconfig-paths";
+import { nitro } from "nitro/vite";
 
-export default defineConfig({
-  tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
-    server: { entry: "server" },
+export default defineConfig(({ command }) => ({
+  server: { port: 5173 },
+  resolve: {
+    dedupe: ["react", "react-dom", "@tanstack/react-query", "@tanstack/query-core"],
   },
-  // Deploy target: Vercel (Build Output API in .vercel/output). Override with NITRO_PRESET.
-  nitro: { preset: process.env["NITRO_PRESET"] ?? "vercel" },
-});
+  plugins: [
+    tailwindcss(),
+    tsConfigPaths({ projects: ["./tsconfig.json"] }),
+    // src/server.ts wraps TanStack Start's server entry with an SSR error page.
+    tanstackStart({ server: { entry: "server" } }),
+    // Production server output. Defaults to Vercel's Build Output API (.vercel/output);
+    // set NITRO_PRESET (e.g. "node-server") to target another host.
+    ...(command === "build" ? [nitro({ preset: process.env["NITRO_PRESET"] ?? "vercel" })] : []),
+    viteReact(),
+  ],
+}));
