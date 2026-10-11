@@ -1,6 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, ArrowDown, ArrowUpRight, AlertTriangle, Check } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowDown,
+  ArrowUpRight,
+  AlertTriangle,
+  Check,
+  Users,
+  Droplets,
+  Radio,
+  MapPin,
+  Footprints,
+} from "lucide-react";
+import { HeroLandscape, ProbeCrossSection } from "@/components/agri/landscape-art";
 import { AgriTwinLogo } from "@/components/agri/logo";
 import { cn } from "@/lib/utils";
 
@@ -75,12 +87,38 @@ const modules = [
   },
 ] as const;
 
-const fieldPhotos = [
-  { src: "/research/farmer_field_survey.png", title: "Farmer interview", place: "Nashik" },
-  { src: "/research/crop_health_inspection.png", title: "Well & irrigation audit", place: "Selu" },
-  { src: "/research/student_field_testing.png", title: "Sensor field test", place: "Selu" },
-  { src: "/research/selu_farmer_interview_geotag.png", title: "Geotagged survey", place: "Selu" },
-  { src: "/research/field_orchard_plot.png", title: "Plot boundary walk", place: "Nashik" },
+// Illustrated cards for the clothesline — the real photos live on the Student Research page.
+const fieldWork = [
+  {
+    icon: Users,
+    title: "Farmer interviews",
+    note: "Spray habits, yields, soil",
+    bg: "bg-[#12352a] text-linen",
+  },
+  {
+    icon: Droplets,
+    title: "Irrigation audits",
+    note: "Wells, tanks and drip lines",
+    bg: "bg-[#cfe0f0] text-ink",
+  },
+  {
+    icon: Radio,
+    title: "Sensor field tests",
+    note: "Probe vs. lab readings",
+    bg: "bg-leaf text-ink",
+  },
+  {
+    icon: MapPin,
+    title: "Geotagged surveys",
+    note: "Every visit on the map",
+    bg: "bg-[#d9d3ec] text-ink",
+  },
+  {
+    icon: Footprints,
+    title: "Boundary walks",
+    note: "Plots mapped on foot",
+    bg: "bg-[#f0c9b5] text-ink",
+  },
 ];
 
 // Sag of the clothesline at each card position (px from the top of the line) and its tilt.
@@ -146,13 +184,13 @@ export function LandingPage() {
             </a>
           </div>
 
-          <dl className="mt-14 grid max-w-lg grid-cols-3 gap-4">
+          <dl className="mt-14 grid max-w-lg grid-cols-3 gap-6">
             {[
               ["7", "soil readings", "per probe"],
               ["94%", "leaf disease", "accuracy"],
               ["2", "field sites", "Nashik · Selu"],
             ].map(([n, a, b]) => (
-              <div key={a} className="flex items-center gap-2.5">
+              <div key={a} className="flex flex-col gap-1.5">
                 <dt className="font-display text-4xl font-light text-forest-2/70 sm:text-5xl">
                   {n}
                 </dt>
@@ -172,16 +210,12 @@ export function LandingPage() {
             viewBox="0 0 640 640"
             className="w-full"
             role="img"
-            aria-label="Orchard plot in Nashik"
+            aria-label="Illustration of a tomato valley with a soil probe"
           >
             <defs>
               <clipPath id="hero-blob">
                 <path d={BLOB} />
               </clipPath>
-              <linearGradient id="hero-shade" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0.55" stopColor="#12352a" stopOpacity="0" />
-                <stop offset="1" stopColor="#12352a" stopOpacity="0.55" />
-              </linearGradient>
             </defs>
             <path d={BLOB} fill="#12352a" transform="translate(22 26)" />
             <path
@@ -191,15 +225,7 @@ export function LandingPage() {
               opacity="0.9"
             />
             <g clipPath="url(#hero-blob)">
-              <image
-                href="/research/field_orchard_plot.png"
-                x="-80"
-                y="0"
-                width="800"
-                height="640"
-                preserveAspectRatio="xMidYMid slice"
-              />
-              <rect width="640" height="640" fill="url(#hero-shade)" />
+              <HeroLandscape />
             </g>
             <path
               d="M-10 520c120-40 180 40 300 10s170-120 360-70"
@@ -226,7 +252,7 @@ export function LandingPage() {
 
           <div className="absolute bottom-[12%] left-[10%] rounded-2xl bg-linen/95 px-4 py-3 shadow-xl backdrop-blur sm:left-[14%]">
             <p className="font-display text-[0.65rem] tracking-[0.16em] text-ink/55 uppercase">
-              Plot A-14 · live
+              Root zone · now
             </p>
             <p className="mt-1 font-display text-lg leading-tight font-medium text-ink">
               Moisture 62% <span className="text-ink/30">/</span> N 68 mg/kg
@@ -253,11 +279,7 @@ export function LandingPage() {
               whether they make agronomic sense.
             </p>
             <div className="mt-10 hidden overflow-hidden rounded-full border-4 border-leaf/40 lg:block lg:h-[340px] lg:w-[220px]">
-              <img
-                src="/research/sensor_hardware_setup.jpg"
-                alt="7-in-1 soil probe wired to a Raspberry Pi, streaming readings to the AgriTwin app"
-                className="size-full object-cover"
-              />
+              <ProbeCrossSection className="block size-full" />
             </div>
           </div>
 
@@ -483,9 +505,9 @@ export function LandingPage() {
             />
           </svg>
           <div className="relative grid grid-cols-5 gap-5">
-            {fieldPhotos.map((p, i) => (
+            {fieldWork.map((p, i) => (
               <figure
-                key={p.src}
+                key={p.title}
                 className="relative rounded-2xl bg-white p-3 pb-4 shadow-[0_20px_40px_-20px_rgba(23,36,28,0.45)] transition-transform hover:z-10 hover:scale-105"
                 style={{
                   marginTop: (lineSag[i] ?? 0) - 8,
@@ -495,14 +517,17 @@ export function LandingPage() {
                 <span className="absolute -top-4 left-1/2 h-7 w-4 -translate-x-1/2 rounded-sm bg-forest-2 shadow">
                   <span className="absolute top-1.5 left-1/2 size-1.5 -translate-x-1/2 rounded-full bg-linen" />
                 </span>
-                <img
-                  src={p.src}
-                  alt={p.title}
-                  className="aspect-[4/3.4] w-full rounded-xl object-cover"
-                />
+                <div
+                  className={cn(
+                    "grain flex aspect-[4/3.4] w-full items-center justify-center overflow-hidden rounded-xl",
+                    p.bg,
+                  )}
+                >
+                  <p.icon className="size-12" strokeWidth={1.4} />
+                </div>
                 <figcaption className="mt-3 px-1">
                   <p className="font-display text-base font-medium">{p.title}</p>
-                  <p className="text-xs text-ink/55">{p.place}</p>
+                  <p className="text-xs text-ink/55">{p.note}</p>
                 </figcaption>
               </figure>
             ))}
@@ -511,16 +536,19 @@ export function LandingPage() {
 
         {/* Mobile: swipeable row */}
         <div className="mt-10 flex snap-x gap-4 overflow-x-auto px-5 pb-4 md:hidden">
-          {fieldPhotos.map((p) => (
+          {fieldWork.map((p) => (
             <figure
-              key={p.src}
+              key={p.title}
               className="w-56 shrink-0 snap-center rounded-2xl bg-white p-2.5 shadow-lg"
             >
-              <img
-                src={p.src}
-                alt={p.title}
-                className="aspect-[4/3.4] w-full rounded-xl object-cover"
-              />
+              <div
+                className={cn(
+                  "flex aspect-[4/3.4] w-full items-center justify-center rounded-xl",
+                  p.bg,
+                )}
+              >
+                <p.icon className="size-10" strokeWidth={1.4} />
+              </div>
               <figcaption className="mt-2 px-1 font-display text-sm font-medium">
                 {p.title}
               </figcaption>
@@ -533,7 +561,7 @@ export function LandingPage() {
             to="/research"
             className="inline-flex items-center gap-2 rounded-full border border-ink/25 px-6 py-3 text-sm font-medium transition-colors hover:bg-ink hover:text-linen"
           >
-            See the research archive <ArrowRight className="size-4" />
+            See the photos in Student Research <ArrowRight className="size-4" />
           </Link>
         </div>
       </section>

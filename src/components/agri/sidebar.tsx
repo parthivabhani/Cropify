@@ -99,11 +99,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
         ))}
       </nav>
 
-      <div className="mt-4 space-y-3 border-t border-sidebar-border pt-4">
-        <div className="flex items-center gap-2 px-3 text-xs text-sidebar-foreground/60">
-          <span className="size-1.5 rounded-full bg-sidebar-primary" />
-          Plot A-14 · sensor online
-        </div>
+      <div className="mt-4 border-t border-sidebar-border pt-4">
         <div className="flex items-center gap-2">
           <Link
             to="/"

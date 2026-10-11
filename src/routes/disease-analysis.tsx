@@ -15,6 +15,7 @@ import {
   Layers,
   Thermometer,
 } from "lucide-react";
+import { LeafScan } from "@/components/agri/leaf-scan";
 import { PageHeader, Panel, Chip, SourceBadge, Disclaimer } from "@/components/agri/primitives";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -43,15 +44,15 @@ const sampleImages = [
     severity: "Moderate (15.4% canopy area)",
     rawConfidence: 82,
     bayesianConfidence: 91,
-    image: "/research/crop_health_inspection.png",
+
     location: "Nashik Plot B-03",
     humidity: "91% RH (High Spore Window)",
     ruleAction:
       "Rule #027 Triggered: Fungal sporulation alert. Halt excessive nitrogen, apply Mancozeb 2.5g/L.",
-    boxes: [
-      { top: "54%", left: "26%", width: "12%", height: "12%", label: "Concentric Lesion 84%" },
-      { top: "60%", left: "28%", width: "10%", height: "10%", label: "Target Spot 79%" },
-      { top: "50%", left: "29%", width: "9%", height: "9%", label: "Fungal Spore 88%" },
+    lesions: [
+      { x: 402, y: 227, r: 16, label: "Concentric lesion 84%" },
+      { x: 309, y: 420, r: 13, label: "Target spot 79%" },
+      { x: 676, y: 126, r: 14, label: "Ringed lesion 88%" },
     ],
   },
   {
@@ -62,11 +63,11 @@ const sampleImages = [
     severity: "0% Lesion Density",
     rawConfidence: 96,
     bayesianConfidence: 98,
-    image: "/research/field_orchard_plot.png",
+
     location: "Nashik Plot A-14",
     humidity: "62% RH (Normal)",
     ruleAction: "All Symbolic Constraints Passed: Continue vegetative drip irrigation schedule.",
-    boxes: [],
+    lesions: [],
   },
 ];
 
@@ -137,57 +138,29 @@ function DiseaseAnalysis() {
               </div>
             </div>
 
-            {/* High-Resolution Photo Display with Real YOLO Bounding Boxes */}
-            <div className="relative rounded-2xl overflow-hidden border border-border/80 aspect-[16/10] bg-black/50 group shadow-inner">
-              <img
-                src={activeSample.image}
-                alt={activeSample.title}
-                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+            {/* Leaf specimen with detector boxes drawn in the same coordinate space */}
+            <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-[#0f2219]">
+              <LeafScan
+                lesions={activeSample.lesions}
+                showBoxes={showResults}
+                scanning={analyzing}
+                className="block h-auto w-full"
               />
-
-              {/* Gradient Vignette for Readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-black/30 pointer-events-none" />
-
-              {/* Bounding Boxes on Real Leaf Image */}
-              {showResults &&
-                activeSample.boxes.map((box, i) => (
-                  <div
-                    key={i}
-                    className="absolute border-2 border-critical bg-critical/15 rounded-lg transition-all animate-in zoom-in-75 duration-300 pointer-events-none shadow-lg shadow-critical/20"
-                    style={{
-                      top: box.top,
-                      left: box.left,
-                      width: box.width,
-                      height: box.height,
-                    }}
-                  >
-                    <span className="absolute -top-6 left-0 bg-critical text-[0.62rem] font-mono font-bold px-2 py-0.5 rounded text-white whitespace-nowrap shadow-md">
-                      {box.label}
-                    </span>
-                  </div>
-                ))}
-
-              {/* Laser Scanline Inference Animation */}
-              {analyzing && <div className="absolute inset-x-0 h-1 bg-lime/80 animate-bounce" />}
-
-              {/* Image Overlaid Chips */}
-              <div className="absolute top-4 left-4 flex gap-2">
-                <span className="glass-pill px-3 py-1 text-[0.7rem] font-mono font-medium text-foreground backdrop-blur-md">
+              <div className="absolute top-3 left-3 flex flex-wrap gap-2">
+                <span className="rounded-full bg-black/45 px-3 py-1 text-[0.7rem] font-medium text-white backdrop-blur-md">
                   {activeSample.location}
                 </span>
-                <span className="glass-pill px-3 py-1 text-[0.7rem] font-mono text-warning backdrop-blur-md">
+                <span className="rounded-full bg-black/45 px-3 py-1 text-[0.7rem] font-medium text-[#e9b14d] backdrop-blur-md">
                   {activeSample.humidity}
                 </span>
               </div>
-
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs">
-                <span className="font-display font-semibold text-foreground text-sm">
-                  {activeSample.crop}
-                </span>
-                <span className="font-mono text-xs text-primary font-bold">
-                  Target: {activeSample.pathogen}
-                </span>
-              </div>
+            </div>
+            <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
+              <span className="font-display font-medium">{activeSample.crop}</span>
+              <span className="text-muted-foreground">
+                Target:{" "}
+                <span className="font-medium text-foreground italic">{activeSample.pathogen}</span>
+              </span>
             </div>
 
             {/* Diagnostic Control Actions */}
