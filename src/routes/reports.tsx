@@ -296,10 +296,10 @@ function ReportsRoute() {
       ) : (
         <div
           id="agritwin-report-pdf-capture"
-          className="space-y-6 max-w-[900px] mx-auto bg-surface/50 border-2 border-primary rounded-2xl p-6 md:p-10 shadow-glow overflow-hidden relative"
+          className="space-y-6 max-w-[900px] mx-auto bg-surface/50 border-2 border-primary rounded-2xl p-6 md:p-10 overflow-hidden relative"
         >
           {/* Neon Accent Glow strip at the top */}
-          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-primary/50 to-primary" />
+          <div className="absolute top-0 left-0 right-0 h-1.5 bg-lime" />
 
           {/* Print Header */}
           <div className="flex justify-between items-start border-b border-primary/20 pb-6 print:border-black/20">
@@ -387,7 +387,7 @@ function ReportsRoute() {
             </h3>
             <div className="panel bg-background/10 border border-primary/45 p-4 rounded-xl shadow-[0_2px_10px_rgba(34,197,94,0.05)] h-64 w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <RadarChart cx="50%" cy="50%" r="80%" data={radarChartData}>
+                <RadarChart cx="50%" cy="50%" outerRadius="80%" data={radarChartData}>
                   <PolarGrid stroke="var(--chart-grid)" />
                   <PolarAngleAxis dataKey="subject" stroke="var(--chart-axis)" fontSize={10} />
                   <PolarRadiusAxis stroke="var(--chart-axis)" fontSize={8} />

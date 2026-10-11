@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { toast } from "sonner";
 import { Edit, Save, Sprout, MapPin, Minimize2, Calendar, Droplet, Clipboard } from "lucide-react";
 import { PageHeader, Panel, Stat, Chip, Disclaimer } from "@/components/agri/primitives";
@@ -8,8 +8,12 @@ import { farm as initialFarm } from "@/lib/agri-data";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { BoundaryMapping } from "@/components/agri/boundary-mapping";
 import { cn } from "@/lib/utils";
+
+// Leaflet touches `window` at import time, so the mapping tools load only in the browser.
+const BoundaryMapping = lazy(() =>
+  import("@/components/agri/boundary-mapping").then((m) => ({ default: m.BoundaryMapping })),
+);
 
 export const Route = createFileRoute("/farm-twin")({
   head: () => ({
@@ -331,28 +335,34 @@ function FarmTwin() {
       ) : (
         <div className="panel p-6 animate-rise">
           <div className="mb-6">
-            <h2 className="text-xl font-semibold">Boundary Mapping Dashboard</h2>
+            <h2 className="text-xl font-medium">Boundary Mapping Dashboard</h2>
             <p className="text-sm text-muted-foreground mt-1">
               Select one of the mapping tools below to plot, record, or edit the boundaries of the
               farm block.
             </p>
           </div>
-          <BoundaryMapping
-            initialArea={farmData.sizeAcres}
-            initialCoordinates={farmData.coordinates}
-            onSave={(newArea, newCoords) => {
-              setFarmData((prev) => ({
-                ...prev,
-                sizeAcres: newArea,
-                coordinates: newCoords,
-              }));
-              setTempData((prev) => ({
-                ...prev,
-                sizeAcres: newArea,
-                coordinates: newCoords,
-              }));
-            }}
-          />
+          <Suspense
+            fallback={
+              <p className="py-16 text-center text-sm text-muted-foreground">Loading map…</p>
+            }
+          >
+            <BoundaryMapping
+              initialArea={farmData.sizeAcres}
+              initialCoordinates={farmData.coordinates}
+              onSave={(newArea, newCoords) => {
+                setFarmData((prev) => ({
+                  ...prev,
+                  sizeAcres: newArea,
+                  coordinates: newCoords,
+                }));
+                setTempData((prev) => ({
+                  ...prev,
+                  sizeAcres: newArea,
+                  coordinates: newCoords,
+                }));
+              }}
+            />
+          </Suspense>
         </div>
       )}
     </div>

@@ -112,8 +112,8 @@ function calculateGeodesicArea(coords: { lat: number; lng: number }[]): number {
   const R = 6378137;
 
   for (let i = 0; i < coords.length; i++) {
-    const p1 = coords[i];
-    const p2 = coords[(i + 1) % coords.length];
+    const p1 = coords[i]!;
+    const p2 = coords[(i + 1) % coords.length]!;
 
     const lat1 = (p1.lat * Math.PI) / 180;
     const lat2 = (p2.lat * Math.PI) / 180;
@@ -192,7 +192,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
   const [mapCenter, setMapCenter] = useState<[number, number]>([BASE_LAT, BASE_LNG]);
   const mapRef = useRef<L.Map | null>(null);
 
-  const activeField = fields.find((f) => f.id === activeFieldId) || fields[0];
+  const activeField = (fields.find((f) => f.id === activeFieldId) || fields[0])!;
   const vertices = activeField.vertices;
 
   const totalCalculatedArea = fields.reduce((sum, f) => sum + calculateGeodesicArea(f.vertices), 0);
@@ -465,7 +465,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
     setFields((prev) => prev.filter((f) => f.id !== fId));
     if (activeFieldId === fId) {
       const remaining = fields.filter((f) => f.id !== fId);
-      setActiveFieldId(remaining[0].id);
+      setActiveFieldId(remaining[0]!.id);
     }
     toast.info("Field plot deleted");
   };
@@ -813,7 +813,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
       }).addTo(map);
     }
 
-    const lastLatLng = latlngs[latlngs.length - 1];
+    const lastLatLng = latlngs[latlngs.length - 1]!;
     if (walkMarkerRef.current) {
       walkMarkerRef.current.setLatLng(lastLatLng);
     } else {
@@ -895,7 +895,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
           return;
         }
 
-        const coords = simulatedCoordinatesList[walkSimStep];
+        const coords = simulatedCoordinatesList[walkSimStep]!;
         setGpsAccuracy(0.4);
         setGpsSpeed(1.2);
         setGpsAltitude(312.4);
@@ -928,6 +928,15 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
   const handlePauseResumeWalk = () => {
     setWalkPaused(!walkPaused);
     addConsoleLog(walkPaused ? "Walk tracking resumed." : "Walk tracking paused.");
+  };
+
+  const handleLogWalkVertex = () => {
+    const corner = loggedWalkPoints[loggedWalkPoints.length - 1];
+    if (!corner) return;
+    addConsoleLog(`Corner vertex marked at ${corner.lat.toFixed(6)}, ${corner.lng.toFixed(6)}`);
+    toast.success("Corner vertex logged", {
+      description: `Point ${loggedWalkPoints.length} on the walked perimeter.`,
+    });
   };
 
   const handleCompleteWalk = () => {

@@ -14,12 +14,19 @@ export function PageHeader({
   actions?: ReactNode;
 }) {
   return (
-    <header className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+    <header className="mb-10 flex flex-col gap-5 border-b border-border pb-8 md:flex-row md:items-end md:justify-between">
       <div className="animate-rise">
-        {eyebrow ? <p className="label-eyebrow mb-2">{eyebrow}</p> : null}
-        <h1 className="text-3xl font-semibold md:text-4xl">{title}</h1>
+        {eyebrow ? (
+          <p className="label-eyebrow mb-3 flex items-center gap-2">
+            <span className="h-px w-6 bg-lime" />
+            {eyebrow}
+          </p>
+        ) : null}
+        <h1 className="font-display text-4xl font-medium tracking-tight md:text-5xl">{title}</h1>
         {subtitle ? (
-          <p className="mt-2 max-w-2xl text-sm text-muted-foreground md:text-base">{subtitle}</p>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+            {subtitle}
+          </p>
         ) : null}
       </div>
       {actions ? <div className="flex flex-wrap gap-2">{actions}</div> : null}
@@ -46,7 +53,7 @@ export function Panel({
         <div className="mb-5 flex items-start justify-between gap-4">
           <div>
             {eyebrow ? <p className="label-eyebrow mb-1">{eyebrow}</p> : null}
-            {title ? <h2 className="text-lg font-semibold">{title}</h2> : null}
+            {title ? <h2 className="text-lg font-medium">{title}</h2> : null}
           </div>
           {aside}
         </div>
@@ -80,7 +87,7 @@ export function Chip({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[0.68rem] tracking-wide uppercase",
+        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[0.72rem] font-medium",
         toneMap[tone],
         className,
       )}
@@ -123,9 +130,9 @@ export function Stat({
   tone?: Tone;
 }) {
   return (
-    <div className="panel group p-5 transition-colors hover:border-primary/40">
+    <div className="panel group p-5 transition-colors hover:border-lime">
       <p className="label-eyebrow">{label}</p>
-      <p className="metric mt-2 text-3xl md:text-4xl">
+      <p className="metric mt-3 text-3xl font-light md:text-4xl">
         <span className={cn(tone === "muted" ? "" : toneMap[tone].split(" ")[0])}>{value}</span>
         {unit ? <span className="ml-1 text-base text-muted-foreground">{unit}</span> : null}
       </p>
@@ -163,7 +170,7 @@ export function Meter({
           {suffix}
         </span>
       </div>
-      <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
+      <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
         <div
           className={cn("h-full rounded-full transition-[width] duration-700", bar)}
           style={{ width: `${Math.min(100, value)}%` }}

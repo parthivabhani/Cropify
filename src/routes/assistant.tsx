@@ -42,11 +42,35 @@ interface ChatMessage {
   sender: "farmer" | "assistant";
   text: string;
   lang: string;
-  reasoning?: {
-    rules: string[];
-    evidence: string;
-  };
+  reasoning?:
+    | {
+        rules: string[];
+        evidence: string;
+      }
+    | undefined;
 }
+
+// Minimal Web Speech API types — TypeScript's DOM lib doesn't ship them yet.
+interface SpeechRecognitionEvent {
+  resultIndex: number;
+  results: ArrayLike<{ isFinal: boolean } & ArrayLike<{ transcript: string }>>;
+}
+interface SpeechRecognitionErrorEvent {
+  error: string;
+}
+interface SpeechRecognition {
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+  start(): void;
+  stop(): void;
+  abort(): void;
+  onstart: (() => void) | null;
+  onresult: ((event: SpeechRecognitionEvent) => void) | null;
+  onerror: ((event: SpeechRecognitionErrorEvent) => void) | null;
+  onend: (() => void) | null;
+}
+declare const SpeechRecognition: { new (): SpeechRecognition };
 
 function AssistantRoute() {
   const [lang, setLang] = useState("Hinglish");
@@ -127,10 +151,11 @@ function AssistantRoute() {
       let finalTranscript = "";
 
       for (let i = event.resultIndex; i < event.results.length; ++i) {
-        if (event.results[i].isFinal) {
-          finalTranscript += event.results[i][0].transcript;
+        const result = event.results[i]!;
+        if (result.isFinal) {
+          finalTranscript += result[0]!.transcript;
         } else {
-          interimTranscript += event.results[i][0].transcript;
+          interimTranscript += result[0]!.transcript;
         }
       }
 

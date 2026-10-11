@@ -8,7 +8,6 @@ import {
   RefreshCw,
   AlertTriangle,
   ArrowRight,
-  Sparkles,
   ShieldCheck,
   CheckCircle2,
   Info,
@@ -79,7 +78,7 @@ function DiseaseAnalysis() {
     "Lower canopy tomato foliage exhibits circular brown concentric lesions with chlorotic yellow halo margins.",
   );
 
-  const activeSample = sampleImages[activeSampleIndex];
+  const activeSample = sampleImages[activeSampleIndex] ?? sampleImages[0]!;
 
   const handleRunAnalysis = () => {
     setAnalyzing(true);
@@ -94,29 +93,12 @@ function DiseaseAnalysis() {
   };
 
   return (
-    <div className="space-y-10 animate-rise pb-8">
-      {/* 1. EDITORIAL HEADER */}
-      <div className="space-y-3">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="glass-pill px-3.5 py-1 text-xs font-mono text-primary flex items-center gap-1.5 font-semibold">
-            <span className="size-2 rounded-full bg-primary animate-pulse" />
-            COMPUTER VISION & ONTOLOGY LAB
-          </span>
-          <span className="glass-pill px-3 py-1 text-xs font-mono text-muted-foreground">
-            Nashik Tomato Field Trial
-          </span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display tracking-tight text-foreground">
-          Crop Disease Doctor & <br />
-          <span className="font-serif italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-primary via-healthy to-warning">
-            Pathogen Vision Intelligence.
-          </span>
-        </h1>
-        <p className="text-sm sm:text-base text-muted-foreground max-w-2xl leading-relaxed">
-          Combining computer vision leaf lesion detection with real-time in-situ microclimate
-          telemetry and agronomic rule gating to prevent catastrophic crop disease outbreaks.
-        </p>
-      </div>
+    <div className="animate-rise pb-8 space-y-10">
+      <PageHeader
+        eyebrow="Leaf pathology · Nashik tomato trial"
+        title="Disease Doctor"
+        subtitle="Scan a leaf photo for early blight, late blight and leaf miner. The vision model's guess is re-weighted with field humidity and checked against spray rules before any advice goes out."
+      />
 
       {/* 2. MAIN WORKBENCH: PHOTO VIEWER & REAL-TIME DIAGNOSIS */}
       <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
@@ -186,9 +168,7 @@ function DiseaseAnalysis() {
                 ))}
 
               {/* Laser Scanline Inference Animation */}
-              {analyzing && (
-                <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent shadow-[0_0_15px_4px_var(--color-primary)] animate-bounce" />
-              )}
+              {analyzing && <div className="absolute inset-x-0 h-1 bg-lime/80 animate-bounce" />}
 
               {/* Image Overlaid Chips */}
               <div className="absolute top-4 left-4 flex gap-2">

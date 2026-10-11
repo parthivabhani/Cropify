@@ -9,7 +9,6 @@ import {
   XCircle,
   ArrowRight,
   Play,
-  Sparkles,
   RefreshCw,
 } from "lucide-react";
 import { PageHeader, Panel, Chip, SourceBadge, Disclaimer } from "@/components/agri/primitives";
@@ -112,7 +111,7 @@ function Reasoning() {
             className="gap-2"
             disabled={pipelineStep !== null && pipelineStep < pipelineSteps.length}
           >
-            <Sparkles className="size-4 text-primary-foreground" /> Run Live Reasoning Pipeline
+            <Play className="size-4" /> Run reasoning pipeline
           </Button>
         }
       />
@@ -120,7 +119,7 @@ function Reasoning() {
       {/* Live Pipeline Walkthrough overlay */}
       {pipelineStep !== null && pipelineStep < pipelineSteps.length && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-md px-4">
-          <div className="panel max-w-md w-full p-8 text-center space-y-6 shadow-glow border border-primary/30">
+          <div className="panel max-w-md w-full p-8 text-center space-y-6 border border-primary/30">
             <RefreshCw className="size-10 text-primary animate-spin mx-auto" />
             <div className="space-y-2">
               <h3 className="text-lg font-semibold">End-to-End Simulation</h3>
@@ -144,7 +143,7 @@ function Reasoning() {
       {/* Pipeline Walkthrough completion overlay */}
       {pipelineStep !== null && pipelineStep >= pipelineSteps.length && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-md px-4">
-          <div className="panel max-w-md w-full p-8 text-center space-y-6 shadow-glow border border-healthy/35">
+          <div className="panel max-w-md w-full p-8 text-center space-y-6 border border-healthy/35">
             <CheckCircle2 className="size-12 text-healthy mx-auto" />
             <div className="space-y-2">
               <h3 className="text-lg font-semibold">Decision Generated</h3>
