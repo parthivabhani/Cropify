@@ -39,7 +39,7 @@ const sampleImages = [
   {
     id: "sample-blight",
     title: "Field Sample #1 • Early Blight Cluster",
-    crop: "Tomato Atharva-8021",
+    crop: "Field Plot • Foliage Pathology Specimen",
     pathogen: "Alternaria solani",
     severity: "Moderate (15.4% canopy area)",
     rawConfidence: 82,
@@ -58,7 +58,7 @@ const sampleImages = [
   {
     id: "sample-healthy",
     title: "Field Sample #2 • Healthy Vegetative Canopy",
-    crop: "Tomato Atharva-8021",
+    crop: "Field Crop Plot • Healthy Vegetative Growth",
     pathogen: "None (Healthy Tissue)",
     severity: "0% Lesion Density",
     rawConfidence: 96,
@@ -69,6 +69,24 @@ const sampleImages = [
     ruleAction: "All Symbolic Constraints Passed: Continue vegetative drip irrigation schedule.",
     lesions: [],
   },
+  {
+    id: "sample-septoria",
+    title: "Field Sample #3 • Foliar Spot & Rust Inspection",
+    crop: "Cash & Legume Plot • Broadleaf Specimen",
+    pathogen: "Septoria Leaf Spot / Cercospora",
+    severity: "Mild (4.2% canopy area)",
+    rawConfidence: 88,
+    bayesianConfidence: 93,
+
+    location: "Selu Plot C-08",
+    humidity: "86% RH (Moderate Spore Window)",
+    ruleAction:
+      "Rule #034 Triggered: Early pathogen containment. Apply copper-based protectant spray within 36 hours.",
+    lesions: [
+      { x: 350, y: 260, r: 12, label: "Angular lesion 86%" },
+      { x: 520, y: 180, r: 10, label: "Punctate spot 81%" },
+    ],
+  },
 ];
 
 function DiseaseAnalysis() {
@@ -76,7 +94,7 @@ function DiseaseAnalysis() {
   const [analyzing, setAnalyzing] = useState(false);
   const [showResults, setShowResults] = useState(true);
   const [voiceDesc, setVoiceDesc] = useState(
-    "Lower canopy tomato foliage exhibits circular brown concentric lesions with chlorotic yellow halo margins.",
+    "Lower canopy crop foliage exhibits circular brown concentric lesions with chlorotic yellow halo margins.",
   );
 
   const activeSample = sampleImages[activeSampleIndex] ?? sampleImages[0]!;
@@ -84,21 +102,23 @@ function DiseaseAnalysis() {
   const handleRunAnalysis = () => {
     setAnalyzing(true);
     setShowResults(false);
-    toast.info("Running YOLO v8 lesion locator & EfficientNet-B4 pipeline...");
+    toast.info(
+      "Running YOLO v8 lesion locator & EfficientNet-B4 pipeline across crop specimens...",
+    );
 
     setTimeout(() => {
       setAnalyzing(false);
       setShowResults(true);
-      toast.success("Pathology diagnosis synchronized with microclimate telemetry!");
+      toast.success("Multi-crop pathology diagnosis synchronized with microclimate telemetry!");
     }, 1800);
   };
 
   return (
     <div className="animate-rise pb-8 space-y-10">
       <PageHeader
-        eyebrow="Leaf pathology · Nashik tomato trial"
+        eyebrow="Leaf pathology · Multi-crop precision diagnostics"
         title="Disease Doctor"
-        subtitle="Scan a leaf photo for early blight, late blight and leaf miner. The vision model's guess is re-weighted with field humidity and checked against spray rules before any advice goes out."
+        subtitle="Scan any crop foliage photo for early blight, late blight, leaf spot, rust and miner. The vision model's diagnosis is re-weighted with field telemetry and checked against agronomic spray rules before any advice goes out."
       />
 
       {/* 2. MAIN WORKBENCH: PHOTO VIEWER & REAL-TIME DIAGNOSIS */}

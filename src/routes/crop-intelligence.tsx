@@ -171,7 +171,7 @@ function CropIntelligence() {
                   supports vegetative progression.
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-healthy">✓</span> Tomato cultivar (Atharva-8021) shows good
+                  <span className="text-healthy">✓</span> Active crop cultivar shows good
                   compatibility with soil pH (6.2).
                 </li>
                 <li className="flex items-start gap-2">

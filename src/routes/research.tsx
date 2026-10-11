@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   MapPin,
   CheckCircle2,
@@ -50,6 +50,21 @@ export function StudentResearchPage() {
   >("all");
   const [selectedPhoto, setSelectedPhoto] = useState<ResearchPhoto | null>(null);
 
+  // Prevent background scrolling and handle Escape key when photo lightbox is open
+  useEffect(() => {
+    if (!selectedPhoto) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedPhoto(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedPhoto]);
+
   const photos: ResearchPhoto[] = [
     {
       id: "photo-1",
@@ -63,7 +78,7 @@ export function StudentResearchPage() {
       summary:
         "Student researcher conducting direct farmer interviews in the field with official GPS camera verification, capturing ground-truth disease occurrences and local farming practices.",
       methodology:
-        "Semi-structured agronomic interview documenting tomato pest history, irrigation schedules, and localized fertilizer applications directly with local growers.",
+        "Semi-structured agronomic interview documenting crop pest history, irrigation schedules, and localized fertilizer applications directly with local growers.",
       verificationStatus: "GPS Geotag Verified",
     },
     {
@@ -201,6 +216,21 @@ export function StudentResearchPage() {
         "End-to-end hardware-in-the-loop validation assessing packet latency, register parity, and real-time telemetry threshold triggers for automated soil nutrient profiling.",
       verificationStatus: "Edge Rig Validated",
     },
+    {
+      id: "photo-11",
+      category: "testing",
+      title: "In-Situ 7-in-1 Soil Sensor & Mobile Field Telemetry Rig",
+      location: "Active Crop Plot, Maharashtra",
+      region: "Crop Row In-Field Telemetry Station",
+      image: "/research/image_copy_10.png",
+      tag: "Live Sensor Deployment",
+      tagTone: "water",
+      summary:
+        "Student researcher field deployment of the industrial 7-in-1 RS485 soil probe and Raspberry Pi edge computer directly inside crop rows, validating live mobile telemetry streaming (Nitrogen 41 mg/kg, Phosphorus 18 mg/kg, Potassium 67 mg/kg, Soil Moisture 34%, Temp 26.4°C, pH 6.5).",
+      methodology:
+        "In-situ ground-truth testing verifying physical probe insertion depth, root-zone N-P-K electro-chemical response, and wireless telemetry sync under direct field conditions.",
+      verificationStatus: "In-Situ Field Telemetry Verified",
+    },
   ];
 
   const filteredPhotos =
@@ -223,7 +253,7 @@ export function StudentResearchPage() {
           </div>
           <div>
             <span className="text-xl font-bold font-display text-foreground block">
-              10 Field Proofs
+              11 Field Proofs
             </span>
             <span className="text-xs text-muted-foreground">Original Research Photos</span>
           </div>
@@ -323,10 +353,19 @@ export function StudentResearchPage() {
                 </Chip>
               </div>
 
-              {/* Expand Hint */}
-              <div className="absolute top-3 right-3 size-8 rounded-full glass flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity">
-                <Maximize2 className="size-4" />
-              </div>
+              {/* Expand Hint / Button */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedPhoto(photo);
+                }}
+                aria-label={`Expand ${photo.title}`}
+                className="absolute top-3 right-3 h-7 px-2 rounded-full glass flex items-center gap-1 text-[0.68rem] font-medium text-foreground hover:bg-surface-2 transition-all cursor-pointer shadow-md"
+              >
+                <Maximize2 className="size-3 text-primary" />
+                <span className="hidden sm:inline">Expand</span>
+              </button>
 
               {/* Geotag / Location Strip */}
               <div className="absolute bottom-3 left-3 right-3 flex items-center gap-1.5 text-[0.68rem] font-mono text-foreground/90 glass-pill px-2.5 py-1 truncate">
@@ -346,7 +385,7 @@ export function StudentResearchPage() {
                 </p>
               </div>
 
-              <div className="space-y-2 pt-3 border-t border-border/50 text-xs">
+              <div className="space-y-2.5 pt-3 border-t border-border/50 text-xs">
                 <div className="text-[0.72rem] text-muted-foreground">
                   <strong className="text-foreground font-semibold">Methodology: </strong>
                   {photo.methodology}
@@ -358,24 +397,46 @@ export function StudentResearchPage() {
                     <CheckCircle2 className="size-3" /> {photo.verificationStatus}
                   </span>
                 </div>
+
+                {/* Explicit Expand Photograph Button */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedPhoto(photo);
+                  }}
+                  className="w-full mt-2 flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-surface-2 hover:bg-surface-3 text-xs font-semibold text-foreground border border-border/70 hover:border-primary/60 transition-all cursor-pointer shadow-sm group/btn"
+                >
+                  <Maximize2 className="size-3.5 text-primary group-hover/btn:scale-110 transition-transform" />
+                  <span>Expand Photograph</span>
+                </button>
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Lightbox Modal for Full-Resolution Photo Inspection */}
+      {/* Lightbox Modal for Full-Resolution Photo Inspection — pinned upwards at top of screen */}
       {selectedPhoto && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 backdrop-blur-xl p-4 sm:p-6 animate-in fade-in duration-200">
-          <div className="relative w-full max-w-4xl glass-card border border-border/80 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-            <div className="flex items-center justify-between p-4 sm:p-5 border-b border-border/60">
+        <div
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setSelectedPhoto(null);
+          }}
+          className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-background/90 backdrop-blur-xl p-3 sm:p-5 md:p-6 animate-in fade-in duration-200"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-4xl glass-card border border-border/80 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col my-1 sm:my-2 md:my-3 max-h-[94vh] animate-in zoom-in-95 duration-200"
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-3.5 sm:p-4 border-b border-border/60 shrink-0 bg-surface-1/60">
               <div>
-                <h3 className="font-display font-bold text-lg text-foreground">
+                <h3 className="font-display font-bold text-base sm:text-lg text-foreground">
                   {selectedPhoto.title}
                 </h3>
-                <p className="text-xs text-muted-foreground font-mono flex items-center gap-1.5 mt-0.5">
-                  <MapPin className="size-3.5 text-warning" />
-                  <span>{selectedPhoto.location}</span>
+                <p className="text-[0.72rem] text-muted-foreground font-mono flex items-center gap-1.5 mt-0.5">
+                  <MapPin className="size-3 text-warning shrink-0" />
+                  <span className="truncate">{selectedPhoto.location}</span>
                   <span>•</span>
                   <span>{selectedPhoto.region}</span>
                 </p>
@@ -383,19 +444,20 @@ export function StudentResearchPage() {
 
               <button
                 onClick={() => setSelectedPhoto(null)}
-                className="p-2 rounded-full hover:bg-surface-2 text-muted-foreground hover:text-foreground transition-all cursor-pointer"
+                className="p-1.5 sm:p-2 rounded-full hover:bg-surface-2 text-muted-foreground hover:text-foreground transition-all cursor-pointer"
                 aria-label="Close photo preview"
               >
                 <X className="size-5" />
               </button>
             </div>
 
-            <div className="flex-1 overflow-auto p-4 sm:p-6 flex flex-col items-center gap-4">
-              <div className="w-full max-h-[60vh] rounded-2xl overflow-hidden border border-border/60 bg-black flex items-center justify-center">
+            {/* Modal Body with prominent top-aligned photo */}
+            <div className="flex-1 overflow-y-auto p-3.5 sm:p-5 flex flex-col items-center gap-3.5">
+              <div className="w-full max-h-[62vh] sm:max-h-[68vh] rounded-xl sm:rounded-2xl overflow-hidden border border-border/60 bg-black/80 flex items-center justify-center p-1 sm:p-2">
                 <img
                   src={selectedPhoto.image}
                   alt={selectedPhoto.title}
-                  className="max-w-full max-h-[60vh] object-contain"
+                  className="max-w-full max-h-[60vh] sm:max-h-[66vh] object-contain rounded-lg"
                 />
               </div>
 

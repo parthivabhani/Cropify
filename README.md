@@ -1,8 +1,8 @@
 # Cropify
 
-**Neuro-symbolic reasoning for intelligent crop production.**
+**Neuro-symbolic reasoning for intelligent crop production across diverse crops.**
 
-Cropify keeps a living digital twin of a tomato farm. A 7-in-1 soil probe reports what's happening in the root zone, a vision model reads leaf photos for disease, and a layer of agronomy rules checks every suggestion — re-weighting the model's confidence and vetoing unsafe actions — before any advice reaches the farmer.
+Cropify keeps a living digital twin of agricultural farm plots. A 7-in-1 soil probe reports what's happening in the root zone, a computer vision model reads foliage photos across multiple crop types for foliar diseases, and a layer of formal agronomy rules checks every suggestion — re-weighting the model's confidence and vetoing unsafe actions — before any advice reaches the farmer.
 
 > B.Tech Computer Science final-year project — _Neuro-Symbolic Reasoning for Intelligent Crop Production in Agriculture_. Field work carried out in Nashik and Selu, Maharashtra.
 

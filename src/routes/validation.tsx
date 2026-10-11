@@ -658,7 +658,7 @@ export function ValidationRoute() {
                       <div className="h-full bg-warning rounded-full" style={{ width: "22%" }} />
                     </div>
                     <span className="text-[0.65rem] text-muted-foreground">
-                      Soil-borne spores overwintering from previous tomato cycle
+                      Soil-borne spores overwintering from previous crop cycle
                     </span>
                   </div>
 
@@ -870,8 +870,9 @@ export function ValidationRoute() {
                 ))}
               </div>
               <div className="mt-4 p-3 rounded-lg bg-muted/20 border border-border/40 text-[0.72rem] text-muted-foreground leading-relaxed">
-                Evaluated across 2,400 curated tomato leaf images across 4 classes (Healthy, Early
-                Blight, Late Blight, Septoria). Evaluated using 5-Fold Stratified Cross Validation.
+                Evaluated across 2,400 curated multi-crop foliage images across classes (Healthy,
+                Early Blight, Late Blight, Septoria). Evaluated using 5-Fold Stratified Cross
+                Validation.
               </div>
             </Panel>
 
@@ -892,7 +893,7 @@ export function ValidationRoute() {
                 ))}
               </div>
               <div className="mt-4 p-3 rounded-lg bg-muted/20 border border-border/40 text-[0.72rem] text-muted-foreground leading-relaxed">
-                Trained on historical Nashik tomato seasonal records. R² of 0.87 demonstrates strong
+                Trained on historical Nashik seasonal crop records. R² of 0.87 demonstrates strong
                 variance capture against variable irrigation and nitrogen fertilization levels.
               </div>
             </Panel>

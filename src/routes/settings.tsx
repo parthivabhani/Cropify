@@ -114,8 +114,8 @@ function SettingsRoute() {
                     Load Calibrated Field Source Stream
                   </h4>
                   <p className="text-xs text-muted-foreground max-w-xs leading-normal">
-                    Streams verified Atharva Plot (Tomato block with Early Blight risk logs) data
-                    directly from field stations.
+                    Streams verified Atharva Plot (Multi-crop block with live telemetry & risk logs)
+                    data directly from field stations.
                   </p>
                 </div>
                 <Switch checked={fieldDataSourceActive} onCheckedChange={handleFieldDataToggle} />

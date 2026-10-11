@@ -87,7 +87,7 @@ function AssistantRoute() {
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([
     {
       sender: "farmer",
-      text: "Aaj tomato ko paani dena chahiye kya?",
+      text: "Aaj fasal ko paani dena chahiye kya?",
       lang: "Hinglish",
     },
     {
@@ -272,19 +272,19 @@ function AssistantRoute() {
     ) {
       if (lang === "Hinglish") {
         reply =
-          "Humidity 91% hone ke karan tomato plot mein Early Blight risk 74% hai (Rule #018). Zone B1 mein spotting report hui hai, wahan intensive scouting karein.";
+          "Humidity 91% hone ke karan crop plot mein Early Blight & foliar disease risk 74% hai (Rule #018). Zone B1 mein spotting report hui hai, wahan intensive scouting karein.";
       } else if (lang === "Hindi") {
         reply =
-          "हवा में नमी 91% होने के कारण टमाटर की फसल में अगेती झुलसा (Early Blight) का जोखिम 74% है (नियम #018)। ज़ोन B1 में सघन निगरानी की आवश्यकता है।";
+          "हवा में नमी 91% होने के कारण फसल में अगेती झुलसा (Early Blight) का जोखिम 74% है (नियम #018)। ज़ोन B1 में सघन निगरानी की आवश्यकता है।";
       } else if (lang === "Marathi") {
         reply =
-          "हवेतील दमटपणा ९१% असल्याने टोमॅटो पिकावर अर्ली ब्लाईट रोगाचा धोका ७४% वर पोहोचला आहे (नियम #०१८). झोन B१ मध्ये तातडीने पाहणी करावी.";
+          "हवेतील दमटपणा ९१% असल्याने पिकावर अर्ली ब्लाईट रोगाचा धोका ७४% वर पोहोचला आहे (नियम #०१८). झोन B१ मध्ये तातडीने पाहणी करावी.";
       } else {
         reply =
-          "Given the 91% relative humidity, Early Blight risk index is at 74% (Rule #018). Increased disease monitoring is advised in Zone B1.";
+          "Given the 91% relative humidity, Early Blight & foliar risk index is at 74% (Rule #018). Increased disease monitoring is advised in Zone B1.";
       }
       rules = ["RULE #018 (Early Blight environmental risk)"];
-      evidence = "Humidity 91% + Tomato vegetative stage";
+      evidence = "Humidity 91% + Crop vegetative stage";
     } else if (
       q.includes("weather") ||
       q.includes("mausam") ||
@@ -312,13 +312,13 @@ function AssistantRoute() {
           "Aapka query samajh gaya. Crop vegetative phase mein normal grow ho raha hai. Drip irrigation timing ya disease risks ke bare mein poochhein.";
       } else if (lang === "Hindi") {
         reply =
-          "टमाटर की फसल वानस्पतिक चरण में स्वस्थ बढ़ रही है। सटीक सिंचाई चक्र या रोग प्रबंधन के बारे में सवाल पूछें।";
+          "फसल वानस्पतिक चरण में स्वस्थ बढ़ रही है। सटीक सिंचाई चक्र या रोग प्रबंधन के बारे में सवाल पूछें।";
       } else if (lang === "Marathi") {
         reply =
-          "टोमॅटो पिकाची वाढ समाधानकारक आहे. अचूक पाणी व्यवस्थापन किंवा रोग नियंत्रणाबद्दल प्रश्न विचारावेत.";
+          "पिकाची वाढ समाधानकारक आहे. अचूक पाणी व्यवस्थापन किंवा रोग नियंत्रणाबद्दल प्रश्न विचारावेत.";
       } else {
         reply =
-          "The tomato crop is growing normally in its vegetative phase. Ask me about precision drip schedules or fungal risk indexes.";
+          "The crop is growing normally in its vegetative phase. Ask me about precision drip schedules or fungal risk indexes.";
       }
     }
 
@@ -355,7 +355,7 @@ function AssistantRoute() {
         conditions: [
           { keyword: "humidity zyada", variable: "Humidity > 85%" },
           { keyword: "teen din rain", variable: "Rainfall > 3 days" },
-          { keyword: "tomato", variable: "Crop = Tomato" },
+          { keyword: "crop/fasal", variable: "Crop = Field Crop" },
         ],
         consequent: "Increase Leaf Spot severity probability",
       });
@@ -365,7 +365,7 @@ function AssistantRoute() {
 
   const handleSaveExtractedRule = () => {
     toast.success("Extracted rule added to the prototype knowledge base!", {
-      description: "Labeled: Farmer-derived Knowledge (unverified). Linked to Tomato node.",
+      description: "Labeled: Farmer-derived Knowledge (unverified). Linked to Crop Ontology node.",
     });
     setFarmerStatement("");
     setExtractedRule(null);
@@ -525,7 +525,7 @@ function AssistantRoute() {
               </p>
               <form onSubmit={handleParseStatement} className="space-y-2">
                 <Input
-                  placeholder="e.g. Tomato me jab humidity zyada ho to daag aate hain"
+                  placeholder="e.g. Fasal me jab humidity zyada ho to patton par daag aate hain"
                   value={farmerStatement}
                   onChange={(e) => setFarmerStatement(e.target.value)}
                   className="text-xs h-9 bg-background/50"

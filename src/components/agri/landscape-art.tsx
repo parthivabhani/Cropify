@@ -1,7 +1,7 @@
 // Flat, grainy illustrations for the landing page (Carbonex / Enjoy Nature style).
 // Drawn in SVG so the landing page never depends on field photographs.
 
-/** Tomato valley at dawn, drawn into a 640×640 box. Render inside an <svg>. */
+/** Agronomic crop valley at dawn, drawn into a 640×640 box. Render inside an <svg>. */
 export function HeroLandscape() {
   // crop rows converge on a vanishing point on the far edge of the field
   const vx = 330;
@@ -76,7 +76,7 @@ export function HeroLandscape() {
         </g>
       ))}
 
-      {/* tomato field */}
+      {/* crop field */}
       <path d="M0 420c200-22 430-18 640 0v220H0Z" fill="#3c7a33" />
       {rows.map((bx, i) => (
         <path

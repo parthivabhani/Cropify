@@ -1,4 +1,4 @@
-// Illustrated tomato compound leaf used as the Disease Doctor specimen.
+// Illustrated crop compound leaf used as the Disease Doctor specimen.
 // Lesion coordinates live in the same 800×500 space as the drawing, so detection
 // boxes always sit exactly on the spots they describe.
 
@@ -41,7 +41,7 @@ export function LeafScan({
 }) {
   const diseased = lesions.length > 0;
   return (
-    <svg viewBox="0 0 800 500" className={className} role="img" aria-label="Tomato leaf specimen">
+    <svg viewBox="0 0 800 500" className={className} role="img" aria-label="Crop leaf specimen">
       <defs>
         <radialGradient id="leafscan-bg" cx="0.5" cy="0.45" r="0.75">
           <stop offset="0" stopColor="#24432f" />

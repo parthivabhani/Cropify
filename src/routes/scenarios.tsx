@@ -347,7 +347,7 @@ function Scenarios() {
                   <div>
                     <span className="font-bold">Soil pH Boundary Out of Bounds:</span>
                     <p className="mt-0.5 text-[0.7rem] leading-normal">
-                      Soil acidity levels inhibit root nutrient uptake for tomato plants.
+                      Soil acidity levels inhibit root nutrient uptake for sensitive crop roots.
                     </p>
                   </div>
                 </div>

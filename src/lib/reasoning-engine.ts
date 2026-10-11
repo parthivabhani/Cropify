@@ -312,7 +312,7 @@ export function runReasoning(f: FieldInputs): ReasoningResult {
       layer: "Knowledge",
       title: "Knowledge graph lookup",
       result: `${kgEdges} supporting links`,
-      detail: "Matched symptoms and weather against tomato → disease → favoured_by relations.",
+      detail: "Matched symptoms and weather against crop → disease → favoured_by relations.",
     },
     {
       layer: "Rules",

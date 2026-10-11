@@ -25,10 +25,10 @@ export const Route = createFileRoute("/interview")({
 function InterviewRoute() {
   const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({
-    crop: "Tomato",
+    crop: "Multi-Crop / Field Plot",
     size: "2.5",
-    variety: "Atharva-8021",
-    varietyReason: "Disease resistance and high market price in Nashik mandi.",
+    variety: "High-Yield Hybrid",
+    varietyReason: "Disease resistance and high market price in local agricultural mandi.",
     irrigation: "Drip irrigation twice a week, 2 hours per block.",
     fertilizer: "Basal DAP + weekly 19:19:19 fertigation.",
     biggestProblem: "Early blight disease during humid weather and whitefly pest infestations.",
@@ -85,7 +85,7 @@ function InterviewRoute() {
                   </div>
                   <div className="space-y-2">
                     <Label className="text-xs text-muted-foreground">
-                      Tomato kitni zameen mein lagaya hai? (acres)
+                      Fasal / Crop kitni zameen mein lagaya hai? (acres)
                     </Label>
                     <Input
                       value={formData.size}

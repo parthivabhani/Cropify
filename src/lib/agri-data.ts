@@ -20,8 +20,8 @@ export const farm = {
   location: "Nashik District, Maharashtra",
   coordinates: "20.0110° N, 73.7903° E",
   sizeAcres: 2.5,
-  crop: "Tomato",
-  variety: "Atharva-8021",
+  crop: "Multi-Crop / Horticulture",
+  variety: "Atharva-8021 / Hybrid",
   sowingDate: "2026-06-02",
   growthStage: "Vegetative",
   soil: "Medium black loam · pH 6.2 · Moisture HIGH",
@@ -65,7 +65,7 @@ export const zones: Zone[] = [
     soil: "Loam · pH 6.4",
     condition: "Vigorous vegetative growth, uniform canopy",
     action: "Continue current drip schedule",
-    reasoning: "No stress indicators; moisture within optimal band for vegetative tomato.",
+    reasoning: "No stress indicators; moisture within optimal band for vegetative crop growth.",
     x: 4,
     y: 6,
     w: 30,
@@ -193,7 +193,7 @@ export const reasoningSteps = [
     title: "Knowledge graph query",
     layer: "Knowledge",
     detail:
-      "Tomato →susceptible_to→ Early Blight →favoured_by→ High Humidity, Rainfall; symptom match on brown lesions.",
+      "Crop Foliage →susceptible_to→ Early Blight →favoured_by→ High Humidity, Rainfall; symptom match on brown lesions.",
     evidence: "4 supporting edges traversed, 1 contradicting edge",
     source: "Research Literature" as Provenance,
   },
@@ -244,7 +244,7 @@ export const rules = [
     id: "RULE #018",
     name: "Early Blight environmental risk",
     conditions: [
-      { text: "Crop = Tomato", met: true },
+      { text: "Crop = Field / Vegetable Crop", met: true },
       { text: "Leaf lesions = Circular Brown", met: true },
       { text: "Humidity > 85%", met: true },
       { text: "Recent Rainfall = TRUE", met: true },
@@ -305,7 +305,7 @@ export type GraphNode = {
 };
 
 export const graphNodes: GraphNode[] = [
-  { id: "tomato", label: "Tomato", kind: "crop", x: 50, y: 50 },
+  { id: "crop", label: "Field Crops (Multi-Crop)", kind: "crop", x: 50, y: 50 },
   { id: "earlyblight", label: "Early Blight", kind: "disease", x: 76, y: 30 },
   { id: "septoria", label: "Septoria Leaf Spot", kind: "disease", x: 82, y: 66 },
   { id: "lesion", label: "Brown Lesions", kind: "symptom", x: 58, y: 14 },
@@ -319,15 +319,15 @@ export const graphNodes: GraphNode[] = [
 ];
 
 export const graphEdges: Array<{ from: string; to: string; rel: string; farmer?: boolean }> = [
-  { from: "tomato", to: "earlyblight", rel: "susceptible_to" },
-  { from: "tomato", to: "septoria", rel: "susceptible_to" },
+  { from: "crop", to: "earlyblight", rel: "susceptible_to" },
+  { from: "crop", to: "septoria", rel: "susceptible_to" },
   { from: "earlyblight", to: "lesion", rel: "produces" },
   { from: "earlyblight", to: "humidity", rel: "favoured_by" },
   { from: "earlyblight", to: "rain", rel: "associated_with" },
-  { from: "soil", to: "tomato", rel: "supports_crop" },
-  { from: "tomato", to: "drip", rel: "requires_water_via" },
+  { from: "soil", to: "crop", rel: "supports_crop" },
+  { from: "crop", to: "drip", rel: "requires_water_via" },
   { from: "stage", to: "earlyblight", rel: "affects_risk" },
-  { from: "whitefly", to: "tomato", rel: "pest_of" },
+  { from: "whitefly", to: "crop", rel: "pest_of" },
   { from: "obs", to: "humidity", rel: "observed_condition", farmer: true },
   { from: "obs", to: "lesion", rel: "observed_symptom", farmer: true },
   { from: "obs", to: "rain", rel: "observed_condition", farmer: true },
@@ -338,7 +338,7 @@ export const interviewQuestions: Array<{ section: string; items: string[] }> = [
     section: "Farm & practice",
     items: [
       "Aap abhi kaunsi crop uga rahe ho?",
-      "Tomato kitni zameen mein lagaya hai?",
+      "Kitni zameen mein fasal lagayi hai (acres)?",
       "Kaunsi variety use kar rahe ho?",
       "Ye variety kyun choose ki?",
       "Aap irrigation kaise karte ho?",
@@ -403,7 +403,7 @@ export const timeline = [
   {
     date: "02 Jun",
     kind: "Crop planted",
-    text: "Tomato Atharva-8021 transplanted across 2.5 acres",
+    text: "Crop cultivar Atharva-8021 transplanted across 2.5 acres",
     source: "Farmer Interview" as Provenance,
   },
   {

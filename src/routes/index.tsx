@@ -19,11 +19,14 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Cropify — A digital twin for the tomato field" },
+      {
+        title:
+          "Cropify — Intelligent Digital Twin for Precision Agriculture & Multi-Crop Management",
+      },
       {
         name: "description",
         content:
-          "Cropify pairs in-field soil sensors, leaf disease detection and agronomy rules into one living model of a tomato farm.",
+          "Cropify pairs in-field soil sensors, multi-crop leaf disease detection and agronomy rules into one living model for precision farming across diverse crops.",
       },
     ],
   }),
@@ -156,7 +159,7 @@ export function LandingPage() {
             <br />
             smarter
             <br />
-            <span className="text-forest-2">tomatoes</span>
+            <span className="text-forest-2">every crop</span>
           </h1>
           <p className="mt-7 max-w-md text-base leading-relaxed text-ink/70">
             Cropify keeps a living copy of the farm. A soil probe in the ground, a camera on the
@@ -208,7 +211,7 @@ export function LandingPage() {
             viewBox="0 0 640 640"
             className="w-full"
             role="img"
-            aria-label="Illustration of a tomato valley with a soil probe"
+            aria-label="Illustration of agricultural farmland with a soil probe"
           >
             <defs>
               <clipPath id="hero-blob">
@@ -595,7 +598,7 @@ export function LandingPage() {
           <span className="flex items-center gap-2 text-linen/80">
             <CropifyLogo size={18} className="text-leaf" /> Cropify
           </span>
-          <span>Neuro-symbolic digital twin for tomato farms · Nashik & Selu field study</span>
+          <span>Neuro-symbolic digital twin for multi-crop farms · Nashik & Selu field study</span>
         </footer>
       </section>
     </div>

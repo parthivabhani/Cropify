@@ -142,7 +142,7 @@ function getCenterCoordsString(coords: { lat: number; lng: number }[]): string {
 const initialFieldsList: Field[] = [
   {
     id: "f1",
-    name: "Tomato Plot - North Block",
+    name: "Crop Plot - North Block",
     color: "oklch(0.82 0.2 130)", // electric green
     vertices: [
       { id: "v1_1", x: 30, y: 30, lat: 20.01124, lng: 73.78985 },
@@ -153,7 +153,7 @@ const initialFieldsList: Field[] = [
   },
   {
     id: "f2",
-    name: "Tomato Plot - South Block",
+    name: "Crop Plot - South Block",
     color: "oklch(0.72 0.13 235)", // blue/water
     vertices: [
       { id: "v2_1", x: 30, y: 30, lat: 20.01041, lng: 73.79035 },
@@ -421,7 +421,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
     const offset = fields.length * 0.0004;
     const newField: Field = {
       id: newId,
-      name: `Tomato Plot - Block ${fields.length + 1}`,
+      name: `Field Plot - Block ${fields.length + 1}`,
       color: "oklch(0.83 0.15 100)",
       vertices: [
         {

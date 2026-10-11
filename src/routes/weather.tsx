@@ -170,7 +170,7 @@ function Weather() {
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   Humidity is currently <strong>91%</strong> with rain in last 48 hours. Rule{" "}
                   <strong>#018</strong> conditions are satisfied, activating blight warnings for
-                  susceptible <strong>Tomato</strong> blocks.
+                  susceptible <strong>vegetative crop</strong> blocks.
                 </p>
               </div>
 
