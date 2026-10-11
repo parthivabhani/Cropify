@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { tr } from "@/lib/i18n";
 
 export const Route = createFileRoute("/assistant")({
   head: () => ({
@@ -143,7 +144,7 @@ function AssistantRoute() {
       setIsRecording(true);
       finalTranscriptRef.current = "";
       setChatText("");
-      toast.info("Microphone capturing... Speak now.");
+      toast.info(tr("Microphone capturing... Speak now."));
     };
 
     rec.onresult = (event: SpeechRecognitionEvent) => {
@@ -170,7 +171,7 @@ function AssistantRoute() {
     rec.onerror = (event: SpeechRecognitionErrorEvent) => {
       console.error("Speech recognition capture error:", event.error);
       if (event.error !== "no-speech") {
-        toast.error(`Microphone error: ${event.error}`);
+        toast.error(tr(`Microphone error: ${event.error}`));
       }
       setIsRecording(false);
     };
@@ -190,8 +191,10 @@ function AssistantRoute() {
 
   const handleRecordToggle = () => {
     if (!recognitionRef.current) {
-      toast.error("Speech Recognition is not supported by your browser.", {
-        description: "Please open this page in Google Chrome or Safari to capture voice commands.",
+      toast.error(tr("Speech Recognition is not supported by your browser."), {
+        description: tr(
+          "Please open this page in Google Chrome or Safari to capture voice commands.",
+        ),
       });
       return;
     }
@@ -359,13 +362,15 @@ function AssistantRoute() {
         ],
         consequent: "Increase Leaf Spot severity probability",
       });
-      toast.success("Farmer statement successfully parsed into a symbolic condition rule!");
+      toast.success(tr("Farmer statement successfully parsed into a symbolic condition rule!"));
     }, 2000);
   };
 
   const handleSaveExtractedRule = () => {
-    toast.success("Extracted rule added to the prototype knowledge base!", {
-      description: "Labeled: Farmer-derived Knowledge (unverified). Linked to Crop Ontology node.",
+    toast.success(tr("Extracted rule added to the prototype knowledge base!"), {
+      description: tr(
+        "Labeled: Farmer-derived Knowledge (unverified). Linked to Crop Ontology node.",
+      ),
     });
     setFarmerStatement("");
     setExtractedRule(null);
@@ -374,9 +379,11 @@ function AssistantRoute() {
   return (
     <div className="space-y-8 text-foreground">
       <PageHeader
-        eyebrow="Farmer Interface"
-        title="Cropify Voice Assistant"
-        subtitle="A voice-first chat engine bridging natural language with exact logical constraints. Farmers can ask questions in Hindi, Hinglish, Marathi, and English."
+        eyebrow={tr("Farmer Interface")}
+        title={tr("Cropify Voice Assistant")}
+        subtitle={tr(
+          "A voice-first chat engine bridging natural language with exact logical constraints. Farmers can ask questions in Hindi, Hinglish, Marathi, and English.",
+        )}
         actions={
           <div className="flex items-center gap-3">
             <select
@@ -384,19 +391,21 @@ function AssistantRoute() {
               onChange={(e) => setLang(e.target.value)}
               className="flex h-9 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus:bg-background text-foreground"
             >
-              <option value="Hinglish">Hinglish</option>
-              <option value="Hindi">Hindi (हिंदी)</option>
-              <option value="Marathi">Marathi (मराठी)</option>
-              <option value="English">English</option>
+              <option value="Hinglish">{tr("Hinglish")}</option>
+              <option value="Hindi">{tr("Hindi (हिंदी)")}</option>
+              <option value="Marathi">{tr("Marathi (मराठी)")}</option>
+              <option value="English">{tr("English")}</option>
             </select>
             <Button
               variant={voiceEnabled ? "default" : "outline"}
               size="icon"
               onClick={() => {
                 setVoiceEnabled(!voiceEnabled);
-                toast.info(voiceEnabled ? "Voice synthesis disabled" : "Voice synthesis enabled");
+                toast.info(
+                  voiceEnabled ? tr("Voice synthesis disabled") : tr("Voice synthesis enabled"),
+                );
               }}
-              title={voiceEnabled ? "Disable TTS output" : "Enable TTS output"}
+              title={voiceEnabled ? tr("Disable TTS output") : tr("Enable TTS output")}
               className="cursor-pointer animate-rise"
             >
               {voiceEnabled ? <Volume2 className="size-4" /> : <VolumeX className="size-4" />}
@@ -408,8 +417,8 @@ function AssistantRoute() {
       <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
         <div className="space-y-6">
           <Panel
-            eyebrow="Chat Interface"
-            title="Conversational Dialogues"
+            eyebrow={tr("Chat Interface")}
+            title={tr("Conversational Dialogues")}
             className="flex flex-col h-[500px]"
           >
             <div className="flex-1 overflow-y-auto space-y-4 pr-1 pb-4">
@@ -421,7 +430,8 @@ function AssistantRoute() {
                   }`}
                 >
                   <span className="text-[0.65rem] text-muted-foreground mb-1">
-                    {msg.sender === "farmer" ? "Farmer" : "Cropify Assistant"} · {msg.lang}
+                    {msg.sender === "farmer" ? tr("Farmer") : tr("Cropify Assistant")} ·{" "}
+                    {tr(msg.lang)}
                   </span>
                   <div
                     className={`rounded-xl px-4 py-2.5 text-sm ${
@@ -430,34 +440,36 @@ function AssistantRoute() {
                         : "bg-surface-2 border border-border/80"
                     }`}
                   >
-                    {msg.text}
+                    {tr(msg.text)}
                   </div>
                   {msg.reasoning && (
                     <div className="mt-1.5 w-full bg-background/40 border border-border/40 rounded-lg p-2.5 space-y-1 text-[0.7rem] text-muted-foreground animate-rise">
                       <div className="flex items-center gap-1 font-semibold text-primary">
-                        <Network className="size-3" /> Context Verification
+                        <Network className="size-3" /> {tr("Context Verification")}
                       </div>
                       <p>
-                        Active constraints:{" "}
+                        {tr("Active constraints:")}{" "}
                         <strong className="text-foreground">
                           {msg.reasoning.rules.join(", ")}
                         </strong>
                       </p>
-                      <p>Trigger variables: {msg.reasoning.evidence}</p>
+                      <p>
+                        {tr("Trigger variables:")} {tr(msg.reasoning.evidence)}
+                      </p>
                     </div>
                   )}
                 </div>
               ))}
               {isTyping && (
                 <div className="flex items-center gap-2 mr-auto text-xs text-muted-foreground p-3 bg-surface-2 rounded-xl border border-border/40 animate-pulse">
-                  <RefreshCw className="size-3 animate-spin" /> Cropify is reasoning...
+                  <RefreshCw className="size-3 animate-spin" /> {tr("Cropify is reasoning...")}
                 </div>
               )}
             </div>
 
             <form onSubmit={handleSendText} className="flex gap-2 pt-4 border-t border-border/40">
               <Input
-                placeholder="Ask about water, spray timings, or plant disease..."
+                placeholder={tr("Ask about water, spray timings, or plant disease...")}
                 value={chatText}
                 onChange={(e) => setChatText(e.target.value)}
                 className="text-xs h-9 bg-background/50 focus:bg-background"
@@ -470,7 +482,11 @@ function AssistantRoute() {
         </div>
 
         <div className="space-y-6">
-          <Panel eyebrow="Speech Telemetry" title="Cropify Voice HUD" className="text-center py-8">
+          <Panel
+            eyebrow={tr("Speech Telemetry")}
+            title={tr("Cropify Voice HUD")}
+            className="text-center py-8"
+          >
             <div className="flex flex-col items-center gap-6">
               {/* Pulsing microphone layout */}
               <button
@@ -490,10 +506,12 @@ function AssistantRoute() {
 
               <div className="space-y-1">
                 <p className="text-sm font-semibold">
-                  {isRecording ? "Listening to Speech Input..." : "Click to Speak"}
+                  {isRecording ? tr("Listening to Speech Input...") : tr("Click to Speak")}
                 </p>
                 <p className="text-xs text-muted-foreground max-w-xs leading-relaxed">
-                  Speech-to-text registers Hindi, Marathi, and English voice commands instantly
+                  {tr(
+                    "Speech-to-text registers Hindi, Marathi, and English voice commands instantly",
+                  )}
                 </p>
               </div>
 
@@ -517,15 +535,18 @@ function AssistantRoute() {
             </div>
           </Panel>
 
-          <Panel eyebrow="Knowledge Extraction" title="Conversational Rule Generator">
+          <Panel eyebrow={tr("Knowledge Extraction")} title={tr("Conversational Rule Generator")}>
             <div className="space-y-4">
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Log statements spoken by the farmer to extract informal symbolic heuristics into the
-                knowledge base.
+                {tr(
+                  "Log statements spoken by the farmer to extract informal symbolic heuristics into the knowledge base.",
+                )}
               </p>
               <form onSubmit={handleParseStatement} className="space-y-2">
                 <Input
-                  placeholder="e.g. Fasal me jab humidity zyada ho to patton par daag aate hain"
+                  placeholder={tr(
+                    "e.g. Fasal me jab humidity zyada ho to patton par daag aate hain",
+                  )}
                   value={farmerStatement}
                   onChange={(e) => setFarmerStatement(e.target.value)}
                   className="text-xs h-9 bg-background/50"
@@ -539,11 +560,11 @@ function AssistantRoute() {
                 >
                   {parsingStatement ? (
                     <>
-                      <RefreshCw className="size-3 animate-spin" /> NLP Parsing...
+                      <RefreshCw className="size-3 animate-spin" /> {tr("NLP Parsing...")}
                     </>
                   ) : (
                     <>
-                      <PlusCircle className="size-4 text-primary" /> Parse Claim Statement
+                      <PlusCircle className="size-4 text-primary" /> {tr("Parse Claim Statement")}
                     </>
                   )}
                 </Button>
@@ -552,12 +573,14 @@ function AssistantRoute() {
               {extractedRule && (
                 <div className="panel bg-background/40 border border-border/80 p-3 space-y-3 animate-rise">
                   <div className="flex justify-between items-center text-[0.65rem] border-b border-border/30 pb-2">
-                    <span className="font-mono text-primary font-semibold">{extractedRule.id}</span>
-                    <Chip tone="symbolic">Farmer heuristic</Chip>
+                    <span className="font-mono text-primary font-semibold">
+                      {tr(extractedRule.id)}
+                    </span>
+                    <Chip tone="symbolic">{tr("Farmer heuristic")}</Chip>
                   </div>
                   <div className="space-y-1.5">
                     <span className="font-mono text-[0.55rem] text-muted-foreground uppercase block">
-                      Extracted conditions:
+                      {tr("Extracted conditions:")}
                     </span>
                     <ul className="space-y-1">
                       {extractedRule.conditions.map((cond, cIdx) => (
@@ -567,8 +590,9 @@ function AssistantRoute() {
                         >
                           <CheckCircle2 className="size-3.5 text-primary shrink-0" />
                           <span>
-                            Matched claim: &quot;{cond.keyword}&quot; →{" "}
-                            <strong className="text-foreground">{cond.variable}</strong>
+                            {tr('Matched claim: "')}
+                            {tr(cond.keyword)}&quot; →{" "}
+                            <strong className="text-foreground">{tr(cond.variable)}</strong>
                           </span>
                         </li>
                       ))}
@@ -576,10 +600,10 @@ function AssistantRoute() {
                   </div>
                   <div className="text-xs border-t border-border/30 pt-2">
                     <span className="font-mono text-[0.55rem] text-muted-foreground uppercase block">
-                      Consequent logic:
+                      {tr("Consequent logic:")}
                     </span>
                     <p className="text-foreground font-semibold mt-0.5">
-                      {extractedRule.consequent}
+                      {tr(extractedRule.consequent)}
                     </p>
                   </div>
                   <Button
@@ -587,7 +611,7 @@ function AssistantRoute() {
                     onClick={handleSaveExtractedRule}
                     className="w-full cursor-pointer"
                   >
-                    Confirm & Save to Graph
+                    {tr("Confirm & Save to Graph")}
                   </Button>
                 </div>
               )}

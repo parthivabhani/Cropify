@@ -20,6 +20,7 @@ import { PageHeader, Panel, Chip, SourceBadge, Disclaimer } from "@/components/a
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { tr } from "@/lib/i18n";
 
 export const Route = createFileRoute("/disease-analysis")({
   head: () => ({
@@ -103,22 +104,24 @@ function DiseaseAnalysis() {
     setAnalyzing(true);
     setShowResults(false);
     toast.info(
-      "Running YOLO v8 lesion locator & EfficientNet-B4 pipeline across crop specimens...",
+      tr("Running YOLO v8 lesion locator & EfficientNet-B4 pipeline across crop specimens..."),
     );
 
     setTimeout(() => {
       setAnalyzing(false);
       setShowResults(true);
-      toast.success("Multi-crop pathology diagnosis synchronized with microclimate telemetry!");
+      toast.success(tr("Multi-crop pathology diagnosis synchronized with microclimate telemetry!"));
     }, 1800);
   };
 
   return (
     <div className="animate-rise pb-8 space-y-10">
       <PageHeader
-        eyebrow="Leaf pathology · Multi-crop precision diagnostics"
-        title="Disease Doctor"
-        subtitle="Scan any crop foliage photo for early blight, late blight, leaf spot, rust and miner. The vision model's diagnosis is re-weighted with field telemetry and checked against agronomic spray rules before any advice goes out."
+        eyebrow={tr("Leaf pathology · Multi-crop precision diagnostics")}
+        title={tr("Disease Doctor")}
+        subtitle={tr(
+          "Scan any crop foliage photo for early blight, late blight, leaf spot, rust and miner. The vision model's diagnosis is re-weighted with field telemetry and checked against agronomic spray rules before any advice goes out.",
+        )}
       />
 
       {/* 2. MAIN WORKBENCH: PHOTO VIEWER & REAL-TIME DIAGNOSIS */}
@@ -128,14 +131,14 @@ function DiseaseAnalysis() {
           <div className="glass-card rounded-3xl p-6 border border-border/80 space-y-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <p className="label-eyebrow text-primary">In-Situ Scouting Imagery</p>
+                <p className="label-eyebrow text-primary">{tr("In-Situ Scouting Imagery")}</p>
                 <h3 className="font-display font-bold text-lg text-foreground mt-0.5">
-                  {activeSample.title}
+                  {tr(activeSample.title)}
                 </h3>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-xs font-mono text-muted-foreground">
-                  Select Field Sample:
+                  {tr("Select Field Sample:")}
                 </span>
                 <div className="flex gap-1.5">
                   {sampleImages.map((s, idx) => (
@@ -151,7 +154,8 @@ function DiseaseAnalysis() {
                           : "bg-surface-2 text-muted-foreground hover:text-foreground"
                       }`}
                     >
-                      Sample #{idx + 1}
+                      {tr("Sample #")}
+                      {idx + 1}
                     </button>
                   ))}
                 </div>
@@ -168,18 +172,20 @@ function DiseaseAnalysis() {
               />
               <div className="absolute top-3 left-3 flex flex-wrap gap-2">
                 <span className="rounded-full bg-black/45 px-3 py-1 text-[0.7rem] font-medium text-white backdrop-blur-md">
-                  {activeSample.location}
+                  {tr(activeSample.location)}
                 </span>
                 <span className="rounded-full bg-black/45 px-3 py-1 text-[0.7rem] font-medium text-[#e9b14d] backdrop-blur-md">
-                  {activeSample.humidity}
+                  {tr(activeSample.humidity)}
                 </span>
               </div>
             </div>
             <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
-              <span className="font-display font-medium">{activeSample.crop}</span>
+              <span className="font-display font-medium">{tr(activeSample.crop)}</span>
               <span className="text-muted-foreground">
-                Target:{" "}
-                <span className="font-medium text-foreground italic">{activeSample.pathogen}</span>
+                {tr("Target:")}{" "}
+                <span className="font-medium text-foreground italic">
+                  {tr(activeSample.pathogen)}
+                </span>
               </span>
             </div>
 
@@ -194,12 +200,12 @@ function DiseaseAnalysis() {
                   {analyzing ? (
                     <>
                       <RefreshCw className="size-3.5 animate-spin" />
-                      <span>Classifying Lesions...</span>
+                      <span>{tr("Classifying Lesions...")}</span>
                     </>
                   ) : (
                     <>
                       <Play className="size-3.5" />
-                      <span>Re-Run Vision Classifier</span>
+                      <span>{tr("Re-Run Vision Classifier")}</span>
                     </>
                   )}
                 </Button>
@@ -207,16 +213,18 @@ function DiseaseAnalysis() {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => toast.info("Opening local camera feed or file upload dialog...")}
+                  onClick={() =>
+                    toast.info(tr("Opening local camera feed or file upload dialog..."))
+                  }
                   className="rounded-full border-border/80 hover:bg-surface-2 text-xs gap-1.5 cursor-pointer"
                 >
                   <Camera className="size-3.5 text-primary" />
-                  <span>Upload Custom Photo</span>
+                  <span>{tr("Upload Custom Photo")}</span>
                 </Button>
               </div>
 
               <span className="font-mono text-[0.7rem] text-muted-foreground uppercase">
-                Model: YOLOv8 + EfficientNet-B4
+                {tr("Model: YOLOv8 + EfficientNet-B4")}
               </span>
             </div>
           </div>
@@ -225,20 +233,20 @@ function DiseaseAnalysis() {
           <div className="glass-card rounded-2xl p-6 border border-border/80 space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="label-eyebrow text-primary">Multimodal Agronomist Input</p>
+                <p className="label-eyebrow text-primary">{tr("Multimodal Agronomist Input")}</p>
                 <h4 className="font-display font-bold text-sm text-foreground mt-0.5">
-                  Voice Dictation & Symptom Description
+                  {tr("Voice Dictation & Symptom Description")}
                 </h4>
               </div>
               <span className="text-[0.65rem] font-mono text-muted-foreground px-2 py-0.5 rounded bg-surface-2">
-                Whisper Audio Engine
+                {tr("Whisper Audio Engine")}
               </span>
             </div>
 
             <Textarea
               value={voiceDesc}
               onChange={(e) => setVoiceDesc(e.target.value)}
-              placeholder="Describe leaf symptoms verbally or via text..."
+              placeholder={tr("Describe leaf symptoms verbally or via text...")}
               className="h-24 bg-background/60 border-border/70 rounded-xl focus:bg-background transition-colors resize-none text-xs leading-relaxed"
             />
 
@@ -250,15 +258,15 @@ function DiseaseAnalysis() {
                   setVoiceDesc(
                     "Field scout observation: Heavy 91% morning dew observed. Brown target lesions coalescing on third vegetative tier.",
                   );
-                  toast.success("Field survey audio transcription loaded.");
+                  toast.success(tr("Field survey audio transcription loaded."));
                 }}
                 className="rounded-full text-xs gap-2 border-border/80 hover:bg-surface-2 cursor-pointer"
               >
                 <Mic className="size-3.5 text-warning" />
-                <span>Simulate Farmer Voice Dictation</span>
+                <span>{tr("Simulate Farmer Voice Dictation")}</span>
               </Button>
               <span className="text-[0.7rem] text-muted-foreground">
-                Synthesized into ontology triples
+                {tr("Synthesized into ontology triples")}
               </span>
             </div>
           </div>
@@ -270,13 +278,15 @@ function DiseaseAnalysis() {
             <div className="glass-card rounded-3xl p-6 sm:p-7 border border-border/80 space-y-6 animate-rise">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="label-eyebrow text-primary">Diagnostic Outcomes</p>
+                  <p className="label-eyebrow text-primary">{tr("Diagnostic Outcomes")}</p>
                   <h3 className="text-xl font-bold font-display text-foreground mt-1">
-                    Pathogen Inference & Trace
+                    {tr("Pathogen Inference & Trace")}
                   </h3>
                 </div>
                 <Chip tone={activeSample.id === "sample-blight" ? "critical" : "healthy"}>
-                  {activeSample.id === "sample-blight" ? "Action Required" : "Optimal Health"}
+                  {activeSample.id === "sample-blight"
+                    ? tr("Action Required")
+                    : tr("Optimal Health")}
                 </Chip>
               </div>
 
@@ -284,44 +294,48 @@ function DiseaseAnalysis() {
               <div className="grid grid-cols-2 gap-3">
                 <div className="p-3.5 rounded-2xl bg-surface/60 border border-border/60">
                   <span className="text-[0.65rem] font-mono uppercase text-muted-foreground block">
-                    Raw Neural Vision
+                    {tr("Raw Neural Vision")}
                   </span>
                   <span className="text-2xl font-bold font-display text-foreground mt-1 block">
-                    {activeSample.rawConfidence}%
+                    {tr(activeSample.rawConfidence)}%
                   </span>
-                  <span className="text-[0.68rem] text-muted-foreground">EfficientNet-B4</span>
+                  <span className="text-[0.68rem] text-muted-foreground">
+                    {tr("EfficientNet-B4")}
+                  </span>
                 </div>
 
                 <div className="p-3.5 rounded-2xl bg-primary/10 border border-primary/25">
                   <span className="text-[0.65rem] font-mono uppercase text-primary font-semibold block">
-                    Bayesian Recalibrated
+                    {tr("Bayesian Recalibrated")}
                   </span>
                   <span className="text-2xl font-bold font-display text-primary mt-1 block">
-                    {activeSample.bayesianConfidence}%
+                    {tr(activeSample.bayesianConfidence)}%
                   </span>
-                  <span className="text-[0.68rem] text-primary/80">+9% via 91% RH Telemetry</span>
+                  <span className="text-[0.68rem] text-primary/80">
+                    {tr("+9% via 91% RH Telemetry")}
+                  </span>
                 </div>
               </div>
 
               {/* Detailed Pathogen Attributes */}
               <div className="space-y-3 text-xs divide-y divide-border/40">
                 <div className="flex justify-between pt-2">
-                  <span className="text-muted-foreground">Identified Pathogen</span>
+                  <span className="text-muted-foreground">{tr("Identified Pathogen")}</span>
                   <span className="font-semibold text-foreground italic">
-                    {activeSample.pathogen}
+                    {tr(activeSample.pathogen)}
                   </span>
                 </div>
                 <div className="flex justify-between pt-2">
-                  <span className="text-muted-foreground">Lesion Severity Index</span>
-                  <span className="font-semibold text-warning">{activeSample.severity}</span>
+                  <span className="text-muted-foreground">{tr("Lesion Severity Index")}</span>
+                  <span className="font-semibold text-warning">{tr(activeSample.severity)}</span>
                 </div>
                 <div className="flex justify-between pt-2">
-                  <span className="text-muted-foreground">Affected Farm Zone</span>
-                  <span className="font-semibold text-foreground">{activeSample.location}</span>
+                  <span className="text-muted-foreground">{tr("Affected Farm Zone")}</span>
+                  <span className="font-semibold text-foreground">{tr(activeSample.location)}</span>
                 </div>
                 <div className="flex justify-between pt-2">
-                  <span className="text-muted-foreground">Crop Variety</span>
-                  <span className="font-semibold text-foreground">{activeSample.crop}</span>
+                  <span className="text-muted-foreground">{tr("Crop Variety")}</span>
+                  <span className="font-semibold text-foreground">{tr(activeSample.crop)}</span>
                 </div>
               </div>
 
@@ -329,10 +343,10 @@ function DiseaseAnalysis() {
               <div className="p-4 rounded-2xl bg-surface-2/60 border border-border/80 space-y-2">
                 <div className="flex items-center gap-1.5 text-warning font-semibold text-xs">
                   <AlertTriangle className="size-4" />
-                  <span>Symbolic Safety Override</span>
+                  <span>{tr("Symbolic Safety Override")}</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  {activeSample.ruleAction}
+                  {tr(activeSample.ruleAction)}
                 </p>
               </div>
 
@@ -341,7 +355,7 @@ function DiseaseAnalysis() {
                 to="/reasoning"
                 className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary/15 border border-primary/30 hover:bg-primary/25 text-primary px-5 py-3 text-xs font-semibold transition-all hover:scale-[1.01]"
               >
-                <span>View Full Neuro-Symbolic Graph Trace</span>
+                <span>{tr("View Full Neuro-Symbolic Graph Trace")}</span>
                 <ArrowRight className="size-4" />
               </Link>
             </div>
@@ -351,12 +365,12 @@ function DiseaseAnalysis() {
           <div className="glass rounded-2xl p-5 border border-border/60 text-xs text-muted-foreground space-y-2">
             <div className="flex items-center gap-1.5 text-foreground font-semibold">
               <Info className="size-4 text-primary" />
-              <span>Agronomic Validation Protocol</span>
+              <span>{tr("Agronomic Validation Protocol")}</span>
             </div>
             <p className="leading-relaxed">
-              In accordance with university field evaluations, visual symptoms are never evaluated
-              in isolation. Every neural detection is conditioned on in-situ RS485 soil moisture and
-              air relative humidity before issuing spray advisories.
+              {tr(
+                "In accordance with university field evaluations, visual symptoms are never evaluated in isolation. Every neural detection is conditioned on in-situ RS485 soil moisture and air relative humidity before issuing spray advisories.",
+              )}
             </p>
           </div>
         </div>

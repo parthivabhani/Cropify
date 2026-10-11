@@ -19,9 +19,11 @@ import {
   Wheat,
   ArrowLeft,
 } from "lucide-react";
-import { useState, type ComponentType } from "react";
+import { useEffect, useState, type ComponentType } from "react";
 import { CropifyLogo } from "./logo";
 import { ThemeToggle } from "./theme-toggle";
+import { tr, languages, restoreLang, setLang, useLang } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
 
 type NavItem = { to: string; label: string; icon: ComponentType<{ className?: string }> };
 
@@ -65,14 +67,14 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
         <span className="text-sidebar-primary">
           <CropifyLogo size={26} />
         </span>
-        <span className="font-display text-xl font-semibold tracking-tight">Cropify</span>
+        <span className="font-display text-xl font-semibold tracking-tight">{tr("Cropify")}</span>
       </Link>
 
       <nav className="flex-1 space-y-6 overflow-y-auto pr-1">
         {navGroups.map((group) => (
           <div key={group.title}>
             <p className="px-3 pb-2 font-display text-[0.68rem] font-medium uppercase tracking-[0.16em] text-sidebar-foreground/45">
-              {group.title}
+              {tr(group.title)}
             </p>
             <ul className="space-y-0.5">
               {group.items.map(({ to, label, icon: Icon }) => (
@@ -90,7 +92,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
                     className="flex items-center gap-3 rounded-full px-3 py-2 text-sm transition-colors"
                   >
                     <Icon className="size-4 shrink-0" />
-                    <span className="truncate">{label}</span>
+                    <span className="truncate">{tr(label)}</span>
                   </Link>
                 </li>
               ))}
@@ -99,7 +101,8 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
         ))}
       </nav>
 
-      <div className="mt-4 border-t border-sidebar-border pt-4">
+      <div className="mt-4 space-y-3 border-t border-sidebar-border pt-4">
+        <LanguageSwitch />
         <div className="flex items-center gap-2">
           <Link
             to="/"
@@ -107,7 +110,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
             className="flex flex-1 items-center gap-2 rounded-full px-3 py-2 text-sm text-sidebar-foreground/75 transition-colors hover:bg-sidebar-accent hover:text-sidebar-foreground"
           >
             <ArrowLeft className="size-4" />
-            Home
+            {tr("Home")}
           </Link>
           <ThemeToggle className="size-9 border border-sidebar-border text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-foreground" />
         </div>
@@ -116,11 +119,46 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
+function LanguageSwitch() {
+  const lang = useLang();
+  return (
+    <div
+      role="radiogroup"
+      aria-label="Language"
+      className="grid grid-cols-3 gap-1 rounded-full border border-sidebar-border p-1"
+    >
+      {languages.map((l) => (
+        <button
+          key={l.code}
+          role="radio"
+          aria-checked={lang === l.code}
+          title={l.label}
+          onClick={() => setLang(l.code)}
+          className={cn(
+            "rounded-full py-1.5 text-xs font-medium transition-colors",
+            lang === l.code
+              ? "bg-sidebar-primary text-sidebar-primary-foreground"
+              : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground",
+          )}
+        >
+          {l.short}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export function AppShell({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const lang = useLang();
 
+  useEffect(() => {
+    restoreLang();
+  }, []);
+
+  // Keyed by language: switching re-mounts the app so every tr() call re-runs.
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div key={lang} data-app-shell className="min-h-screen bg-background text-foreground">
       {/* Desktop sidebar */}
       <aside className="fixed inset-y-3 left-3 z-30 hidden w-60 rounded-[1.75rem] bg-sidebar p-4 text-sidebar-foreground lg:block">
         <SidebarContent />
@@ -130,10 +168,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <button
         onClick={() => setMobileOpen(true)}
         className="fixed top-4 left-4 z-40 inline-flex items-center gap-2 rounded-full bg-sidebar px-4 py-2.5 text-sm font-medium text-sidebar-foreground shadow-lg lg:hidden"
-        aria-label="Open navigation"
+        aria-label={tr("Open navigation")}
       >
         <Menu className="size-4" />
-        Menu
+        {tr("Menu")}
       </button>
 
       {mobileOpen && (
@@ -146,7 +184,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <button
               onClick={() => setMobileOpen(false)}
               className="absolute top-4 right-4 rounded-full p-1.5 text-sidebar-foreground/70 hover:bg-sidebar-accent"
-              aria-label="Close navigation"
+              aria-label={tr("Close navigation")}
             >
               <X className="size-5" />
             </button>

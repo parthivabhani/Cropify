@@ -16,6 +16,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { Chip, PageHeader } from "@/components/agri/primitives";
+import { tr } from "@/lib/i18n";
 
 export const Route = createFileRoute("/research")({
   head: () => ({
@@ -276,9 +277,11 @@ export function StudentResearchPage() {
     <div className="space-y-8 pb-12">
       {/* Page Header */}
       <PageHeader
-        eyebrow="Academic Fieldwork & Ground Truthing"
-        title="Student Research & Field Evidence"
-        subtitle="Empirical photographic proof of on-site farmer interviews, mobile crop diagnostics testing, and agricultural infrastructure scouting conducted by the student research team across Maharashtra."
+        eyebrow={tr("Academic Fieldwork & Ground Truthing")}
+        title={tr("Student Research & Field Evidence")}
+        subtitle={tr(
+          "Empirical photographic proof of on-site farmer interviews, mobile crop diagnostics testing, and agricultural infrastructure scouting conducted by the student research team across Maharashtra.",
+        )}
       />
 
       {/* Fieldwork Evidence Stats Bar */}
@@ -289,9 +292,9 @@ export function StudentResearchPage() {
           </div>
           <div>
             <span className="text-xl font-bold font-display text-foreground block">
-              13 Field Proofs
+              {tr("13 Field Proofs")}
             </span>
-            <span className="text-xs text-muted-foreground">Original Research Photos</span>
+            <span className="text-xs text-muted-foreground">{tr("Original Research Photos")}</span>
           </div>
         </div>
 
@@ -301,9 +304,9 @@ export function StudentResearchPage() {
           </div>
           <div>
             <span className="text-xl font-bold font-display text-foreground block">
-              100% Ground Truth
+              {tr("100% Ground Truth")}
             </span>
-            <span className="text-xs text-muted-foreground">In-Situ Verified</span>
+            <span className="text-xs text-muted-foreground">{tr("In-Situ Verified")}</span>
           </div>
         </div>
 
@@ -313,9 +316,9 @@ export function StudentResearchPage() {
           </div>
           <div>
             <span className="text-xl font-bold font-display text-foreground block">
-              Multi-Plot Trials
+              {tr("Multi-Plot Trials")}
             </span>
-            <span className="text-xs text-muted-foreground">Universal Farm Evidence</span>
+            <span className="text-xs text-muted-foreground">{tr("Universal Farm Evidence")}</span>
           </div>
         </div>
 
@@ -325,9 +328,9 @@ export function StudentResearchPage() {
           </div>
           <div>
             <span className="text-xl font-bold font-display text-foreground block">
-              Farmer Direct
+              {tr("Farmer Direct")}
             </span>
-            <span className="text-xs text-muted-foreground">Structured Field Surveys</span>
+            <span className="text-xs text-muted-foreground">{tr("Structured Field Surveys")}</span>
           </div>
         </div>
       </div>
@@ -352,13 +355,13 @@ export function StudentResearchPage() {
                   : "bg-surface/80 border border-border/70 text-muted-foreground hover:text-foreground hover:bg-surface-2"
               }`}
             >
-              {label}
+              {tr(label)}
             </button>
           ))}
         </div>
 
         <span className="text-xs font-mono text-muted-foreground">
-          Showing {filteredPhotos.length} of {photos.length} photos
+          {tr("Showing")} {tr(filteredPhotos.length)} {tr("of")} {tr(photos.length)} {tr("photos")}
         </span>
       </div>
 
@@ -376,7 +379,7 @@ export function StudentResearchPage() {
             >
               <img
                 src={photo.image}
-                alt={photo.title}
+                alt={tr(photo.title)}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"
               />
@@ -385,7 +388,7 @@ export function StudentResearchPage() {
               {/* Tag Badge */}
               <div className="absolute top-3 left-3">
                 <Chip tone={photo.tagTone} className="text-[0.7rem] shadow-md font-semibold">
-                  {photo.tag}
+                  {tr(photo.tag)}
                 </Chip>
               </div>
 
@@ -396,17 +399,17 @@ export function StudentResearchPage() {
                   e.stopPropagation();
                   setSelectedPhoto(photo);
                 }}
-                aria-label={`Expand ${photo.title}`}
+                aria-label={tr(`Expand ${photo.title}`)}
                 className="absolute top-3 right-3 h-7 px-2 rounded-full glass flex items-center gap-1 text-[0.68rem] font-medium text-foreground hover:bg-surface-2 transition-all cursor-pointer shadow-md"
               >
                 <Maximize2 className="size-3 text-primary" />
-                <span className="hidden sm:inline">Expand</span>
+                <span className="hidden sm:inline">{tr("Expand")}</span>
               </button>
 
               {/* Geotag / Location Strip */}
               <div className="absolute bottom-3 left-3 right-3 flex items-center gap-1.5 text-[0.68rem] font-mono text-foreground/90 glass-pill px-2.5 py-1 truncate">
                 <MapPin className="size-3 text-warning shrink-0" />
-                <span className="truncate">{photo.location}</span>
+                <span className="truncate">{tr(photo.location)}</span>
               </div>
             </div>
 
@@ -414,23 +417,23 @@ export function StudentResearchPage() {
             <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
               <div>
                 <h3 className="text-base font-bold font-display text-foreground group-hover:text-primary transition-colors">
-                  {photo.title}
+                  {tr(photo.title)}
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed mt-1.5">
-                  {photo.summary}
+                  {tr(photo.summary)}
                 </p>
               </div>
 
               <div className="space-y-2.5 pt-3 border-t border-border/50 text-xs">
                 <div className="text-[0.72rem] text-muted-foreground">
-                  <strong className="text-foreground font-semibold">Methodology: </strong>
-                  {photo.methodology}
+                  <strong className="text-foreground font-semibold">{tr("Methodology:")} </strong>
+                  {tr(photo.methodology)}
                 </div>
 
                 <div className="flex items-center justify-between text-[0.7rem] font-mono pt-1 text-muted-foreground">
-                  <span>{photo.region}</span>
+                  <span>{tr(photo.region)}</span>
                   <span className="text-healthy font-semibold flex items-center gap-1">
-                    <CheckCircle2 className="size-3" /> {photo.verificationStatus}
+                    <CheckCircle2 className="size-3" /> {tr(photo.verificationStatus)}
                   </span>
                 </div>
 
@@ -444,7 +447,7 @@ export function StudentResearchPage() {
                   className="w-full mt-2 flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-surface-2 hover:bg-surface-3 text-xs font-semibold text-foreground border border-border/70 hover:border-primary/60 transition-all cursor-pointer shadow-sm group/btn"
                 >
                   <Maximize2 className="size-3.5 text-primary group-hover/btn:scale-110 transition-transform" />
-                  <span>Expand Photograph</span>
+                  <span>{tr("Expand Photograph")}</span>
                 </button>
               </div>
             </div>
@@ -468,10 +471,10 @@ export function StudentResearchPage() {
               type="button"
               onClick={() => setSelectedPhoto(null)}
               className="fixed top-3 right-3 sm:top-5 sm:right-6 z-[110] flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-background/95 hover:bg-surface-2 text-foreground border border-border/80 shadow-2xl backdrop-blur-md cursor-pointer transition-all hover:scale-105 active:scale-95 group"
-              aria-label="Close photo preview"
+              aria-label={tr("Close photo preview")}
             >
               <X className="size-4 text-primary group-hover:rotate-90 transition-transform duration-200" />
-              <span className="text-xs font-semibold">Close (Esc)</span>
+              <span className="text-xs font-semibold">{tr("Close (Esc)")}</span>
             </button>
 
             <div
@@ -482,13 +485,13 @@ export function StudentResearchPage() {
               <div className="flex items-center justify-between p-3.5 sm:p-4 border-b border-border/60 shrink-0 bg-surface-1/70">
                 <div className="pr-3">
                   <h3 className="font-display font-bold text-base sm:text-lg text-foreground">
-                    {selectedPhoto.title}
+                    {tr(selectedPhoto.title)}
                   </h3>
                   <p className="text-[0.72rem] text-muted-foreground font-mono flex items-center gap-1.5 mt-0.5">
                     <MapPin className="size-3 text-warning shrink-0" />
-                    <span className="truncate">{selectedPhoto.location}</span>
+                    <span className="truncate">{tr(selectedPhoto.location)}</span>
                     <span>•</span>
-                    <span>{selectedPhoto.region}</span>
+                    <span>{tr(selectedPhoto.region)}</span>
                   </p>
                 </div>
 
@@ -496,7 +499,7 @@ export function StudentResearchPage() {
                   type="button"
                   onClick={() => setSelectedPhoto(null)}
                   className="p-1.5 sm:p-2 rounded-xl bg-surface-2 hover:bg-surface-3 text-muted-foreground hover:text-foreground transition-all cursor-pointer border border-border/50 shrink-0"
-                  aria-label="Close photo preview"
+                  aria-label={tr("Close photo preview")}
                 >
                   <X className="size-4.5 sm:size-5" />
                 </button>
@@ -507,18 +510,18 @@ export function StudentResearchPage() {
                 <div className="w-full max-h-[58vh] sm:max-h-[64vh] rounded-xl sm:rounded-2xl overflow-hidden border border-border/60 bg-black/80 flex items-center justify-center p-1 sm:p-2">
                   <img
                     src={selectedPhoto.image}
-                    alt={selectedPhoto.title}
+                    alt={tr(selectedPhoto.title)}
                     className="max-w-full max-h-[56vh] sm:max-h-[62vh] object-contain rounded-lg"
                   />
                 </div>
 
                 <div className="w-full space-y-2 text-xs">
                   <p className="text-foreground font-medium leading-relaxed">
-                    {selectedPhoto.summary}
+                    {tr(selectedPhoto.summary)}
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
-                    <strong className="text-foreground">Agronomic Research Method: </strong>
-                    {selectedPhoto.methodology}
+                    <strong className="text-foreground">{tr("Agronomic Research Method:")} </strong>
+                    {tr(selectedPhoto.methodology)}
                   </p>
                 </div>
 
@@ -529,7 +532,7 @@ export function StudentResearchPage() {
                     onClick={() => setSelectedPhoto(null)}
                     className="px-3.5 py-1.5 rounded-lg bg-surface-2 hover:bg-surface-3 text-xs font-semibold text-foreground border border-border/60 transition-colors cursor-pointer"
                   >
-                    Close Preview
+                    {tr("Close Preview")}
                   </button>
                 </div>
               </div>

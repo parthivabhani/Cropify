@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Network, Server, Database, ShieldAlert, Cpu, ArrowDown } from "lucide-react";
 import { PageHeader, Panel, Chip, Disclaimer } from "@/components/agri/primitives";
+import { tr } from "@/lib/i18n";
 
 export const Route = createFileRoute("/architecture")({
   head: () => ({
@@ -102,13 +103,15 @@ function ArchitectureRoute() {
   return (
     <div className="space-y-8">
       <PageHeader
-        eyebrow="System Design"
-        title="Technical Architecture"
-        subtitle="Overview of Cropify's system boundaries and data exchange. Click architectural nodes to review individual constraints and technology stacks."
+        eyebrow={tr("System Design")}
+        title={tr("Technical Architecture")}
+        subtitle={tr(
+          "Overview of Cropify's system boundaries and data exchange. Click architectural nodes to review individual constraints and technology stacks.",
+        )}
       />
 
       <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
-        <Panel eyebrow="System Flow" title="Data Flowchart Grid">
+        <Panel eyebrow={tr("System Flow")} title={tr("Data Flowchart Grid")}>
           <div className="flex flex-col items-center gap-4 mt-4">
             {/* Row 1: Client */}
             <div className="w-full max-w-sm">
@@ -122,9 +125,11 @@ function ArchitectureRoute() {
               >
                 <div className="flex items-center justify-center gap-2 text-primary mb-1">
                   <Server className="size-4" />{" "}
-                  <span className="text-xs font-mono font-bold uppercase">User UI Layer</span>
+                  <span className="text-xs font-mono font-bold uppercase">
+                    {tr("User UI Layer")}
+                  </span>
                 </div>
-                <h4 className="text-sm font-semibold">React Web App (SPA Client)</h4>
+                <h4 className="text-sm font-semibold">{tr("React Web App (SPA Client)")}</h4>
               </button>
             </div>
 
@@ -143,10 +148,10 @@ function ArchitectureRoute() {
                 <div className="flex items-center justify-center gap-2 text-primary mb-1">
                   <Server className="size-4" />{" "}
                   <span className="text-xs font-mono font-bold uppercase">
-                    Orchestrator middleware
+                    {tr("Orchestrator middleware")}
                   </span>
                 </div>
-                <h4 className="text-sm font-semibold">FastAPI Gateway API</h4>
+                <h4 className="text-sm font-semibold">{tr("FastAPI Gateway API")}</h4>
               </button>
             </div>
 
@@ -164,9 +169,11 @@ function ArchitectureRoute() {
               >
                 <div className="flex items-center justify-center gap-2 text-neural mb-1">
                   <Cpu className="size-4" />{" "}
-                  <span className="text-xs font-mono font-bold uppercase">Neural Layer</span>
+                  <span className="text-xs font-mono font-bold uppercase">
+                    {tr("Neural Layer")}
+                  </span>
                 </div>
-                <h4 className="text-xs font-semibold">CV YOLO / XGBoost ML</h4>
+                <h4 className="text-xs font-semibold">{tr("CV YOLO / XGBoost ML")}</h4>
               </button>
 
               <button
@@ -179,9 +186,11 @@ function ArchitectureRoute() {
               >
                 <div className="flex items-center justify-center gap-2 text-symbolic mb-1">
                   <Database className="size-4" />{" "}
-                  <span className="text-xs font-mono font-bold uppercase">Knowledge base</span>
+                  <span className="text-xs font-mono font-bold uppercase">
+                    {tr("Knowledge base")}
+                  </span>
                 </div>
-                <h4 className="text-xs font-semibold">Neo4j Ontology Graph</h4>
+                <h4 className="text-xs font-semibold">{tr("Neo4j Ontology Graph")}</h4>
               </button>
 
               <button
@@ -194,9 +203,11 @@ function ArchitectureRoute() {
               >
                 <div className="flex items-center justify-center gap-2 text-healthy mb-1">
                   <Network className="size-4" />{" "}
-                  <span className="text-xs font-mono font-bold uppercase">Symbolic Guard</span>
+                  <span className="text-xs font-mono font-bold uppercase">
+                    {tr("Symbolic Guard")}
+                  </span>
                 </div>
-                <h4 className="text-xs font-semibold">Constraint Rule Engine</h4>
+                <h4 className="text-xs font-semibold">{tr("Constraint Rule Engine")}</h4>
               </button>
             </div>
 
@@ -214,9 +225,11 @@ function ArchitectureRoute() {
               >
                 <div className="flex items-center justify-center gap-2 text-primary mb-1">
                   <Server className="size-4" />{" "}
-                  <span className="text-xs font-mono font-bold uppercase">Human Translation</span>
+                  <span className="text-xs font-mono font-bold uppercase">
+                    {tr("Human Translation")}
+                  </span>
                 </div>
-                <h4 className="text-sm font-semibold">LLM Explanation Layer</h4>
+                <h4 className="text-sm font-semibold">{tr("LLM Explanation Layer")}</h4>
               </button>
             </div>
           </div>
@@ -225,39 +238,39 @@ function ArchitectureRoute() {
         <div className="space-y-6">
           {selectedComp ? (
             <div className="animate-rise space-y-6">
-              <Panel eyebrow="Component Spec" title={selectedComp.name}>
+              <Panel eyebrow={tr("Component Spec")} title={tr(selectedComp.name)}>
                 <Chip tone="symbolic" className="mb-4">
-                  Domain: {selectedComp.category}
+                  {tr("Domain:")} {tr(selectedComp.category)}
                 </Chip>
 
                 <div className="space-y-4 text-sm mt-2">
                   <div>
-                    <p className="label-eyebrow">Functional Role</p>
+                    <p className="label-eyebrow">{tr("Functional Role")}</p>
                     <p className="text-muted-foreground mt-1 leading-relaxed">
-                      {selectedComp.role}
+                      {tr(selectedComp.role)}
                     </p>
                   </div>
 
                   <div>
-                    <p className="label-eyebrow">Technology Stack</p>
-                    <p className="font-mono text-xs mt-1 text-primary">{selectedComp.stack}</p>
+                    <p className="label-eyebrow">{tr("Technology Stack")}</p>
+                    <p className="font-mono text-xs mt-1 text-primary">{tr(selectedComp.stack)}</p>
                   </div>
 
                   <div className="rounded-lg border border-warning bg-warning/5 p-3.5 space-y-1.5">
                     <p className="label-eyebrow flex items-center gap-1 text-warning">
-                      <ShieldAlert className="size-4" /> Core Design Constraint
+                      <ShieldAlert className="size-4" /> {tr("Core Design Constraint")}
                     </p>
                     <p className="text-xs leading-normal text-muted-foreground">
-                      {selectedComp.constraint}
+                      {tr(selectedComp.constraint)}
                     </p>
                   </div>
                 </div>
               </Panel>
             </div>
           ) : (
-            <Panel title="Select a Component" eyebrow="Inspector">
+            <Panel title={tr("Select a Component")} eyebrow={tr("Inspector")}>
               <p className="text-sm text-muted-foreground">
-                Click a layout box to audit its technology credentials.
+                {tr("Click a layout box to audit its technology credentials.")}
               </p>
             </Panel>
           )}

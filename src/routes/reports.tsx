@@ -13,6 +13,7 @@ import {
   PolarRadiusAxis,
   ResponsiveContainer,
 } from "recharts";
+import { tr } from "@/lib/i18n";
 
 export const Route = createFileRoute("/reports")({
   head: () => ({
@@ -202,8 +203,8 @@ function ReportsRoute() {
     setTimeout(() => {
       setCompiling(false);
       setReportGenerated(true);
-      toast.success("Intelligence Report compiled successfully!", {
-        description: "Aggregated farm twin data, weather feeds, and reasoning traces.",
+      toast.success(tr("Intelligence Report compiled successfully!"), {
+        description: tr("Aggregated farm twin data, weather feeds, and reasoning traces."),
       });
     }, 2000);
   };
@@ -216,13 +217,17 @@ function ReportsRoute() {
     <div className="space-y-8 text-foreground">
       <div className="print:hidden">
         <PageHeader
-          eyebrow="Reports Manager"
-          title="Farm Intelligence Reports"
-          subtitle="Compile localized farm twin profiles, climate telemetry, and neural diagnostic outcomes into research-grade reports."
+          eyebrow={tr("Reports Manager")}
+          title={tr("Farm Intelligence Reports")}
+          subtitle={tr(
+            "Compile localized farm twin profiles, climate telemetry, and neural diagnostic outcomes into research-grade reports.",
+          )}
           actions={
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-mono text-muted-foreground">Report Language:</span>
+                <span className="text-xs font-mono text-muted-foreground">
+                  {tr("Report Language:")}
+                </span>
                 <select
                   value={reportLang}
                   onChange={(e) =>
@@ -230,10 +235,10 @@ function ReportsRoute() {
                   }
                   className="flex h-9 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus:bg-background text-foreground font-sans"
                 >
-                  <option value="English">English</option>
-                  <option value="Hinglish">Hinglish</option>
-                  <option value="Hindi">Hindi (हिंदी)</option>
-                  <option value="Marathi">Marathi (मराठी)</option>
+                  <option value="English">{tr("English")}</option>
+                  <option value="Hinglish">{tr("Hinglish")}</option>
+                  <option value="Hindi">{tr("Hindi (हिंदी)")}</option>
+                  <option value="Marathi">{tr("Marathi (मराठी)")}</option>
                 </select>
               </div>
 
@@ -246,18 +251,18 @@ function ReportsRoute() {
                   >
                     {compiling ? (
                       <>
-                        <RefreshCw className="size-4 animate-spin" /> Compiling Report...
+                        <RefreshCw className="size-4 animate-spin" /> {tr("Compiling Report...")}
                       </>
                     ) : (
                       <>
-                        <FileText className="size-4" /> Generate Farm Report
+                        <FileText className="size-4" /> {tr("Generate Farm Report")}
                       </>
                     )}
                   </Button>
                 ) : (
                   <>
                     <Button onClick={handlePrint} className="gap-2 cursor-pointer">
-                      <Download className="size-4" /> Download Report
+                      <Download className="size-4" /> {tr("Download Report")}
                     </Button>
                     <Button
                       variant="ghost"
@@ -265,7 +270,7 @@ function ReportsRoute() {
                       disabled={compiling}
                       className="cursor-pointer"
                     >
-                      Recompile
+                      {tr("Recompile")}
                     </Button>
                   </>
                 )}
@@ -278,18 +283,19 @@ function ReportsRoute() {
       {!reportGenerated ? (
         <div className="print:hidden">
           <Panel
-            title="Report Constructor"
-            eyebrow="Status"
+            title={tr("Report Constructor")}
+            eyebrow={tr("Status")}
             className="py-20 text-center flex flex-col justify-center items-center"
           >
             <FileText className="size-12 text-muted-foreground/60 mb-4 animate-pulse-soft" />
-            <h3 className="text-base font-semibold">No Report Compiled</h3>
+            <h3 className="text-base font-semibold">{tr("No Report Compiled")}</h3>
             <p className="text-sm text-muted-foreground max-w-sm mx-auto mt-2 mb-6">
-              Generate a research report to aggregate active farm twin profiles, weather history
-              logs, and rule-satisfaction traces.
+              {tr(
+                "Generate a research report to aggregate active farm twin profiles, weather history logs, and rule-satisfaction traces.",
+              )}
             </p>
             <Button onClick={handleGenerateReport} disabled={compiling} className="cursor-pointer">
-              {compiling ? "Compiling..." : "Generate Farm Intelligence Report"}
+              {compiling ? tr("Compiling...") : tr("Generate Farm Intelligence Report")}
             </Button>
           </Panel>
         </div>
@@ -305,46 +311,51 @@ function ReportsRoute() {
           <div className="flex justify-between items-start border-b border-primary/20 pb-6 print:border-black/20">
             <div>
               <span className="font-mono text-[0.65rem] text-primary tracking-widest uppercase font-bold">
-                {activeTrans.ledger}
+                {tr(activeTrans.ledger)}
               </span>
-              <h2 className="text-2xl font-bold font-display mt-1 text-foreground">{farm.name}</h2>
+              <h2 className="text-2xl font-bold font-display mt-1 text-foreground">
+                {tr(farm.name)}
+              </h2>
               <p className="text-xs text-muted-foreground mt-1">
-                Coordinates: {farm.coordinates} · Field Plot Alpha
+                {tr("Coordinates:")} {tr(farm.coordinates)} {tr("· Field Plot Alpha")}
               </p>
             </div>
             <div className="text-right text-xs text-muted-foreground">
               <p className="font-mono uppercase font-semibold text-primary">
-                Report ID: AT-{Date.now().toString().slice(-6)}
+                {tr("Report ID: AT-")}
+                {Date.now().toString().slice(-6)}
               </p>
-              <p className="mt-1">Compiled: {new Date().toLocaleDateString()}</p>
+              <p className="mt-1">
+                {tr("Compiled:")} {new Date().toLocaleDateString()}
+              </p>
             </div>
           </div>
 
           {/* Section 1: Twin Details */}
           <div className="space-y-4">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-primary border-b border-primary/25 pb-1.5">
-              {activeTrans.profile}
+              {tr(activeTrans.profile)}
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs border border-primary/30 p-4 rounded-xl bg-primary/5">
               <div>
-                <span className="text-muted-foreground block">{activeTrans.crop}</span>
+                <span className="text-muted-foreground block">{tr(activeTrans.crop)}</span>
                 <span className="font-semibold text-foreground">
-                  {farm.crop} ({farm.variety})
+                  {tr(farm.crop)} ({tr(farm.variety)})
                 </span>
               </div>
               <div>
-                <span className="text-muted-foreground block">{activeTrans.growthStage}</span>
-                <span className="font-semibold text-foreground">{farm.growthStage}</span>
+                <span className="text-muted-foreground block">{tr(activeTrans.growthStage)}</span>
+                <span className="font-semibold text-foreground">{tr(farm.growthStage)}</span>
               </div>
               <div>
-                <span className="text-muted-foreground block">{activeTrans.soil}</span>
+                <span className="text-muted-foreground block">{tr(activeTrans.soil)}</span>
                 <span className="font-semibold text-foreground text-primary">
-                  {activeTrans.soilVal}
+                  {tr(activeTrans.soilVal)}
                 </span>
               </div>
               <div>
-                <span className="text-muted-foreground block">{activeTrans.irrigation}</span>
-                <span className="font-semibold text-foreground">{farm.irrigation}</span>
+                <span className="text-muted-foreground block">{tr(activeTrans.irrigation)}</span>
+                <span className="font-semibold text-foreground">{tr(farm.irrigation)}</span>
               </div>
             </div>
           </div>
@@ -352,29 +363,29 @@ function ReportsRoute() {
           {/* Section 2: Health Indices */}
           <div className="space-y-4 pt-4">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-primary border-b border-primary/25 pb-1.5">
-              {activeTrans.scoresTitle}
+              {tr(activeTrans.scoresTitle)}
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
               <div className="panel bg-background/25 p-4 border border-primary/45 rounded-xl text-center shadow-[0_2px_10px_rgba(34,197,94,0.05)]">
-                <span className="text-muted-foreground block">{activeTrans.compHealth}</span>
+                <span className="text-muted-foreground block">{tr(activeTrans.compHealth)}</span>
                 <span className="text-xl font-bold font-display text-primary mt-1 block">
-                  {farm.healthScore}/100
+                  {tr(farm.healthScore)}/100
                 </span>
               </div>
               <div className="panel bg-background/25 p-4 border border-primary/45 rounded-xl text-center shadow-[0_2px_10px_rgba(34,197,94,0.05)]">
-                <span className="text-muted-foreground block">{activeTrans.predYield}</span>
+                <span className="text-muted-foreground block">{tr(activeTrans.predYield)}</span>
                 <span className="text-xl font-bold font-display text-foreground mt-1 block">
-                  2.8 t/acre
+                  {tr("2.8 t/acre")}
                 </span>
               </div>
               <div className="panel bg-background/25 p-4 border border-primary/45 rounded-xl text-center shadow-[0_2px_10px_rgba(34,197,94,0.05)]">
-                <span className="text-muted-foreground block">{activeTrans.pathogenRisk}</span>
+                <span className="text-muted-foreground block">{tr(activeTrans.pathogenRisk)}</span>
                 <span className="text-xl font-bold font-display text-critical mt-1 block">
                   74/100
                 </span>
               </div>
               <div className="panel bg-background/25 p-4 border border-primary/45 rounded-xl text-center shadow-[0_2px_10px_rgba(34,197,94,0.05)]">
-                <span className="text-muted-foreground block">{activeTrans.dataQuality}</span>
+                <span className="text-muted-foreground block">{tr(activeTrans.dataQuality)}</span>
                 <span className="text-xl font-bold font-display text-warning mt-1 block">91%</span>
               </div>
             </div>
@@ -383,7 +394,7 @@ function ReportsRoute() {
           {/* Section 3: Diagnostic Radar Chart */}
           <div className="space-y-4 pt-4">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-primary border-b border-primary/25 pb-1.5">
-              {activeTrans.radarTitle}
+              {tr(activeTrans.radarTitle)}
             </h3>
             <div className="panel bg-background/10 border border-primary/45 p-4 rounded-xl shadow-[0_2px_10px_rgba(34,197,94,0.05)] h-64 w-full">
               <ResponsiveContainer width="100%" height="100%">
@@ -392,14 +403,14 @@ function ReportsRoute() {
                   <PolarAngleAxis dataKey="subject" stroke="var(--chart-axis)" fontSize={10} />
                   <PolarRadiusAxis stroke="var(--chart-axis)" fontSize={8} />
                   <Radar
-                    name="North Block (A)"
+                    name={tr("North Block (A)")}
                     dataKey="A"
                     stroke="#22c55e"
                     fill="#22c55e"
                     fillOpacity={0.25}
                   />
                   <Radar
-                    name="South Block (B)"
+                    name={tr("South Block (B)")}
                     dataKey="B"
                     stroke="#ef4444"
                     fill="#ef4444"
@@ -413,7 +424,7 @@ function ReportsRoute() {
           {/* Section 4: Diagnostic recommendations */}
           <div className="space-y-4 pt-4">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-primary border-b border-primary/25 pb-1.5">
-              {activeTrans.checklistTitle}
+              {tr(activeTrans.checklistTitle)}
             </h3>
             <ul className="space-y-3">
               {activeRecs.map((r, i) => (
@@ -423,11 +434,13 @@ function ReportsRoute() {
                 >
                   <CheckSquare className="size-4 text-primary mt-0.5 shrink-0" />
                   <div className="space-y-1">
-                    <p className="text-xs font-semibold text-foreground">{r.title}</p>
-                    <p className="text-[0.7rem] text-muted-foreground leading-normal">{r.reason}</p>
+                    <p className="text-xs font-semibold text-foreground">{tr(r.title)}</p>
+                    <p className="text-[0.7rem] text-muted-foreground leading-normal">
+                      {tr(r.reason)}
+                    </p>
                     <div className="pt-1 flex items-center justify-between text-[0.6rem] text-muted-foreground">
                       <span>
-                        Source: <strong className="text-primary">{r.source}</strong>
+                        {tr("Source:")} <strong className="text-primary">{tr(r.source)}</strong>
                       </span>
                     </div>
                   </div>
@@ -441,8 +454,8 @@ function ReportsRoute() {
             <div className="rounded-lg border border-warning/40 bg-warning/5 p-4 flex gap-2 text-[0.7rem] text-muted-foreground">
               <AlertTriangle className="size-4 text-warning shrink-0" />
               <p>
-                <strong className="text-warning">{activeTrans.disclaimerTitle}</strong>{" "}
-                {activeTrans.disclaimerText}
+                <strong className="text-warning">{tr(activeTrans.disclaimerTitle)}</strong>{" "}
+                {tr(activeTrans.disclaimerText)}
               </p>
             </div>
             <Disclaimer />

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { zones, type Zone } from "@/lib/agri-data";
 import { cn } from "@/lib/utils";
 import { Chip, Meter } from "./primitives";
+import { tr } from "@/lib/i18n";
 
 const stateStyle: Record<
   Zone["state"],
@@ -77,21 +78,21 @@ export function FieldMap({ compact = false }: { compact?: boolean }) {
               >
                 <CropRows state={z.state} />
                 <span className="absolute top-1.5 left-2 font-mono text-[0.6rem] tracking-wider text-foreground/80">
-                  {z.label}
+                  {tr(z.label)}
                 </span>
-                <span className="absolute right-2 bottom-1.5 metric text-sm">{z.health}</span>
+                <span className="absolute right-2 bottom-1.5 metric text-sm">{tr(z.health)}</span>
               </button>
             );
           })}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background/70 to-transparent" />
           <span className="glass absolute right-3 bottom-3 rounded-md px-2.5 py-1 font-mono text-[0.6rem] tracking-wider">
-            WEATHER OVERLAY · 27°C · RH 91%
+            {tr("WEATHER OVERLAY · 27°C · RH 91%")}
           </span>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
           {(Object.keys(stateStyle) as Zone["state"][]).map((k) => (
             <Chip key={k} tone={stateStyle[k].tone}>
-              {stateStyle[k].label} zones
+              {tr(stateStyle[k].label)} {tr("zones")}
             </Chip>
           ))}
         </div>
@@ -99,13 +100,14 @@ export function FieldMap({ compact = false }: { compact?: boolean }) {
         {compact && selected && (
           <div className="mt-3 pt-3 border-t border-border/50 flex flex-wrap items-center justify-between gap-2 text-xs">
             <div className="flex items-center gap-2">
-              <span className="font-semibold text-foreground">{selected.label}</span>
+              <span className="font-semibold text-foreground">{tr(selected.label)}</span>
               <Chip tone={stateStyle[selected.state].tone} className="text-[0.65rem]">
-                {stateStyle[selected.state].label}
+                {tr(stateStyle[selected.state].label)}
               </Chip>
             </div>
             <span className="font-mono text-muted-foreground text-[0.7rem]">
-              Health: {selected.health}% • Moisture: {selected.moisture}% • {selected.soil}
+              {tr("Health:")} {tr(selected.health)}
+              {tr("% • Moisture:")} {tr(selected.moisture)}% • {tr(selected.soil)}
             </span>
           </div>
         )}
@@ -115,43 +117,45 @@ export function FieldMap({ compact = false }: { compact?: boolean }) {
         <div className="panel p-5">
           {selected ? (
             <div className="animate-rise">
-              <p className="label-eyebrow">Zone inspector</p>
-              <h3 className="mt-1 text-xl font-semibold">{selected.label}</h3>
+              <p className="label-eyebrow">{tr("Zone inspector")}</p>
+              <h3 className="mt-1 text-xl font-semibold">{tr(selected.label)}</h3>
               <Chip tone={stateStyle[selected.state].tone} className="mt-2">
-                {stateStyle[selected.state].label}
+                {tr(stateStyle[selected.state].label)}
               </Chip>
               <div className="mt-5 space-y-3">
-                <Meter label="Zone health" value={selected.health} tone="healthy" />
-                <Meter label="Soil moisture" value={selected.moisture} tone="water" />
+                <Meter label={tr("Zone health")} value={selected.health} tone="healthy" />
+                <Meter label={tr("Soil moisture")} value={selected.moisture} tone="water" />
                 <Meter
-                  label="Disease probability"
+                  label={tr("Disease probability")}
                   value={selected.diseaseProb}
                   tone={selected.diseaseProb > 50 ? "critical" : "warning"}
                 />
               </div>
               <dl className="mt-5 space-y-3 text-sm">
                 <div>
-                  <dt className="label-eyebrow">Soil condition</dt>
-                  <dd className="mt-1">{selected.soil}</dd>
+                  <dt className="label-eyebrow">{tr("Soil condition")}</dt>
+                  <dd className="mt-1">{tr(selected.soil)}</dd>
                 </div>
                 <div>
-                  <dt className="label-eyebrow">Crop condition</dt>
-                  <dd className="mt-1 text-muted-foreground">{selected.condition}</dd>
+                  <dt className="label-eyebrow">{tr("Crop condition")}</dt>
+                  <dd className="mt-1 text-muted-foreground">{tr(selected.condition)}</dd>
                 </div>
                 <div>
-                  <dt className="label-eyebrow">Recommended action</dt>
-                  <dd className="mt-1">{selected.action}</dd>
+                  <dt className="label-eyebrow">{tr("Recommended action")}</dt>
+                  <dd className="mt-1">{tr(selected.action)}</dd>
                 </div>
                 <div className="rounded-lg border border-border bg-muted/30 p-3">
-                  <dt className="label-eyebrow">Reasoning</dt>
+                  <dt className="label-eyebrow">{tr("Reasoning")}</dt>
                   <dd className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                    {selected.reasoning}
+                    {tr(selected.reasoning)}
                   </dd>
                 </div>
               </dl>
             </div>
           ) : (
-            <p className="text-sm text-muted-foreground">Select a field zone to inspect it.</p>
+            <p className="text-sm text-muted-foreground">
+              {tr("Select a field zone to inspect it.")}
+            </p>
           )}
         </div>
       )}

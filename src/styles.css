@@ -11,11 +11,11 @@
  */
 
 @theme inline {
-  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Jost", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", "Noto Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Jost", "DM Sans", "Noto Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Jost", ui-sans-serif, system-ui, sans-serif;
   /* Data labels read as UI text, not terminal output; real code blocks stay monospaced. */
-  --font-mono: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "DM Sans", "Noto Sans Devanagari", ui-sans-serif, system-ui, sans-serif;
   --default-mono-font-family: "JetBrains Mono", ui-monospace, monospace;
 
   --radius-sm: calc(var(--radius) - 4px);
@@ -471,4 +471,9 @@ html.dark,
   #cropify-report-pdf-capture .absolute {
     background: #16a34a !important;
   }
+}
+
+/* Devanagari (Hindi / Marathi): wide tracking splits conjunct letters apart. */
+html:is(:lang(hi), :lang(mr)) [data-app-shell] * {
+  letter-spacing: normal !important;
 }

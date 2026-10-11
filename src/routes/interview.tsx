@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { toast } from "sonner";
+import { tr } from "@/lib/i18n";
 
 export const Route = createFileRoute("/interview")({
   head: () => ({
@@ -43,9 +44,10 @@ function InterviewRoute() {
     setSubmitting(true);
     setTimeout(() => {
       setSubmitting(false);
-      toast.success("Farmer interview uploaded successfully!", {
-        description:
+      toast.success(tr("Farmer interview uploaded successfully!"), {
+        description: tr(
           "Agronomic observation log updated. 3 heuristics compiled into symbolic constraints.",
+        ),
       });
     }, 2000);
   };
@@ -53,21 +55,23 @@ function InterviewRoute() {
   return (
     <div className="space-y-8">
       <PageHeader
-        eyebrow="Data Collection"
-        title="Farmer Interview"
-        subtitle="Capture qualitative domain knowledge directly from farmers in Hinglish. These structured statements are parsed to build descriptive rules for the decision layer."
+        eyebrow={tr("Data Collection")}
+        title={tr("Farmer Interview")}
+        subtitle={tr(
+          "Capture qualitative domain knowledge directly from farmers in Hinglish. These structured statements are parsed to build descriptive rules for the decision layer.",
+        )}
       />
 
       <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
-        <Panel eyebrow="Data Entry Portal" title="Interview Record Form">
+        <Panel eyebrow={tr("Data Entry Portal")} title={tr("Interview Record Form")}>
           <form onSubmit={handleSubmit} className="mt-4">
             <Tabs defaultValue="practice" className="w-full">
               <TabsList className="grid w-full grid-cols-2 bg-muted rounded-lg mb-6">
                 <TabsTrigger value="practice" className="text-xs">
-                  1. Farm & Practice
+                  {tr("1. Farm & Practice")}
                 </TabsTrigger>
                 <TabsTrigger value="disease" className="text-xs">
-                  2. Disease & Heuristics
+                  {tr("2. Disease & Heuristics")}
                 </TabsTrigger>
               </TabsList>
 
@@ -75,7 +79,7 @@ function InterviewRoute() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label className="text-xs text-muted-foreground">
-                      Aap abhi kaunsi crop uga rahe ho?
+                      {tr("Aap abhi kaunsi crop uga rahe ho?")}
                     </Label>
                     <Input
                       value={formData.crop}
@@ -85,7 +89,7 @@ function InterviewRoute() {
                   </div>
                   <div className="space-y-2">
                     <Label className="text-xs text-muted-foreground">
-                      Fasal / Crop kitni zameen mein lagaya hai? (acres)
+                      {tr("Fasal / Crop kitni zameen mein lagaya hai? (acres)")}
                     </Label>
                     <Input
                       value={formData.size}
@@ -98,7 +102,7 @@ function InterviewRoute() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label className="text-xs text-muted-foreground">
-                      Kaunsi variety use kar rahe ho?
+                      {tr("Kaunsi variety use kar rahe ho?")}
                     </Label>
                     <Input
                       value={formData.variety}
@@ -108,7 +112,7 @@ function InterviewRoute() {
                   </div>
                   <div className="space-y-2">
                     <Label className="text-xs text-muted-foreground">
-                      Ye variety kyun choose ki?
+                      {tr("Ye variety kyun choose ki?")}
                     </Label>
                     <Input
                       value={formData.varietyReason}
@@ -119,7 +123,7 @@ function InterviewRoute() {
 
                 <div className="space-y-2">
                   <Label className="text-xs text-muted-foreground">
-                    Aap irrigation kaise karte ho?
+                    {tr("Aap irrigation kaise karte ho?")}
                   </Label>
                   <Textarea
                     value={formData.irrigation}
@@ -130,7 +134,7 @@ function InterviewRoute() {
 
                 <div className="space-y-2">
                   <Label className="text-xs text-muted-foreground">
-                    Aapko sabse badi problem kya lagti hai?
+                    {tr("Aapko sabse badi problem kya lagti hai?")}
                   </Label>
                   <Textarea
                     value={formData.biggestProblem}
@@ -143,7 +147,7 @@ function InterviewRoute() {
               <TabsContent value="disease" className="space-y-4 focus-visible:outline-none">
                 <div className="space-y-2">
                   <Label className="text-xs text-muted-foreground">
-                    Is season mein koi disease problem hui thi?
+                    {tr("Is season mein koi disease problem hui thi?")}
                   </Label>
                   <Input
                     value={formData.diseaseHistory}
@@ -153,7 +157,7 @@ function InterviewRoute() {
 
                 <div className="space-y-2">
                   <Label className="text-xs text-muted-foreground">
-                    Aapko kaise pata chalta hai ki disease shuru ho gayi hai?
+                    {tr("Aapko kaise pata chalta hai ki disease shuru ho gayi hai?")}
                   </Label>
                   <Textarea
                     value={formData.earlySymptom}
@@ -164,7 +168,7 @@ function InterviewRoute() {
 
                 <div className="space-y-2">
                   <Label className="text-xs text-muted-foreground">
-                    Mausam ka disease pe kya effect padta hai?
+                    {tr("Mausam ka disease pe kya effect padta hai?")}
                   </Label>
                   <Textarea
                     value={formData.weatherEffect}
@@ -175,7 +179,7 @@ function InterviewRoute() {
 
                 <div className="space-y-2">
                   <Label className="text-xs text-muted-foreground">
-                    Spray karne ka decision kaise lete ho?
+                    {tr("Spray karne ka decision kaise lete ho?")}
                   </Label>
                   <Textarea
                     value={formData.sprayDecision}
@@ -190,11 +194,11 @@ function InterviewRoute() {
               <Button type="submit" className="w-full gap-2" disabled={submitting}>
                 {submitting ? (
                   <>
-                    <RefreshCw className="size-4 animate-spin" /> Compiling rules...
+                    <RefreshCw className="size-4 animate-spin" /> {tr("Compiling rules...")}
                   </>
                 ) : (
                   <>
-                    <Save className="size-4" /> Save Interview Record
+                    <Save className="size-4" /> {tr("Save Interview Record")}
                   </>
                 )}
               </Button>
@@ -203,29 +207,33 @@ function InterviewRoute() {
         </Panel>
 
         <div className="space-y-6">
-          <Panel eyebrow="Methodological Role" title="Qualitative Science">
+          <Panel eyebrow={tr("Methodological Role")} title={tr("Qualitative Science")}>
             <div className="space-y-4 text-xs text-muted-foreground leading-relaxed">
               <p className="flex items-start gap-2">
                 <Users className="size-5 text-primary shrink-0" />
                 <span>
-                  <strong>Ethno-agronomic Knowledge:</strong> Captures farmer observation indices.
-                  Farmers have centuries of cumulative heuristic knowledge about crop disease
-                  triggers which are not captured in microclimate sensors.
+                  <strong>{tr("Ethno-agronomic Knowledge:")}</strong>{" "}
+                  {tr(
+                    "Captures farmer observation indices. Farmers have centuries of cumulative heuristic knowledge about crop disease triggers which are not captured in microclimate sensors.",
+                  )}
                 </span>
               </p>
               <p className="flex items-start gap-2">
                 <Award className="size-5 text-symbolic shrink-0" />
                 <span>
-                  <strong>Symbolic Translation:</strong> Natural language processing (NLP) models
-                  convert these Hinglish interviews into structured constraints that prevent
-                  standard neural black-box decision conflicts.
+                  <strong>{tr("Symbolic Translation:")}</strong>{" "}
+                  {tr(
+                    "Natural language processing (NLP) models convert these Hinglish interviews into structured constraints that prevent standard neural black-box decision conflicts.",
+                  )}
                 </span>
               </p>
               <p className="flex items-start gap-2">
                 <BookOpen className="size-5 text-water shrink-0" />
                 <span>
-                  <strong>Unverified Tagging:</strong> Extracted guidelines are marked as
-                  &quot;farmer observation&quot; to maintain scientific accuracy in reports.
+                  <strong>{tr("Unverified Tagging:")}</strong>{" "}
+                  {tr(
+                    'Extracted guidelines are marked as "farmer observation" to maintain scientific accuracy in reports.',
+                  )}
                 </span>
               </p>
             </div>

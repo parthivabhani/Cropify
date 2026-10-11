@@ -1,6 +1,7 @@
 import { type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import type { Provenance } from "@/lib/agri-data";
+import { tr } from "@/lib/i18n";
 
 export function PageHeader({
   eyebrow,
@@ -19,17 +20,19 @@ export function PageHeader({
         {eyebrow ? (
           <p className="label-eyebrow mb-3 flex items-center gap-2">
             <span className="h-px w-6 bg-lime" />
-            {eyebrow}
+            {tr(eyebrow)}
           </p>
         ) : null}
-        <h1 className="font-display text-4xl font-medium tracking-tight md:text-5xl">{title}</h1>
+        <h1 className="font-display text-4xl font-medium tracking-tight md:text-5xl">
+          {tr(title)}
+        </h1>
         {subtitle ? (
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-            {subtitle}
+            {tr(subtitle)}
           </p>
         ) : null}
       </div>
-      {actions ? <div className="flex flex-wrap gap-2">{actions}</div> : null}
+      {actions ? <div className="flex flex-wrap gap-2">{tr(actions)}</div> : null}
     </header>
   );
 }
@@ -52,10 +55,10 @@ export function Panel({
       {(title || aside) && (
         <div className="mb-5 flex items-start justify-between gap-4">
           <div>
-            {eyebrow ? <p className="label-eyebrow mb-1">{eyebrow}</p> : null}
-            {title ? <h2 className="text-lg font-medium">{title}</h2> : null}
+            {eyebrow ? <p className="label-eyebrow mb-1">{tr(eyebrow)}</p> : null}
+            {title ? <h2 className="text-lg font-medium">{tr(title)}</h2> : null}
           </div>
-          {aside}
+          {tr(aside)}
         </div>
       )}
       {children}
@@ -111,7 +114,7 @@ const sourceTone: Record<Provenance, Tone> = {
 export function SourceBadge({ source }: { source: Provenance }) {
   return (
     <Chip tone={sourceTone[source]} className="normal-case">
-      Source: {source}
+      {tr("Source:")} {tr(source)}
     </Chip>
   );
 }
@@ -131,12 +134,12 @@ export function Stat({
 }) {
   return (
     <div className="panel group p-5 transition-colors hover:border-lime">
-      <p className="label-eyebrow">{label}</p>
+      <p className="label-eyebrow">{tr(label)}</p>
       <p className="metric mt-3 text-3xl font-light md:text-4xl">
-        <span className={cn(tone === "muted" ? "" : toneMap[tone].split(" ")[0])}>{value}</span>
-        {unit ? <span className="ml-1 text-base text-muted-foreground">{unit}</span> : null}
+        <span className={cn(tone === "muted" ? "" : toneMap[tone].split(" ")[0])}>{tr(value)}</span>
+        {unit ? <span className="ml-1 text-base text-muted-foreground">{tr(unit)}</span> : null}
       </p>
-      {hint ? <p className="mt-2 text-xs text-muted-foreground">{hint}</p> : null}
+      {hint ? <p className="mt-2 text-xs text-muted-foreground">{tr(hint)}</p> : null}
     </div>
   );
 }
@@ -164,10 +167,10 @@ export function Meter({
   return (
     <div>
       <div className="mb-1.5 flex items-baseline justify-between text-sm">
-        <span className="text-muted-foreground">{label}</span>
+        <span className="text-muted-foreground">{tr(label)}</span>
         <span className="metric text-foreground">
-          {value}
-          {suffix}
+          {tr(value)}
+          {tr(suffix)}
         </span>
       </div>
       <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
@@ -183,9 +186,9 @@ export function Meter({
 export function Disclaimer({ className }: { className?: string }) {
   return (
     <p className={cn("text-xs leading-relaxed text-muted-foreground", className)}>
-      AI recommendations are decision-support insights and should be confirmed against local
-      agricultural agronomist guidance before real-world application. Telemetry and metrics are
-      derived from field sensors and calibrated data sources.
+      {tr(
+        "AI recommendations are decision-support insights and should be confirmed against local agricultural agronomist guidance before real-world application. Telemetry and metrics are derived from field sensors and calibrated data sources.",
+      )}
     </p>
   );
 }
@@ -201,9 +204,9 @@ export function EmptyState({
 }) {
   return (
     <div className="panel flex flex-col items-center justify-center gap-3 border-dashed p-10 text-center">
-      <h3 className="text-base font-semibold">{title}</h3>
-      <p className="max-w-md text-sm text-muted-foreground">{body}</p>
-      {action}
+      <h3 className="text-base font-semibold">{tr(title)}</h3>
+      <p className="max-w-md text-sm text-muted-foreground">{tr(body)}</p>
+      {tr(action)}
     </div>
   );
 }

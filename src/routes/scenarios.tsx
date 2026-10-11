@@ -13,6 +13,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { tr } from "@/lib/i18n";
 
 export const Route = createFileRoute("/scenarios")({
   head: () => ({
@@ -125,7 +126,7 @@ function Scenarios() {
   const handleSaveScenario = (e: React.FormEvent) => {
     e.preventDefault();
     if (!scenarioName.trim()) {
-      toast.error("Please enter a name for the scenario.");
+      toast.error(tr("Please enter a name for the scenario."));
       return;
     }
     const newScenario: SavedScenario = {
@@ -143,30 +144,35 @@ function Scenarios() {
     };
     setSavedScenarios([...savedScenarios, newScenario]);
     setScenarioName("");
-    toast.success(`Scenario "${scenarioName}" saved! Check the comparison matrix below.`);
+    toast.success(tr(`Scenario "${scenarioName}" saved! Check the comparison matrix below.`));
   };
 
   const handleDeleteScenario = (id: string) => {
     if (id === "baseline") return;
     setSavedScenarios(savedScenarios.filter((s) => s.id !== id));
-    toast.info("Scenario deleted.");
+    toast.info(tr("Scenario deleted."));
   };
 
   return (
     <div className="space-y-8">
       <PageHeader
-        eyebrow="Simulate & Compare"
-        title="What If? Scenario Simulator"
-        subtitle="Simulate localized interventions (irrigation adjustments, chemical dosage) in a sandbox environment before applying them to the physical farm twin."
+        eyebrow={tr("Simulate & Compare")}
+        title={tr("What If? Scenario Simulator")}
+        subtitle={tr(
+          "Simulate localized interventions (irrigation adjustments, chemical dosage) in a sandbox environment before applying them to the physical farm twin.",
+        )}
       />
 
       <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
-        <Panel eyebrow="Control Panel" title="Environmental & Input Variables">
+        <Panel eyebrow={tr("Control Panel")} title={tr("Environmental & Input Variables")}>
           <div className="space-y-6 mt-4">
             <div className="space-y-2">
               <div className="flex justify-between text-xs font-medium">
-                <label className="text-muted-foreground">Nitrogen Fertilizer Ratio</label>
-                <span className="font-mono text-primary">{nitrogen.toFixed(1)}x dosage</span>
+                <label className="text-muted-foreground">{tr("Nitrogen Fertilizer Ratio")}</label>
+                <span className="font-mono text-primary">
+                  {nitrogen.toFixed(1)}
+                  {tr("x dosage")}
+                </span>
               </div>
               <input
                 type="range"
@@ -181,9 +187,9 @@ function Scenarios() {
 
             <div className="space-y-2">
               <div className="flex justify-between text-xs font-medium">
-                <label className="text-muted-foreground">Irrigation Run-Time Change</label>
+                <label className="text-muted-foreground">{tr("Irrigation Run-Time Change")}</label>
                 <span className="font-mono text-primary">
-                  {irrigation > 0 ? `+${irrigation}` : irrigation} min
+                  {irrigation > 0 ? `+${irrigation}` : tr(irrigation)} {tr("min")}
                 </span>
               </div>
               <input
@@ -199,8 +205,10 @@ function Scenarios() {
 
             <div className="space-y-2">
               <div className="flex justify-between text-xs font-medium">
-                <label className="text-muted-foreground">Soil pH</label>
-                <span className="font-mono text-primary">pH {pH.toFixed(1)}</span>
+                <label className="text-muted-foreground">{tr("Soil pH")}</label>
+                <span className="font-mono text-primary">
+                  {tr("pH")} {pH.toFixed(1)}
+                </span>
               </div>
               <input
                 type="range"
@@ -216,8 +224,11 @@ function Scenarios() {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <div className="flex justify-between text-xs font-medium">
-                  <label className="text-muted-foreground">Temperature</label>
-                  <span className="font-mono text-primary">{temp}°C</span>
+                  <label className="text-muted-foreground">{tr("Temperature")}</label>
+                  <span className="font-mono text-primary">
+                    {tr(temp)}
+                    {tr("°C")}
+                  </span>
                 </div>
                 <input
                   type="range"
@@ -232,8 +243,10 @@ function Scenarios() {
 
               <div className="space-y-2">
                 <div className="flex justify-between text-xs font-medium">
-                  <label className="text-muted-foreground">Forecast Rain</label>
-                  <span className="font-mono text-primary">{rain} mm</span>
+                  <label className="text-muted-foreground">{tr("Forecast Rain")}</label>
+                  <span className="font-mono text-primary">
+                    {tr(rain)} {tr("mm")}
+                  </span>
                 </div>
                 <input
                   type="range"
@@ -252,63 +265,69 @@ function Scenarios() {
               className="flex gap-2 pt-4 border-t border-border/40"
             >
               <Input
-                placeholder="Scenario label (e.g. Higher Drip runtime)"
+                placeholder={tr("Scenario label (e.g. Higher Drip runtime)")}
                 value={scenarioName}
                 onChange={(e) => setScenarioName(e.target.value)}
                 className="text-xs h-9 bg-background/50 focus:bg-background"
               />
               <Button type="submit" size="sm" className="gap-2 shrink-0">
-                <Save className="size-4" /> Save Scenario
+                <Save className="size-4" /> {tr("Save Scenario")}
               </Button>
             </form>
           </div>
         </Panel>
 
         <div className="space-y-6">
-          <Panel eyebrow="Simulated Outcomes" title="Simulated Yield & Economics">
+          <Panel eyebrow={tr("Simulated Outcomes")} title={tr("Simulated Yield & Economics")}>
             <div className="grid grid-cols-2 gap-4 mt-2">
               <div className="panel bg-background/30 p-3 border-border/40">
-                <p className="label-eyebrow">Simulated Yield</p>
+                <p className="label-eyebrow">{tr("Simulated Yield")}</p>
                 <div className="flex items-baseline gap-1.5 mt-1">
-                  <span className="text-xl font-bold font-display text-primary">{simYield}</span>
-                  <span className="text-xs text-muted-foreground">t/acre</span>
+                  <span className="text-xl font-bold font-display text-primary">
+                    {tr(simYield)}
+                  </span>
+                  <span className="text-xs text-muted-foreground">{tr("t/acre")}</span>
                 </div>
                 <p className="text-[0.65rem] text-muted-foreground mt-1">
-                  Change: {Number((((simYield - 2.8) / 2.8) * 100).toFixed(1))}% vs baseline
+                  {tr("Change:")} {Number((((simYield - 2.8) / 2.8) * 100).toFixed(1))}
+                  {tr("% vs baseline")}
                 </p>
               </div>
 
               <div className="panel bg-background/30 p-3 border-border/40">
-                <p className="label-eyebrow">Net Profit (2.5 Ac)</p>
+                <p className="label-eyebrow">{tr("Net Profit (2.5 Ac)")}</p>
                 <div className="flex items-baseline gap-1.5 mt-1">
                   <span className="text-xl font-bold font-display text-healthy">
                     ₹{simProfit.toLocaleString()}
                   </span>
                 </div>
                 <p className="text-[0.65rem] text-muted-foreground mt-1">
-                  Change: {simProfit > 485000 ? "Increased margin" : "Reduced margin"}
+                  {tr("Change:")}{" "}
+                  {simProfit > 485000 ? tr("Increased margin") : tr("Reduced margin")}
                 </p>
               </div>
 
               <div className="panel bg-background/30 p-3 border-border/40">
-                <p className="label-eyebrow">Disease Risk Index</p>
+                <p className="label-eyebrow">{tr("Disease Risk Index")}</p>
                 <div className="flex items-baseline gap-1.5 mt-1">
                   <span
                     className={`text-xl font-bold font-display ${simRisk > 65 ? "text-critical" : "text-foreground"}`}
                   >
-                    {simRisk}%
+                    {tr(simRisk)}%
                   </span>
                 </div>
-                <p className="text-[0.65rem] text-muted-foreground mt-1">Pathogen susceptibility</p>
+                <p className="text-[0.65rem] text-muted-foreground mt-1">
+                  {tr("Pathogen susceptibility")}
+                </p>
               </div>
 
               <div className="panel bg-background/30 p-3 border-border/40">
-                <p className="label-eyebrow">Water Demand Index</p>
+                <p className="label-eyebrow">{tr("Water Demand Index")}</p>
                 <div className="flex items-baseline gap-1.5 mt-1">
-                  <span className="text-xl font-bold font-display text-water">{simWater}%</span>
+                  <span className="text-xl font-bold font-display text-water">{tr(simWater)}%</span>
                 </div>
                 <p className="text-[0.65rem] text-muted-foreground mt-1">
-                  Baseline crop requirement
+                  {tr("Baseline crop requirement")}
                 </p>
               </div>
             </div>
@@ -319,10 +338,13 @@ function Scenarios() {
                 <div className="rounded-lg border border-critical bg-critical/10 p-3 text-xs text-critical flex items-start gap-2 animate-pulse-soft">
                   <ShieldAlert className="size-4 shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold">Excessive Nitrogen Warning (Rule #063):</span>
+                    <span className="font-bold">
+                      {tr("Excessive Nitrogen Warning (Rule #063):")}
+                    </span>
                     <p className="mt-0.5 text-[0.7rem] leading-normal text-muted-foreground">
-                      Applied N exceeds vegetative threshold. Risk of leaf burn and suppressed yield
-                      regression.
+                      {tr(
+                        "Applied N exceeds vegetative threshold. Risk of leaf burn and suppressed yield regression.",
+                      )}
                     </p>
                   </div>
                 </div>
@@ -332,10 +354,10 @@ function Scenarios() {
                 <div className="rounded-lg border border-warning bg-warning/10 p-3 text-xs text-warning flex items-start gap-2">
                   <ShieldAlert className="size-4 shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold">Fungal Disease Window (Rule #018):</span>
+                    <span className="font-bold">{tr("Fungal Disease Window (Rule #018):")}</span>
                     <p className="mt-0.5 text-[0.7rem] leading-normal text-muted-foreground">
-                      Microclimate parameters (humidity {humidity}%) favour fungal proliferation.
-                      Early blight risk is high.
+                      {tr("Microclimate parameters (humidity")} {tr(humidity)}
+                      {tr("%) favour fungal proliferation. Early blight risk is high.")}
                     </p>
                   </div>
                 </div>
@@ -345,9 +367,11 @@ function Scenarios() {
                 <div className="rounded-lg border border-warning/50 bg-warning/5 p-3 text-xs text-muted-foreground flex items-start gap-2">
                   <ShieldAlert className="size-4 shrink-0 mt-0.5" />
                   <div>
-                    <span className="font-bold">Soil pH Boundary Out of Bounds:</span>
+                    <span className="font-bold">{tr("Soil pH Boundary Out of Bounds:")}</span>
                     <p className="mt-0.5 text-[0.7rem] leading-normal">
-                      Soil acidity levels inhibit root nutrient uptake for sensitive crop roots.
+                      {tr(
+                        "Soil acidity levels inhibit root nutrient uptake for sensitive crop roots.",
+                      )}
                     </p>
                   </div>
                 </div>
@@ -357,7 +381,7 @@ function Scenarios() {
                 <div className="rounded-lg border border-healthy/40 bg-healthy/10 p-3 text-xs text-healthy flex items-center gap-2">
                   <Sparkles className="size-4 shrink-0" />
                   <p className="text-[0.7rem] font-medium">
-                    All constraints satisfied. Simulated metrics within stable bands.
+                    {tr("All constraints satisfied. Simulated metrics within stable bands.")}
                   </p>
                 </div>
               )}
@@ -366,40 +390,46 @@ function Scenarios() {
         </div>
       </div>
 
-      <Panel eyebrow="Comparison Matrix" title="Saved Scenarios Evaluator">
+      <Panel eyebrow={tr("Comparison Matrix")} title={tr("Saved Scenarios Evaluator")}>
         <div className="overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow className="border-border">
-                <TableHead className="text-xs">Scenario Name</TableHead>
-                <TableHead className="text-xs">N-Dosage</TableHead>
-                <TableHead className="text-xs">Drip Adj</TableHead>
-                <TableHead className="text-xs">Soil pH</TableHead>
-                <TableHead className="text-xs">Yield</TableHead>
-                <TableHead className="text-xs">Disease Risk</TableHead>
-                <TableHead className="text-xs">Water Need</TableHead>
-                <TableHead className="text-xs text-right">Net Profit</TableHead>
-                <TableHead className="text-xs text-center">Action</TableHead>
+                <TableHead className="text-xs">{tr("Scenario Name")}</TableHead>
+                <TableHead className="text-xs">{tr("N-Dosage")}</TableHead>
+                <TableHead className="text-xs">{tr("Drip Adj")}</TableHead>
+                <TableHead className="text-xs">{tr("Soil pH")}</TableHead>
+                <TableHead className="text-xs">{tr("Yield")}</TableHead>
+                <TableHead className="text-xs">{tr("Disease Risk")}</TableHead>
+                <TableHead className="text-xs">{tr("Water Need")}</TableHead>
+                <TableHead className="text-xs text-right">{tr("Net Profit")}</TableHead>
+                <TableHead className="text-xs text-center">{tr("Action")}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {savedScenarios.map((s) => (
                 <TableRow key={s.id} className="border-border/60 hover:bg-muted/10">
-                  <TableCell className="font-medium text-xs text-foreground">{s.name}</TableCell>
-                  <TableCell className="font-mono text-xs">{s.nitrogen.toFixed(1)}x</TableCell>
+                  <TableCell className="font-medium text-xs text-foreground">
+                    {tr(s.name)}
+                  </TableCell>
                   <TableCell className="font-mono text-xs">
-                    {s.irrigation > 0 ? `+${s.irrigation}` : s.irrigation}m
+                    {s.nitrogen.toFixed(1)}
+                    {tr("x")}
+                  </TableCell>
+                  <TableCell className="font-mono text-xs">
+                    {s.irrigation > 0 ? `+${s.irrigation}` : tr(s.irrigation)}
+                    {tr("m")}
                   </TableCell>
                   <TableCell className="font-mono text-xs">{s.pH.toFixed(1)}</TableCell>
                   <TableCell className="font-mono text-xs font-semibold text-primary">
-                    {s.yieldVal} t/ac
+                    {tr(s.yieldVal)} {tr("t/ac")}
                   </TableCell>
                   <TableCell className="text-xs">
                     <span className={s.riskVal > 65 ? "text-critical font-bold" : ""}>
-                      {s.riskVal}%
+                      {tr(s.riskVal)}%
                     </span>
                   </TableCell>
-                  <TableCell className="font-mono text-xs text-water">{s.waterVal}%</TableCell>
+                  <TableCell className="font-mono text-xs text-water">{tr(s.waterVal)}%</TableCell>
                   <TableCell className="font-mono text-xs text-healthy font-semibold text-right">
                     ₹{s.profitVal.toLocaleString()}
                   </TableCell>

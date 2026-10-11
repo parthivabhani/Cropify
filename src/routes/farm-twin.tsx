@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { tr } from "@/lib/i18n";
 
 // Leaflet touches `window` at import time, so the mapping tools load only in the browser.
 const BoundaryMapping = lazy(() =>
@@ -47,17 +48,19 @@ function FarmTwin() {
     e.preventDefault();
     setFarmData(tempData);
     setIsEditing(false);
-    toast.success("Farm Digital Twin profile updated successfully!", {
-      description: "Changes propagated to neural classification & reasoning logic.",
+    toast.success(tr("Farm Digital Twin profile updated successfully!"), {
+      description: tr("Changes propagated to neural classification & reasoning logic."),
     });
   };
 
   return (
     <div className="space-y-8">
       <PageHeader
-        eyebrow="Observe & Digitise"
-        title="Farm Digital Twin"
-        subtitle="A living digital representation of your farm plot. Zones are mapped with real-time 7-in-1 soil telemetry, crop conditions, and localized agronomic risk scores."
+        eyebrow={tr("Observe & Digitise")}
+        title={tr("Farm Digital Twin")}
+        subtitle={tr(
+          "A living digital representation of your farm plot. Zones are mapped with real-time 7-in-1 soil telemetry, crop conditions, and localized agronomic risk scores.",
+        )}
         actions={
           <Button
             variant={isEditing ? "outline" : "default"}
@@ -67,11 +70,11 @@ function FarmTwin() {
           >
             {isEditing ? (
               <>
-                <Minimize2 className="size-4" /> Cancel
+                <Minimize2 className="size-4" /> {tr("Cancel")}
               </>
             ) : (
               <>
-                <Edit className="size-4" /> Edit Farm Profile
+                <Edit className="size-4" /> {tr("Edit Farm Profile")}
               </>
             )}
           </Button>
@@ -89,7 +92,7 @@ function FarmTwin() {
               : "border-transparent text-muted-foreground hover:text-foreground",
           )}
         >
-          Twin Overview
+          {tr("Twin Overview")}
         </button>
         <button
           onClick={() => setActivePageTab("mapping")}
@@ -100,7 +103,7 @@ function FarmTwin() {
               : "border-transparent text-muted-foreground hover:text-foreground",
           )}
         >
-          Boundary Mapping Tools
+          {tr("Boundary Mapping Tools")}
         </button>
       </div>
 
@@ -108,41 +111,41 @@ function FarmTwin() {
         <>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4 animate-rise">
             <Stat
-              label="Mapped area"
+              label={tr("Mapped area")}
               value={farmData.sizeAcres}
-              unit="Acres"
+              unit={tr("Acres")}
               tone="healthy"
-              hint="North Block boundary"
+              hint={tr("North Block boundary")}
             />
             <Stat
-              label="Current crop"
+              label={tr("Current crop")}
               value={farmData.crop}
-              unit={farmData.variety}
+              unit={tr(farmData.variety)}
               tone="symbolic"
-              hint="Atharva-8021 hybrid"
+              hint={tr("Atharva-8021 hybrid")}
             />
             <Stat
-              label="Estimated yield"
+              label={tr("Estimated yield")}
               value={farmData.estimatedYield}
-              unit="t/acre"
+              unit={tr("t/acre")}
               tone="water"
-              hint="Model confidence 87%"
+              hint={tr("Model confidence 87%")}
             />
             <Stat
-              label="Active health score"
+              label={tr("Active health score")}
               value={farmData.healthScore}
               unit="/100"
               tone="healthy"
-              hint="Composite health index"
+              hint={tr("Composite health index")}
             />
           </div>
 
           <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr] animate-rise">
             <div className="space-y-6">
               <Panel
-                title="Interactive Field Map"
-                eyebrow="Spatial Telemetry"
-                aside={<Chip tone="healthy">Online</Chip>}
+                title={tr("Interactive Field Map")}
+                eyebrow={tr("Spatial Telemetry")}
+                aside={<Chip tone="healthy">{tr("Online")}</Chip>}
               >
                 <div className="mb-4">
                   <FieldMap compact />
@@ -153,10 +156,10 @@ function FarmTwin() {
 
             <div>
               {isEditing ? (
-                <Panel title="Edit Farm Profile" eyebrow="Update Context">
+                <Panel title={tr("Edit Farm Profile")} eyebrow={tr("Update Context")}>
                   <form onSubmit={handleSave} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="farmerName">Farmer Profile Name</Label>
+                      <Label htmlFor="farmerName">{tr("Farmer Profile Name")}</Label>
                       <Input
                         id="farmerName"
                         value={tempData.farmer}
@@ -165,7 +168,7 @@ function FarmTwin() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="location">Location</Label>
+                      <Label htmlFor="location">{tr("Location")}</Label>
                       <Input
                         id="location"
                         value={tempData.location}
@@ -175,7 +178,7 @@ function FarmTwin() {
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="size">Size (Acres)</Label>
+                        <Label htmlFor="size">{tr("Size (Acres)")}</Label>
                         <Input
                           id="size"
                           type="number"
@@ -188,7 +191,7 @@ function FarmTwin() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="sowingDate">Sowing Date</Label>
+                        <Label htmlFor="sowingDate">{tr("Sowing Date")}</Label>
                         <Input
                           id="sowingDate"
                           type="date"
@@ -200,7 +203,7 @@ function FarmTwin() {
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="crop">Crop Type</Label>
+                        <Label htmlFor="crop">{tr("Crop Type")}</Label>
                         <Input
                           id="crop"
                           value={tempData.crop}
@@ -209,7 +212,7 @@ function FarmTwin() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="variety">Variety</Label>
+                        <Label htmlFor="variety">{tr("Variety")}</Label>
                         <Input
                           id="variety"
                           value={tempData.variety}
@@ -219,22 +222,22 @@ function FarmTwin() {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="stage">Growth Stage</Label>
+                      <Label htmlFor="stage">{tr("Growth Stage")}</Label>
                       <select
                         id="stage"
                         className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus:bg-background"
                         value={tempData.growthStage}
                         onChange={(e) => setTempData({ ...tempData, growthStage: e.target.value })}
                       >
-                        <option value="Sowing">Sowing</option>
-                        <option value="Vegetative">Vegetative</option>
-                        <option value="Flowering">Flowering</option>
-                        <option value="Fruiting">Fruiting</option>
-                        <option value="Harvesting">Harvesting</option>
+                        <option value="Sowing">{tr("Sowing")}</option>
+                        <option value="Vegetative">{tr("Vegetative")}</option>
+                        <option value="Flowering">{tr("Flowering")}</option>
+                        <option value="Fruiting">{tr("Fruiting")}</option>
+                        <option value="Harvesting">{tr("Harvesting")}</option>
                       </select>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="soil">Soil Condition Description</Label>
+                      <Label htmlFor="soil">{tr("Soil Condition Description")}</Label>
                       <Input
                         id="soil"
                         value={tempData.soil}
@@ -242,7 +245,7 @@ function FarmTwin() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="irrigation">Irrigation Method</Label>
+                      <Label htmlFor="irrigation">{tr("Irrigation Method")}</Label>
                       <Input
                         id="irrigation"
                         value={tempData.irrigation}
@@ -250,7 +253,7 @@ function FarmTwin() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="fertilizer">Fertilizer Practices</Label>
+                      <Label htmlFor="fertilizer">{tr("Fertilizer Practices")}</Label>
                       <Input
                         id="fertilizer"
                         value={tempData.fertilizer}
@@ -259,21 +262,21 @@ function FarmTwin() {
                     </div>
                     <div className="flex gap-2 pt-2">
                       <Button type="submit" className="w-full gap-2">
-                        <Save className="size-4" /> Save Twin Data
+                        <Save className="size-4" /> {tr("Save Twin Data")}
                       </Button>
                     </div>
                   </form>
                 </Panel>
               ) : (
-                <Panel title="Active Farm Profile" eyebrow="Configuration Metadata">
+                <Panel title={tr("Active Farm Profile")} eyebrow={tr("Configuration Metadata")}>
                   <div className="space-y-6 animate-rise">
                     <div className="flex items-start gap-3">
                       <MapPin className="size-5 shrink-0 text-primary mt-0.5" />
                       <div>
-                        <p className="label-eyebrow">Location & Coordinates</p>
-                        <p className="text-sm font-medium mt-1">{farmData.location}</p>
+                        <p className="label-eyebrow">{tr("Location & Coordinates")}</p>
+                        <p className="text-sm font-medium mt-1">{tr(farmData.location)}</p>
                         <p className="font-mono text-xs text-muted-foreground mt-0.5">
-                          {farmData.coordinates}
+                          {tr(farmData.coordinates)}
                         </p>
                       </div>
                     </div>
@@ -281,13 +284,15 @@ function FarmTwin() {
                     <div className="flex items-start gap-3">
                       <Sprout className="size-5 shrink-0 text-symbolic mt-0.5" />
                       <div>
-                        <p className="label-eyebrow">Crop & Cultivar</p>
+                        <p className="label-eyebrow">{tr("Crop & Cultivar")}</p>
                         <p className="text-sm font-medium mt-1">
-                          {farmData.crop} ({farmData.variety})
+                          {tr(farmData.crop)} ({tr(farmData.variety)})
                         </p>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          Stage:{" "}
-                          <span className="text-primary font-medium">{farmData.growthStage}</span>
+                          {tr("Stage:")}{" "}
+                          <span className="text-primary font-medium">
+                            {tr(farmData.growthStage)}
+                          </span>
                         </p>
                       </div>
                     </div>
@@ -295,12 +300,12 @@ function FarmTwin() {
                     <div className="flex items-start gap-3">
                       <Calendar className="size-5 shrink-0 text-warning mt-0.5" />
                       <div>
-                        <p className="label-eyebrow">Sowing & Cycle Details</p>
+                        <p className="label-eyebrow">{tr("Sowing & Cycle Details")}</p>
                         <p className="text-sm font-medium mt-1">
-                          Transplanted on {farmData.sowingDate}
+                          {tr("Transplanted on")} {tr(farmData.sowingDate)}
                         </p>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          Previous crop: {farmData.previousCrop}
+                          {tr("Previous crop:")} {tr(farmData.previousCrop)}
                         </p>
                       </div>
                     </div>
@@ -308,10 +313,10 @@ function FarmTwin() {
                     <div className="flex items-start gap-3">
                       <Droplet className="size-5 shrink-0 text-water mt-0.5" />
                       <div>
-                        <p className="label-eyebrow">Soil & Irrigation</p>
-                        <p className="text-sm font-medium mt-1">{farmData.soil}</p>
+                        <p className="label-eyebrow">{tr("Soil & Irrigation")}</p>
+                        <p className="text-sm font-medium mt-1">{tr(farmData.soil)}</p>
                         <p className="text-xs text-muted-foreground mt-0.5">
-                          Irrigation setup: {farmData.irrigation}
+                          {tr("Irrigation setup:")} {tr(farmData.irrigation)}
                         </p>
                       </div>
                     </div>
@@ -319,10 +324,10 @@ function FarmTwin() {
                     <div className="flex items-start gap-3">
                       <Clipboard className="size-5 shrink-0 text-muted-foreground mt-0.5" />
                       <div>
-                        <p className="label-eyebrow">Management & Observation</p>
-                        <p className="text-sm font-medium mt-1">{farmData.fertilizer}</p>
+                        <p className="label-eyebrow">{tr("Management & Observation")}</p>
+                        <p className="text-sm font-medium mt-1">{tr(farmData.fertilizer)}</p>
                         <p className="text-xs text-warning mt-1 italic">
-                          Last event: {farmData.lastObservation}
+                          {tr("Last event:")} {tr(farmData.lastObservation)}
                         </p>
                       </div>
                     </div>
@@ -335,15 +340,18 @@ function FarmTwin() {
       ) : (
         <div className="panel p-6 animate-rise">
           <div className="mb-6">
-            <h2 className="text-xl font-medium">Boundary Mapping Dashboard</h2>
+            <h2 className="text-xl font-medium">{tr("Boundary Mapping Dashboard")}</h2>
             <p className="text-sm text-muted-foreground mt-1">
-              Select one of the mapping tools below to plot, record, or edit the boundaries of the
-              farm block.
+              {tr(
+                "Select one of the mapping tools below to plot, record, or edit the boundaries of the farm block.",
+              )}
             </p>
           </div>
           <Suspense
             fallback={
-              <p className="py-16 text-center text-sm text-muted-foreground">Loading map…</p>
+              <p className="py-16 text-center text-sm text-muted-foreground">
+                {tr("Loading map…")}
+              </p>
             }
           >
             <BoundaryMapping

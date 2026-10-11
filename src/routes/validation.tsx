@@ -29,6 +29,7 @@ import { classificationMetrics, regressionMetrics, dataSources } from "@/lib/agr
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import { tr } from "@/lib/i18n";
 
 export const Route = createFileRoute("/validation")({
   head: () => ({
@@ -156,16 +157,18 @@ export function ValidationRoute() {
   return (
     <div className="space-y-8 animate-rise">
       <PageHeader
-        eyebrow="Scientific Verification"
-        title="Research Validation & Decision Audits"
-        subtitle="Verification suite testing the three core pillars of the Cropify methodology: sensor-grounded Results Interpretation, quantitative System Performance, and biological Outcome Validation."
+        eyebrow={tr("Scientific Verification")}
+        title={tr("Research Validation & Decision Audits")}
+        subtitle={tr(
+          "Verification suite testing the three core pillars of the Cropify methodology: sensor-grounded Results Interpretation, quantitative System Performance, and biological Outcome Validation.",
+        )}
         actions={
           <div className="flex items-center gap-2">
             <Badge
               variant="outline"
               className="border-primary/40 text-primary py-1.5 px-3 font-mono text-xs"
             >
-              <FlaskConical className="size-3.5 mr-1" /> Three-Tier Validation Suite
+              <FlaskConical className="size-3.5 mr-1" /> {tr("Three-Tier Validation Suite")}
             </Badge>
           </div>
         }
@@ -181,7 +184,7 @@ export function ValidationRoute() {
               : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
           }`}
         >
-          All Modules Overview
+          {tr("All Modules Overview")}
         </button>
         <button
           onClick={() => setActiveTab("interpretation")}
@@ -192,7 +195,7 @@ export function ValidationRoute() {
           }`}
         >
           <BrainCircuit className="size-3.5" />
-          Results Interpretation
+          {tr("Results Interpretation")}
         </button>
         <button
           onClick={() => setActiveTab("performance")}
@@ -203,7 +206,7 @@ export function ValidationRoute() {
           }`}
         >
           <Activity className="size-3.5" />
-          System Performance
+          {tr("System Performance")}
         </button>
         <button
           onClick={() => setActiveTab("validation")}
@@ -214,7 +217,7 @@ export function ValidationRoute() {
           }`}
         >
           <ShieldCheck className="size-3.5" />
-          Outcome Validation
+          {tr("Outcome Validation")}
         </button>
         <button
           onClick={() => setActiveTab("hardware")}
@@ -225,7 +228,7 @@ export function ValidationRoute() {
           }`}
         >
           <Radio className="size-3.5" />
-          Field Study & Soil Sensor Kit
+          {tr("Field Study & Soil Sensor Kit")}
         </button>
       </div>
 
@@ -234,48 +237,51 @@ export function ValidationRoute() {
         <div className="panel p-4 border-l-4 border-l-primary bg-background/40">
           <div className="flex justify-between items-start">
             <span className="text-[0.68rem] font-mono font-bold tracking-wider uppercase text-primary">
-              Core Pillar 1
+              {tr("Core Pillar 1")}
             </span>
-            <Chip tone="healthy">Calibrated</Chip>
+            <Chip tone="healthy">{tr("Calibrated")}</Chip>
           </div>
           <h3 className="text-sm font-bold font-display mt-1 text-foreground">
-            Results Interpretation
+            {tr("Results Interpretation")}
           </h3>
           <p className="text-xs text-muted-foreground mt-1">
-            Sensor telemetry integration, Bayesian neural confidence reweighting (82% → 91%), and
-            SHAP feature attribution.
+            {tr(
+              "Sensor telemetry integration, Bayesian neural confidence reweighting (82% → 91%), and SHAP feature attribution.",
+            )}
           </p>
         </div>
 
         <div className="panel p-4 border-l-4 border-l-water bg-background/40">
           <div className="flex justify-between items-start">
             <span className="text-[0.68rem] font-mono font-bold tracking-wider uppercase text-water">
-              Core Pillar 2
+              {tr("Core Pillar 2")}
             </span>
-            <Chip tone="water">Benchmarked</Chip>
+            <Chip tone="water">{tr("Benchmarked")}</Chip>
           </div>
           <h3 className="text-sm font-bold font-display mt-1 text-foreground">
-            System Performance
+            {tr("System Performance")}
           </h3>
           <p className="text-xs text-muted-foreground mt-1">
-            Classifier F1 93.2%, Yield Regressor R² 0.87, 14ms rule compilation latency, and 180ms
-            total end-to-end pipeline.
+            {tr(
+              "Classifier F1 93.2%, Yield Regressor R² 0.87, 14ms rule compilation latency, and 180ms total end-to-end pipeline.",
+            )}
           </p>
         </div>
 
         <div className="panel p-4 border-l-4 border-l-symbolic bg-background/40">
           <div className="flex justify-between items-start">
             <span className="text-[0.68rem] font-mono font-bold tracking-wider uppercase text-symbolic">
-              Core Pillar 3
+              {tr("Core Pillar 3")}
             </span>
-            <Chip tone="symbolic">3-Tier Verified</Chip>
+            <Chip tone="symbolic">{tr("3-Tier Verified")}</Chip>
           </div>
           <h3 className="text-sm font-bold font-display mt-1 text-foreground">
-            Outcome Validation
+            {tr("Outcome Validation")}
           </h3>
           <p className="text-xs text-muted-foreground mt-1">
-            Empirical 80:20 ground truth test, Mitscherlich diminishing scenario validation, and
-            100% rule-override block rate.
+            {tr(
+              "Empirical 80:20 ground truth test, Mitscherlich diminishing scenario validation, and 100% rule-override block rate.",
+            )}
           </p>
         </div>
       </div>
@@ -285,12 +291,14 @@ export function ValidationRoute() {
         <section className="space-y-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="label-eyebrow text-primary">Ground Truth & Telemetry Ingestion</p>
+              <p className="label-eyebrow text-primary">
+                {tr("Ground Truth & Telemetry Ingestion")}
+              </p>
               <h2 className="text-xl font-bold font-display text-foreground">
-                Farm Visit & 7-in-1 Soil NPK Sensor Hardware Kit
+                {tr("Farm Visit & 7-in-1 Soil NPK Sensor Hardware Kit")}
               </h2>
             </div>
-            <Chip tone="healthy">Field Verified • Active Plot</Chip>
+            <Chip tone="healthy">{tr("Field Verified • Active Plot")}</Chip>
           </div>
 
           {/* Documentary Photo Evidence Cards - Real Fieldwork Photos from SRC Research Images */}
@@ -299,26 +307,26 @@ export function ValidationRoute() {
               <div className="aspect-[4/3] w-full overflow-hidden bg-muted relative">
                 <img
                   src="/research/selu_farmer_interview_geotag.png"
-                  alt="Student researcher conducting farmer interview during field trial"
+                  alt={tr("Student researcher conducting farmer interview during field trial")}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
                 <div className="absolute top-2 left-2 bg-background/80 backdrop-blur-md px-2 py-0.5 rounded text-[0.65rem] font-mono font-bold text-foreground">
-                  Farmer Field Interview
+                  {tr("Farmer Field Interview")}
                 </div>
               </div>
               <div className="p-4 space-y-2">
                 <h4 className="text-xs font-bold font-display text-foreground">
-                  In-Situ Farmer Interview & Ground-Truthing
+                  {tr("In-Situ Farmer Interview & Ground-Truthing")}
                 </h4>
                 <p className="text-[0.72rem] text-muted-foreground leading-relaxed">
-                  Student researcher conducting direct farmer interviews in the field with GPS
-                  verification, recording real-world disease symptoms, pest cycles, and crop
-                  management practices.
+                  {tr(
+                    "Student researcher conducting direct farmer interviews in the field with GPS verification, recording real-world disease symptoms, pest cycles, and crop management practices.",
+                  )}
                 </p>
                 <div className="pt-2 border-t border-border/40 flex items-center justify-between text-[0.65rem] font-mono text-muted-foreground">
-                  <span>Location: Field Trial Site (GPS Verified)</span>
-                  <span className="text-healthy font-semibold">Verified Proof</span>
+                  <span>{tr("Location: Field Trial Site (GPS Verified)")}</span>
+                  <span className="text-healthy font-semibold">{tr("Verified Proof")}</span>
                 </div>
               </div>
             </div>
@@ -327,26 +335,26 @@ export function ValidationRoute() {
               <div className="aspect-[4/3] w-full overflow-hidden bg-muted relative">
                 <img
                   src="/research/student_field_testing.png"
-                  alt="Student research team testing mobile diagnostic interface in crop plot"
+                  alt={tr("Student research team testing mobile diagnostic interface in crop plot")}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
                 <div className="absolute top-2 left-2 bg-background/80 backdrop-blur-md px-2 py-0.5 rounded text-[0.65rem] font-mono font-bold text-foreground">
-                  App Field Testing
+                  {tr("App Field Testing")}
                 </div>
               </div>
               <div className="p-4 space-y-2">
                 <h4 className="text-xs font-bold font-display text-foreground">
-                  Mobile Diagnostics Field Evaluation
+                  {tr("Mobile Diagnostics Field Evaluation")}
                 </h4>
                 <p className="text-[0.72rem] text-muted-foreground leading-relaxed">
-                  Student researchers validating mobile crop disease inference directly within
-                  actual crop rows, verifying sunlight angle handling and foliage detection
-                  accuracy.
+                  {tr(
+                    "Student researchers validating mobile crop disease inference directly within actual crop rows, verifying sunlight angle handling and foliage detection accuracy.",
+                  )}
                 </p>
                 <div className="pt-2 border-t border-border/40 flex items-center justify-between text-[0.65rem] font-mono text-muted-foreground">
-                  <span>Target: Crop Row Validation</span>
-                  <span className="text-primary font-semibold">Field Tested</span>
+                  <span>{tr("Target: Crop Row Validation")}</span>
+                  <span className="text-primary font-semibold">{tr("Field Tested")}</span>
                 </div>
               </div>
             </div>
@@ -355,26 +363,26 @@ export function ValidationRoute() {
               <div className="aspect-[4/3] w-full overflow-hidden bg-muted relative">
                 <img
                   src="/research/farmer_field_survey.png"
-                  alt="Agronomist and farmer collaboration field survey"
+                  alt={tr("Agronomist and farmer collaboration field survey")}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
                 <div className="absolute top-2 left-2 bg-background/80 backdrop-blur-md px-2 py-0.5 rounded text-[0.65rem] font-mono font-bold text-foreground">
-                  Farmer Collaboration
+                  {tr("Farmer Collaboration")}
                 </div>
               </div>
               <div className="p-4 space-y-2">
                 <h4 className="text-xs font-bold font-display text-foreground">
-                  Agronomic Survey & Field Documentation
+                  {tr("Agronomic Survey & Field Documentation")}
                 </h4>
                 <p className="text-[0.72rem] text-muted-foreground leading-relaxed">
-                  Collaborative on-site survey documenting farmer pain points, localized irrigation
-                  timings, and pest treatment history to calibrate neuro-symbolic domain ontology
-                  rules.
+                  {tr(
+                    "Collaborative on-site survey documenting farmer pain points, localized irrigation timings, and pest treatment history to calibrate neuro-symbolic domain ontology rules.",
+                  )}
                 </p>
                 <div className="pt-2 border-t border-border/40 flex items-center justify-between text-[0.65rem] font-mono text-muted-foreground">
-                  <span>Cohort: Local Farm Survey</span>
-                  <span className="text-warning font-semibold">Surveyed</span>
+                  <span>{tr("Cohort: Local Farm Survey")}</span>
+                  <span className="text-warning font-semibold">{tr("Surveyed")}</span>
                 </div>
               </div>
             </div>
@@ -383,25 +391,28 @@ export function ValidationRoute() {
               <div className="aspect-[4/3] w-full overflow-hidden bg-muted relative">
                 <img
                   src="/research/soil_sensor_hardware_rig.png"
-                  alt="7-in-1 Modbus RS485 soil sensor telemetry bench connected to Raspberry Pi"
+                  alt={tr(
+                    "7-in-1 Modbus RS485 soil sensor telemetry bench connected to Raspberry Pi",
+                  )}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
                 <div className="absolute top-2 left-2 bg-background/80 backdrop-blur-md px-2 py-0.5 rounded text-[0.65rem] font-mono font-bold text-foreground">
-                  7-in-1 Sensor Rig
+                  {tr("7-in-1 Sensor Rig")}
                 </div>
               </div>
               <div className="p-4 space-y-2">
                 <h4 className="text-xs font-bold font-display text-foreground">
-                  Modbus RS485 Hardware Benchmarking
+                  {tr("Modbus RS485 Hardware Benchmarking")}
                 </h4>
                 <p className="text-[0.72rem] text-muted-foreground leading-relaxed">
-                  Real-time bench validation of industrial 7-in-1 soil probe telemetry via USB RS485
-                  serial into Raspberry Pi controller, streaming NPK, moisture, and temperature.
+                  {tr(
+                    "Real-time bench validation of industrial 7-in-1 soil probe telemetry via USB RS485 serial into Raspberry Pi controller, streaming NPK, moisture, and temperature.",
+                  )}
                 </p>
                 <div className="pt-2 border-t border-border/40 flex items-center justify-between text-[0.65rem] font-mono text-muted-foreground">
-                  <span>Hardware: Modbus RTU / RPi</span>
-                  <span className="text-healthy font-semibold">Bench Verified</span>
+                  <span>{tr("Hardware: Modbus RTU / RPi")}</span>
+                  <span className="text-healthy font-semibold">{tr("Bench Verified")}</span>
                 </div>
               </div>
             </div>
@@ -409,82 +420,92 @@ export function ValidationRoute() {
 
           {/* Telemetry Stream Display Table */}
           <Panel
-            eyebrow="Real-Time Telemetry Stream"
-            title="Captured Soil & Environmental Variables"
+            eyebrow={tr("Real-Time Telemetry Stream")}
+            title={tr("Captured Soil & Environmental Variables")}
           >
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 mt-2">
               <div className="p-3 rounded-lg bg-surface border border-border/60 text-center">
                 <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
-                  Nitrogen (N)
+                  {tr("Nitrogen (N)")}
                 </span>
                 <span className="text-lg font-bold font-display text-primary mt-1 block">
-                  42 mg/kg
+                  {tr("42 mg/kg")}
                 </span>
-                <span className="text-[0.62rem] text-healthy block mt-0.5">Optimal Band</span>
+                <span className="text-[0.62rem] text-healthy block mt-0.5">
+                  {tr("Optimal Band")}
+                </span>
               </div>
               <div className="p-3 rounded-lg bg-surface border border-border/60 text-center">
                 <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
-                  Phosphorus (P)
+                  {tr("Phosphorus (P)")}
                 </span>
                 <span className="text-lg font-bold font-display text-primary mt-1 block">
-                  18 mg/kg
+                  {tr("18 mg/kg")}
                 </span>
-                <span className="text-[0.62rem] text-healthy block mt-0.5">Adequate</span>
+                <span className="text-[0.62rem] text-healthy block mt-0.5">{tr("Adequate")}</span>
               </div>
               <div className="p-3 rounded-lg bg-surface border border-border/60 text-center">
                 <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
-                  Potassium (K)
+                  {tr("Potassium (K)")}
                 </span>
                 <span className="text-lg font-bold font-display text-primary mt-1 block">
-                  185 mg/kg
+                  {tr("185 mg/kg")}
                 </span>
-                <span className="text-[0.62rem] text-healthy block mt-0.5">Strong Canopy</span>
+                <span className="text-[0.62rem] text-healthy block mt-0.5">
+                  {tr("Strong Canopy")}
+                </span>
               </div>
               <div className="p-3 rounded-lg bg-surface border border-border/60 text-center">
                 <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
-                  Soil Moisture
+                  {tr("Soil Moisture")}
                 </span>
                 <span className="text-lg font-bold font-display text-water mt-1 block">68%</span>
-                <span className="text-[0.62rem] text-warning block mt-0.5">High (Rain 48h)</span>
+                <span className="text-[0.62rem] text-warning block mt-0.5">
+                  {tr("High (Rain 48h)")}
+                </span>
               </div>
               <div className="p-3 rounded-lg bg-surface border border-border/60 text-center">
                 <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
-                  Soil pH
+                  {tr("Soil pH")}
                 </span>
                 <span className="text-lg font-bold font-display text-foreground mt-1 block">
                   6.2
                 </span>
-                <span className="text-[0.62rem] text-healthy block mt-0.5">Near Neutral</span>
+                <span className="text-[0.62rem] text-healthy block mt-0.5">
+                  {tr("Near Neutral")}
+                </span>
               </div>
               <div className="p-3 rounded-lg bg-surface border border-border/60 text-center">
                 <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
-                  Electrical Cond.
+                  {tr("Electrical Cond.")}
                 </span>
                 <span className="text-lg font-bold font-display text-foreground mt-1 block">
-                  1.4 mS/cm
+                  {tr("1.4 mS/cm")}
                 </span>
                 <span className="text-[0.62rem] text-muted-foreground block mt-0.5">
-                  Low Salinity
+                  {tr("Low Salinity")}
                 </span>
               </div>
               <div className="p-3 rounded-lg bg-surface border border-border/60 text-center">
                 <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
-                  Soil Temp
+                  {tr("Soil Temp")}
                 </span>
                 <span className="text-lg font-bold font-display text-foreground mt-1 block">
-                  24.8°C
+                  {tr("24.8°C")}
                 </span>
-                <span className="text-[0.62rem] text-warning block mt-0.5">Spore Window</span>
+                <span className="text-[0.62rem] text-warning block mt-0.5">
+                  {tr("Spore Window")}
+                </span>
               </div>
             </div>
 
             <div className="mt-4 p-3 rounded-lg bg-primary/5 border border-primary/20 text-xs text-muted-foreground leading-relaxed flex items-start gap-2.5">
               <Info className="size-4 text-primary shrink-0 mt-0.5" />
               <span>
-                <strong>Hardware Ingestion Pipeline:</strong> The probe transmits hexadecimal
-                registers over RS485 Modbus RTU at 9600 baud rate. The ESP32 micro-controller
-                validates the CRC-16 checksum, extracts NPK/Moisture/pH channels, and transmits JSON
-                telemetry packets to the Cropify ingestion endpoint over Wi-Fi/MQTT.
+                <strong>{tr("Hardware Ingestion Pipeline:")}</strong>{" "}
+                {tr(
+                  "The probe transmits hexadecimal registers over RS485 Modbus RTU at 9600 baud rate. The ESP32 micro-controller validates the CRC-16 checksum, extracts NPK/Moisture/pH channels, and transmits JSON telemetry packets to the Cropify ingestion endpoint over Wi-Fi/MQTT.",
+                )}
               </span>
             </div>
           </Panel>
@@ -498,52 +519,54 @@ export function ValidationRoute() {
             <div>
               <div className="flex items-center gap-2">
                 <span className="px-2.5 py-0.5 rounded text-[0.7rem] font-mono font-bold bg-primary text-primary-foreground">
-                  PILLAR 1
+                  {tr("PILLAR 1")}
                 </span>
                 <span className="text-sm font-mono text-primary font-bold">
-                  Perception & Decision Logic
+                  {tr("Perception & Decision Logic")}
                 </span>
               </div>
               <h2 className="text-2xl font-bold font-display text-foreground mt-1">
-                Results Interpretation & Explainability Architecture
+                {tr("Results Interpretation & Explainability Architecture")}
               </h2>
             </div>
-            <Chip tone="symbolic">Causal & Bayesian</Chip>
+            <Chip tone="symbolic">{tr("Causal & Bayesian")}</Chip>
           </div>
 
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Interactive Confidence Calibration Simulator */}
             <Panel
-              eyebrow="Neuro-Symbolic Posterior Calibration"
-              title="How Cropify Interprets ML Predictions"
+              eyebrow={tr("Neuro-Symbolic Posterior Calibration")}
+              title={tr("How Cropify Interprets ML Predictions")}
               aside={
-                <span className="text-xs font-mono font-bold text-primary">P(Disease|Context)</span>
+                <span className="text-xs font-mono font-bold text-primary">
+                  {tr("P(Disease|Context)")}
+                </span>
               }
             >
               <div className="space-y-4">
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  In pure deep learning, a computer vision model outputs ungrounded confidence
-                  scores. Cropify integrates live field telemetry and agronomic symbolic rules to
-                  adjust and interpret the true posterior probability:
+                  {tr(
+                    "In pure deep learning, a computer vision model outputs ungrounded confidence scores. Cropify integrates live field telemetry and agronomic symbolic rules to adjust and interpret the true posterior probability:",
+                  )}
                 </p>
 
                 {/* Raw vs Calibrated visualizer */}
                 <div className="grid grid-cols-2 gap-4 p-4 rounded-xl bg-background/40 border border-border/80">
                   <div className="text-center space-y-1">
                     <span className="text-[0.65rem] font-mono uppercase text-muted-foreground block">
-                      1. Raw Vision Model
+                      {tr("1. Raw Vision Model")}
                     </span>
                     <span className="text-2xl font-bold font-display text-neural block">
-                      {rawNeuralConfidence}%
+                      {tr(rawNeuralConfidence)}%
                     </span>
                     <span className="text-[0.65rem] text-muted-foreground block">
-                      YOLO/EfficientNet leaf score
+                      {tr("YOLO/EfficientNet leaf score")}
                     </span>
                   </div>
 
                   <div className="text-center space-y-1 border-l border-border/60">
                     <span className="text-[0.65rem] font-mono uppercase text-muted-foreground block">
-                      2. Calibrated Posterior
+                      {tr("2. Calibrated Posterior")}
                     </span>
                     <span
                       className={`text-2xl font-bold font-display block ${
@@ -554,10 +577,10 @@ export function ValidationRoute() {
                             : "text-healthy"
                       }`}
                     >
-                      {calibratedConfidence}%
+                      {tr(calibratedConfidence)}%
                     </span>
                     <span className="text-[0.65rem] text-primary font-semibold block">
-                      Neuro-Symbolic verified
+                      {tr("Neuro-Symbolic verified")}
                     </span>
                   </div>
                 </div>
@@ -565,7 +588,7 @@ export function ValidationRoute() {
                 {/* Interactive Toggles */}
                 <div className="p-3 rounded-lg bg-surface border border-border/60 space-y-2.5">
                   <span className="text-[0.7rem] font-mono font-bold uppercase tracking-wider text-muted-foreground block">
-                    Interactive Context Modifiers (Inspect interpretation shift):
+                    {tr("Interactive Context Modifiers (Inspect interpretation shift):")}
                   </span>
                   <div className="flex flex-wrap gap-2">
                     <button
@@ -576,7 +599,8 @@ export function ValidationRoute() {
                           : "border-border text-muted-foreground"
                       }`}
                     >
-                      Air Humidity &gt; 85% ({simHighHumidity ? "+4%" : "Off"})
+                      {tr("Air Humidity > 85% (")}
+                      {simHighHumidity ? "+4%" : tr("Off")})
                     </button>
                     <button
                       onClick={() => setSimRecentRain(!simRecentRain)}
@@ -586,7 +610,8 @@ export function ValidationRoute() {
                           : "border-border text-muted-foreground"
                       }`}
                     >
-                      Recent Rain 48h ({simRecentRain ? "+3%" : "Off"})
+                      {tr("Recent Rain 48h (")}
+                      {simRecentRain ? "+3%" : tr("Off")})
                     </button>
                     <button
                       onClick={() => setSimHistoricalBlight(!simHistoricalBlight)}
@@ -596,7 +621,8 @@ export function ValidationRoute() {
                           : "border-border text-muted-foreground"
                       }`}
                     >
-                      Prior Blight History ({simHistoricalBlight ? "+2%" : "Off"})
+                      {tr("Prior Blight History (")}
+                      {simHistoricalBlight ? "+2%" : tr("Off")})
                     </button>
                   </div>
                 </div>
@@ -605,15 +631,20 @@ export function ValidationRoute() {
                 <div className="p-3.5 rounded-lg bg-muted/20 border border-border/60 text-xs text-foreground space-y-1.5">
                   <div className="flex items-center gap-1.5 text-primary font-semibold text-[0.75rem]">
                     <Sparkles className="size-3.5" />
-                    <span>Agronomic Interpretation of this Output:</span>
+                    <span>{tr("Agronomic Interpretation of this Output:")}</span>
                   </div>
                   <p className="text-muted-foreground text-[0.72rem] leading-relaxed">
-                    "The neural vision detector identified concentric ring lesions characteristic of{" "}
-                    <em>Alternaria solani</em>. Because real-time telemetry confirms 91% relative
-                    humidity, soil moisture of 68%, and rain within 48h, the pathogen's required
-                    microclimate window is 100% active. The decision engine elevates confidence to{" "}
-                    <strong>{calibratedConfidence}%</strong>, localizing the outbreak to Zone B1
-                    while safely checking chemical constraints."
+                    {tr(
+                      '"The neural vision detector identified concentric ring lesions characteristic of',
+                    )}{" "}
+                    <em>{tr("Alternaria solani")}</em>
+                    {tr(
+                      ". Because real-time telemetry confirms 91% relative humidity, soil moisture of 68%, and rain within 48h, the pathogen's required microclimate window is 100% active. The decision engine elevates confidence to",
+                    )}{" "}
+                    <strong>{tr(calibratedConfidence)}%</strong>
+                    {tr(
+                      ', localizing the outbreak to Zone B1 while safely checking chemical constraints."',
+                    )}
                   </p>
                 </div>
               </div>
@@ -621,69 +652,76 @@ export function ValidationRoute() {
 
             {/* Feature Attribution & Explainability (SHAP style) */}
             <Panel
-              eyebrow="Explainability & Attribution"
-              title="Feature Contribution Breakdown (SHAP)"
-              aside={<Chip tone="neural">Global Importance</Chip>}
+              eyebrow={tr("Explainability & Attribution")}
+              title={tr("Feature Contribution Breakdown (SHAP)")}
+              aside={<Chip tone="neural">{tr("Global Importance")}</Chip>}
             >
               <div className="space-y-4">
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Understanding why the model generates specific risk scores: Cropify provides exact
-                  feature weighting that drives the decision layer:
+                  {tr(
+                    "Understanding why the model generates specific risk scores: Cropify provides exact feature weighting that drives the decision layer:",
+                  )}
                 </p>
 
                 <div className="space-y-3">
                   <div>
                     <div className="flex justify-between text-xs mb-1">
                       <span className="font-medium text-foreground">
-                        Leaf Moisture Duration (&gt;6h)
+                        {tr("Leaf Moisture Duration (>6h)")}
                       </span>
-                      <span className="font-mono text-primary font-bold">28% (Weight: 0.28)</span>
+                      <span className="font-mono text-primary font-bold">
+                        {tr("28% (Weight: 0.28)")}
+                      </span>
                     </div>
                     <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                       <div className="h-full bg-primary rounded-full" style={{ width: "28%" }} />
                     </div>
                     <span className="text-[0.65rem] text-muted-foreground">
-                      Primary driver of fungal haustoria penetration
+                      {tr("Primary driver of fungal haustoria penetration")}
                     </span>
                   </div>
 
                   <div>
                     <div className="flex justify-between text-xs mb-1">
                       <span className="font-medium text-foreground">
-                        Historical Plot Recurrence
+                        {tr("Historical Plot Recurrence")}
                       </span>
-                      <span className="font-mono text-warning font-bold">22% (Weight: 0.22)</span>
+                      <span className="font-mono text-warning font-bold">
+                        {tr("22% (Weight: 0.22)")}
+                      </span>
                     </div>
                     <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                       <div className="h-full bg-warning rounded-full" style={{ width: "22%" }} />
                     </div>
                     <span className="text-[0.65rem] text-muted-foreground">
-                      Soil-borne spores overwintering from previous crop cycle
+                      {tr("Soil-borne spores overwintering from previous crop cycle")}
                     </span>
                   </div>
 
                   <div>
                     <div className="flex justify-between text-xs mb-1">
                       <span className="font-medium text-foreground">
-                        Canopy Relative Humidity (91%)
+                        {tr("Canopy Relative Humidity (91%)")}
                       </span>
-                      <span className="font-mono text-water font-bold">21% (Weight: 0.21)</span>
+                      <span className="font-mono text-water font-bold">
+                        {tr("21% (Weight: 0.21)")}
+                      </span>
                     </div>
                     <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
                       <div className="h-full bg-water rounded-full" style={{ width: "21%" }} />
                     </div>
                     <span className="text-[0.65rem] text-muted-foreground">
-                      Exceeds the 85% threshold required for sporulation
+                      {tr("Exceeds the 85% threshold required for sporulation")}
                     </span>
                   </div>
 
                   <div>
                     <div className="flex justify-between text-xs mb-1">
                       <span className="font-medium text-foreground">
-                        Nitrogen Level (NPK Sensor: 42 mg/kg)
+                        {tr("Nitrogen Level (NPK Sensor: 42 mg/kg)")}
                       </span>
                       <span className="font-mono text-foreground font-bold">
-                        13% (Weight: 0.13)
+                        {tr("13% (Weight: 0.13)")}
                       </span>
                     </div>
                     <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
@@ -693,17 +731,17 @@ export function ValidationRoute() {
                       />
                     </div>
                     <span className="text-[0.65rem] text-muted-foreground">
-                      Dense vegetative canopy impedes internal airflow
+                      {tr("Dense vegetative canopy impedes internal airflow")}
                     </span>
                   </div>
 
                   <div>
                     <div className="flex justify-between text-xs mb-1">
                       <span className="font-medium text-foreground">
-                        Crop Phenological Stage (Vegetative)
+                        {tr("Crop Phenological Stage (Vegetative)")}
                       </span>
                       <span className="font-mono text-muted-foreground font-bold">
-                        10% (Weight: 0.10)
+                        {tr("10% (Weight: 0.10)")}
                       </span>
                     </div>
                     <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
@@ -713,16 +751,16 @@ export function ValidationRoute() {
                       />
                     </div>
                     <span className="text-[0.65rem] text-muted-foreground">
-                      Lower canopy leaves are most vulnerable to soil splash
+                      {tr("Lower canopy leaves are most vulnerable to soil splash")}
                     </span>
                   </div>
                 </div>
 
                 <div className="p-3 rounded-lg bg-surface border border-border/60 text-xs text-muted-foreground leading-relaxed">
-                  <strong>Core Agronomic Finding:</strong> Unlike standard deep neural networks
-                  which operate as black boxes, Cropify justifies every prediction with exact
-                  feature contributions, proving that the diagnostic output is grounded in agronomic
-                  physical reality.
+                  <strong>{tr("Core Agronomic Finding:")}</strong>{" "}
+                  {tr(
+                    "Unlike standard deep neural networks which operate as black boxes, Cropify justifies every prediction with exact feature contributions, proving that the diagnostic output is grounded in agronomic physical reality.",
+                  )}
                 </div>
               </div>
             </Panel>
@@ -730,24 +768,32 @@ export function ValidationRoute() {
 
           {/* Spatial Interpretation & Guardrail Enforcement */}
           <div className="grid gap-6 md:grid-cols-2">
-            <Panel eyebrow="Spatial Interpretation" title="Zone-by-Zone Telemetry Variance">
+            <Panel
+              eyebrow={tr("Spatial Interpretation")}
+              title={tr("Zone-by-Zone Telemetry Variance")}
+            >
               <div className="space-y-3">
                 <p className="text-xs text-muted-foreground">
-                  How Cropify differentiates healthy vs diseased zones across the 2.5-acre digital
-                  twin:
+                  {tr(
+                    "How Cropify differentiates healthy vs diseased zones across the 2.5-acre digital twin:",
+                  )}
                 </p>
                 <div className="space-y-2 text-xs">
                   <div className="p-3 rounded-lg bg-healthy/5 border border-healthy/30 flex justify-between items-center">
                     <div>
-                      <span className="font-bold text-foreground block">Zone A1 (North Block)</span>
+                      <span className="font-bold text-foreground block">
+                        {tr("Zone A1 (North Block)")}
+                      </span>
                       <span className="text-[0.7rem] text-muted-foreground">
-                        Moisture 58% • Airflow optimal • Canopy dry
+                        {tr("Moisture 58% • Airflow optimal • Canopy dry")}
                       </span>
                     </div>
                     <div className="text-right">
-                      <span className="font-mono font-bold text-healthy">8% Disease Risk</span>
+                      <span className="font-mono font-bold text-healthy">
+                        {tr("8% Disease Risk")}
+                      </span>
                       <span className="text-[0.65rem] text-muted-foreground block">
-                        Healthy growth
+                        {tr("Healthy growth")}
                       </span>
                     </div>
                   </div>
@@ -755,16 +801,18 @@ export function ValidationRoute() {
                   <div className="p-3 rounded-lg bg-critical/10 border border-critical/30 flex justify-between items-center">
                     <div>
                       <span className="font-bold text-foreground block">
-                        Zone B1 (Canopy Depression)
+                        {tr("Zone B1 (Canopy Depression)")}
                       </span>
                       <span className="text-[0.7rem] text-muted-foreground">
-                        Moisture 79% • Soil saturation • Leaf wetness high
+                        {tr("Moisture 79% • Soil saturation • Leaf wetness high")}
                       </span>
                     </div>
                     <div className="text-right">
-                      <span className="font-mono font-bold text-critical">74% Disease Risk</span>
+                      <span className="font-mono font-bold text-critical">
+                        {tr("74% Disease Risk")}
+                      </span>
                       <span className="text-[0.65rem] text-critical block">
-                        Active Blight Cluster
+                        {tr("Active Blight Cluster")}
                       </span>
                     </div>
                   </div>
@@ -772,16 +820,18 @@ export function ValidationRoute() {
                   <div className="p-3 rounded-lg bg-warning/5 border border-warning/30 flex justify-between items-center">
                     <div>
                       <span className="font-bold text-foreground block">
-                        Zone C1 (South-East Block)
+                        {tr("Zone C1 (South-East Block)")}
                       </span>
                       <span className="text-[0.7rem] text-muted-foreground">
-                        Moisture 71% • Drip over-irrigation notice
+                        {tr("Moisture 71% • Drip over-irrigation notice")}
                       </span>
                     </div>
                     <div className="text-right">
-                      <span className="font-mono font-bold text-warning">34% Disease Risk</span>
+                      <span className="font-mono font-bold text-warning">
+                        {tr("34% Disease Risk")}
+                      </span>
                       <span className="text-[0.65rem] text-muted-foreground block">
-                        Stress warning
+                        {tr("Stress warning")}
                       </span>
                     </div>
                   </div>
@@ -790,39 +840,43 @@ export function ValidationRoute() {
             </Panel>
 
             <Panel
-              eyebrow="Safety Guardrail Trace"
-              title="Interpreting Why Spray Was Blocked (Rule #052)"
+              eyebrow={tr("Safety Guardrail Trace")}
+              title={tr("Interpreting Why Spray Was Blocked (Rule #052)")}
             >
               <div className="space-y-3">
                 <p className="text-xs text-muted-foreground">
-                  A crucial part of Results Interpretation is explaining{" "}
-                  <strong>negative decisions</strong> (why the system refused to execute an
-                  intuitive recommendation):
+                  {tr("A crucial part of Results Interpretation is explaining")}{" "}
+                  <strong>{tr("negative decisions")}</strong>{" "}
+                  {tr("(why the system refused to execute an intuitive recommendation):")}
                 </p>
 
                 <div className="p-3.5 rounded-lg bg-warning/10 border border-warning/30 space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold text-warning flex items-center gap-1.5">
                       <AlertTriangle className="size-4" />
-                      Rule #052: Rain-Fungicide Hazard Override
+                      {tr("Rule #052: Rain-Fungicide Hazard Override")}
                     </span>
                     <Badge variant="destructive" className="text-[0.65rem]">
-                      SPRAY BLOCKED
+                      {tr("SPRAY BLOCKED")}
                     </Badge>
                   </div>
                   <p className="text-[0.72rem] text-foreground leading-relaxed">
-                    <strong>Input State:</strong> Zone B1 has 91% disease score → Standard AI
-                    proposes immediate Mancozeb 75% WP spray.
+                    <strong>{tr("Input State:")}</strong>{" "}
+                    {tr(
+                      "Zone B1 has 91% disease score → Standard AI proposes immediate Mancozeb 75% WP spray.",
+                    )}
                   </p>
                   <p className="text-[0.72rem] text-muted-foreground leading-relaxed">
-                    <strong>Symbolic Override:</strong> Weather API indicates 72% rain probability
-                    within 12 hours. Spraying before rainfall leads to 100% chemical runoff into
-                    soil water table, wasting ₹1,400/acre and causing aquatic toxicity without
-                    curing foliage.
+                    <strong>{tr("Symbolic Override:")}</strong>{" "}
+                    {tr(
+                      "Weather API indicates 72% rain probability within 12 hours. Spraying before rainfall leads to 100% chemical runoff into soil water table, wasting ₹1,400/acre and causing aquatic toxicity without curing foliage.",
+                    )}
                   </p>
                   <p className="text-[0.72rem] text-primary font-semibold">
-                    <strong>Final Prescription:</strong> Postpone spray by 24h. Ventilate canopy and
-                    reduce Zone C1 evening drip immediately.
+                    <strong>{tr("Final Prescription:")}</strong>{" "}
+                    {tr(
+                      "Postpone spray by 24h. Ventilate canopy and reduce Zone C1 evening drip immediately.",
+                    )}
                   </p>
                 </div>
               </div>
@@ -838,22 +892,25 @@ export function ValidationRoute() {
             <div>
               <div className="flex items-center gap-2">
                 <span className="px-2.5 py-0.5 rounded text-[0.7rem] font-mono font-bold bg-water text-white">
-                  PILLAR 2
+                  {tr("PILLAR 2")}
                 </span>
                 <span className="text-sm font-mono text-water font-bold">
-                  Accuracy & Hardware Profiling
+                  {tr("Accuracy & Hardware Profiling")}
                 </span>
               </div>
               <h2 className="text-2xl font-bold font-display text-foreground mt-1">
-                Quantitative System & Model Performance Metrics
+                {tr("Quantitative System & Model Performance Metrics")}
               </h2>
             </div>
-            <Chip tone="water">Benchmarked Suite</Chip>
+            <Chip tone="water">{tr("Benchmarked Suite")}</Chip>
           </div>
 
           {/* Model Accuracy & Regression Metrics Grid */}
           <div className="grid gap-6 md:grid-cols-2">
-            <Panel eyebrow="Perception Layer" title="Neural Disease Classifier Benchmarks">
+            <Panel
+              eyebrow={tr("Perception Layer")}
+              title={tr("Neural Disease Classifier Benchmarks")}
+            >
               <div className="grid grid-cols-2 gap-3 mt-2">
                 {classificationMetrics.map((m) => (
                   <div
@@ -861,22 +918,25 @@ export function ValidationRoute() {
                     className="p-3 rounded-lg bg-surface border border-border/60 text-center"
                   >
                     <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
-                      {m.metric}
+                      {tr(m.metric)}
                     </span>
                     <span className="text-xl font-bold font-display text-primary mt-1 block">
-                      {m.value}
+                      {tr(m.value)}
                     </span>
                   </div>
                 ))}
               </div>
               <div className="mt-4 p-3 rounded-lg bg-muted/20 border border-border/40 text-[0.72rem] text-muted-foreground leading-relaxed">
-                Evaluated across 2,400 curated multi-crop foliage images across classes (Healthy,
-                Early Blight, Late Blight, Septoria). Evaluated using 5-Fold Stratified Cross
-                Validation.
+                {tr(
+                  "Evaluated across 2,400 curated multi-crop foliage images across classes (Healthy, Early Blight, Late Blight, Septoria). Evaluated using 5-Fold Stratified Cross Validation.",
+                )}
               </div>
             </Panel>
 
-            <Panel eyebrow="Regression Layer" title="Yield Prediction Engine Benchmarks">
+            <Panel
+              eyebrow={tr("Regression Layer")}
+              title={tr("Yield Prediction Engine Benchmarks")}
+            >
               <div className="grid grid-cols-3 gap-3 mt-2">
                 {regressionMetrics.map((m) => (
                   <div
@@ -884,17 +944,18 @@ export function ValidationRoute() {
                     className="p-3 rounded-lg bg-surface border border-border/60 text-center"
                   >
                     <span className="text-[0.65rem] uppercase font-mono tracking-wider text-muted-foreground block">
-                      {m.metric}
+                      {tr(m.metric)}
                     </span>
                     <span className="text-lg font-bold font-display text-water mt-1 block">
-                      {m.value}
+                      {tr(m.value)}
                     </span>
                   </div>
                 ))}
               </div>
               <div className="mt-4 p-3 rounded-lg bg-muted/20 border border-border/40 text-[0.72rem] text-muted-foreground leading-relaxed">
-                Trained on historical multi-season crop records. R² of 0.87 demonstrates strong
-                variance capture against variable irrigation and nitrogen fertilization levels.
+                {tr(
+                  "Trained on historical multi-season crop records. R² of 0.87 demonstrates strong variance capture against variable irrigation and nitrogen fertilization levels.",
+                )}
               </div>
             </Panel>
           </div>
@@ -902,8 +963,8 @@ export function ValidationRoute() {
           {/* System Latency & Hardware Performance */}
           <div className="grid gap-6 lg:grid-cols-2">
             <Panel
-              eyebrow="Latency & Execution Speed"
-              title="Pipeline Latency Breakdown (Total: 180 ms)"
+              eyebrow={tr("Latency & Execution Speed")}
+              title={tr("Pipeline Latency Breakdown (Total: 180 ms)")}
             >
               <div className="space-y-3 mt-2">
                 {latencyBreakdown.map((l) => (
@@ -912,55 +973,60 @@ export function ValidationRoute() {
                     className="p-3 rounded-lg bg-surface border border-border/60 flex items-center justify-between"
                   >
                     <div>
-                      <span className="text-xs font-semibold text-foreground block">{l.step}</span>
+                      <span className="text-xs font-semibold text-foreground block">
+                        {tr(l.step)}
+                      </span>
                       <span className="text-[0.65rem] font-mono text-muted-foreground">
-                        99th percentile: {l.p99}
+                        {tr("99th percentile:")} {tr(l.p99)}
                       </span>
                     </div>
-                    <Chip tone={l.tone}>{l.time}</Chip>
+                    <Chip tone={l.tone}>{tr(l.time)}</Chip>
                   </div>
                 ))}
               </div>
               <p className="mt-4 text-xs text-muted-foreground leading-relaxed">
-                <strong>Real-Time Feasibility:</strong> The entire pipeline executes in under 200
-                ms, enabling live telemetry ingestion without stalling edge microcontroller queues
-                or web client responsiveness.
+                <strong>{tr("Real-Time Feasibility:")}</strong>{" "}
+                {tr(
+                  "The entire pipeline executes in under 200 ms, enabling live telemetry ingestion without stalling edge microcontroller queues or web client responsiveness.",
+                )}
               </p>
             </Panel>
 
             <Panel
-              eyebrow="Edge Hardware Performance"
-              title="ESP32 & RS485 Hardware Specifications"
+              eyebrow={tr("Edge Hardware Performance")}
+              title={tr("ESP32 & RS485 Hardware Specifications")}
             >
               <div className="space-y-3 mt-2 text-xs">
                 <div className="p-3 rounded-lg bg-surface border border-border/60 flex justify-between items-center">
-                  <span className="text-muted-foreground">Microcontroller Core</span>
+                  <span className="text-muted-foreground">{tr("Microcontroller Core")}</span>
                   <span className="font-mono font-bold text-foreground">
-                    ESP32 Dual-Core @ 240 MHz
+                    {tr("ESP32 Dual-Core @ 240 MHz")}
                   </span>
                 </div>
                 <div className="p-3 rounded-lg bg-surface border border-border/60 flex justify-between items-center">
-                  <span className="text-muted-foreground">Sensor Interface</span>
+                  <span className="text-muted-foreground">{tr("Sensor Interface")}</span>
                   <span className="font-mono font-bold text-primary">
-                    RS485 Modbus RTU (Half-Duplex)
+                    {tr("RS485 Modbus RTU (Half-Duplex)")}
                   </span>
                 </div>
                 <div className="p-3 rounded-lg bg-surface border border-border/60 flex justify-between items-center">
-                  <span className="text-muted-foreground">Probe Material & Ingress</span>
+                  <span className="text-muted-foreground">{tr("Probe Material & Ingress")}</span>
                   <span className="font-mono font-bold text-foreground">
-                    316L Stainless Steel • IP68 Waterproof
+                    {tr("316L Stainless Steel • IP68 Waterproof")}
                   </span>
                 </div>
                 <div className="p-3 rounded-lg bg-surface border border-border/60 flex justify-between items-center">
-                  <span className="text-muted-foreground">Active Battery Life (18650 Li-ion)</span>
+                  <span className="text-muted-foreground">
+                    {tr("Active Battery Life (18650 Li-ion)")}
+                  </span>
                   <span className="font-mono font-bold text-healthy">
-                    32 hours active • 14 days deep sleep
+                    {tr("32 hours active • 14 days deep sleep")}
                   </span>
                 </div>
                 <div className="p-3 rounded-lg bg-surface border border-border/60 flex justify-between items-center">
-                  <span className="text-muted-foreground">Modbus Polling Cycle</span>
+                  <span className="text-muted-foreground">{tr("Modbus Polling Cycle")}</span>
                   <span className="font-mono font-bold text-water">
-                    1,000 ms continuous sampling
+                    {tr("1,000 ms continuous sampling")}
                   </span>
                 </div>
               </div>
@@ -969,19 +1035,19 @@ export function ValidationRoute() {
 
           {/* Model Comparison Table */}
           <Panel
-            eyebrow="Comparative Benchmark"
-            title="Cropify vs Alternative Baseline Architectures"
+            eyebrow={tr("Comparative Benchmark")}
+            title={tr("Cropify vs Alternative Baseline Architectures")}
           >
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-left">
                 <thead>
                   <tr className="border-b border-border/60 text-muted-foreground font-semibold">
-                    <th className="py-2.5">Architecture</th>
-                    <th className="py-2.5">Accuracy</th>
-                    <th className="py-2.5">F1-Score</th>
-                    <th className="py-2.5">Explainability</th>
-                    <th className="py-2.5">Hallucination Risk</th>
-                    <th className="py-2.5 text-right">Inference Latency</th>
+                    <th className="py-2.5">{tr("Architecture")}</th>
+                    <th className="py-2.5">{tr("Accuracy")}</th>
+                    <th className="py-2.5">{tr("F1-Score")}</th>
+                    <th className="py-2.5">{tr("Explainability")}</th>
+                    <th className="py-2.5">{tr("Hallucination Risk")}</th>
+                    <th className="py-2.5 text-right">{tr("Inference Latency")}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y border-border/20">
@@ -992,11 +1058,11 @@ export function ValidationRoute() {
                     >
                       <td className="py-3 text-foreground font-semibold flex items-center gap-1.5">
                         {idx === 0 && <CheckCircle2 className="size-3.5 text-primary" />}
-                        {b.model}
+                        {tr(b.model)}
                       </td>
-                      <td className="py-3 font-mono text-primary">{b.accuracy}</td>
-                      <td className="py-3 font-mono text-foreground">{b.f1}</td>
-                      <td className="py-3 text-muted-foreground">{b.explainability}</td>
+                      <td className="py-3 font-mono text-primary">{tr(b.accuracy)}</td>
+                      <td className="py-3 font-mono text-foreground">{tr(b.f1)}</td>
+                      <td className="py-3 text-muted-foreground">{tr(b.explainability)}</td>
                       <td className="py-3">
                         <span
                           className={
@@ -1007,10 +1073,10 @@ export function ValidationRoute() {
                                 : "text-muted-foreground"
                           }
                         >
-                          {b.hallucinationRate}
+                          {tr(b.hallucinationRate)}
                         </span>
                       </td>
-                      <td className="py-3 text-right font-mono">{b.latency}</td>
+                      <td className="py-3 text-right font-mono">{tr(b.latency)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -1027,97 +1093,103 @@ export function ValidationRoute() {
             <div>
               <div className="flex items-center gap-2">
                 <span className="px-2.5 py-0.5 rounded text-[0.7rem] font-mono font-bold bg-symbolic text-white">
-                  PILLAR 3
+                  {tr("PILLAR 3")}
                 </span>
                 <span className="text-sm font-mono text-symbolic font-bold">
-                  Physical & Safety Grounding
+                  {tr("Physical & Safety Grounding")}
                 </span>
               </div>
               <h2 className="text-2xl font-bold font-display text-foreground mt-1">
-                Outcome Validation & Three-Tier Verification
+                {tr("Outcome Validation & Three-Tier Verification")}
               </h2>
             </div>
-            <Chip tone="healthy">Triple-Verified</Chip>
+            <Chip tone="healthy">{tr("Triple-Verified")}</Chip>
           </div>
 
           {/* Three Tier Architecture Description */}
           <div className="grid gap-6 md:grid-cols-3">
             <div className="panel p-5 bg-background/30 border-t-2 border-t-neural space-y-2">
               <span className="text-[0.65rem] font-mono uppercase text-neural font-bold">
-                Tier 1 Validation
+                {tr("Tier 1 Validation")}
               </span>
               <h3 className="text-sm font-bold font-display text-foreground">
-                Statistical Prediction Validation
+                {tr("Statistical Prediction Validation")}
               </h3>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Validated against held-out 80:20 test partitions and reference laboratory
-                ground-truth samples from ICAR databases. Precision and recall audited for false
-                negatives.
+                {tr(
+                  "Validated against held-out 80:20 test partitions and reference laboratory ground-truth samples from ICAR databases. Precision and recall audited for false negatives.",
+                )}
               </p>
               <div className="pt-2 text-[0.7rem] font-mono text-healthy font-semibold">
-                ✓ 94.2% Test Accuracy Confirmed
+                {tr("✓ 94.2% Test Accuracy Confirmed")}
               </div>
             </div>
 
             <div className="panel p-5 bg-background/30 border-t-2 border-t-water space-y-2">
               <span className="text-[0.65rem] font-mono uppercase text-water font-bold">
-                Tier 2 Validation
+                {tr("Tier 2 Validation")}
               </span>
               <h3 className="text-sm font-bold font-display text-foreground">
-                Agronomic Scenario Physical Laws
+                {tr("Agronomic Scenario Physical Laws")}
               </h3>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Scenario simulation tested against fundamental biological laws (Mitscherlich curve,
-                root hypoxia, waterlogging thresholds) to ensure predictions never violate physical
-                reality.
+                {tr(
+                  "Scenario simulation tested against fundamental biological laws (Mitscherlich curve, root hypoxia, waterlogging thresholds) to ensure predictions never violate physical reality.",
+                )}
               </p>
               <div className="pt-2 text-[0.7rem] font-mono text-healthy font-semibold">
-                ✓ 4/4 Scenario Audits Passed
+                {tr("✓ 4/4 Scenario Audits Passed")}
               </div>
             </div>
 
             <div className="panel p-5 bg-background/30 border-t-2 border-t-healthy space-y-2">
               <span className="text-[0.65rem] font-mono uppercase text-healthy font-bold">
-                Tier 3 Validation
+                {tr("Tier 3 Validation")}
               </span>
               <h3 className="text-sm font-bold font-display text-foreground">
-                Neuro-Symbolic Safety Integrity
+                {tr("Neuro-Symbolic Safety Integrity")}
               </h3>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Stress-tested with 250 anomalous corner cases to ensure the symbolic rule engine
-                strictly prevents dangerous dosage recommendations or toxic spray schedules.
+                {tr(
+                  "Stress-tested with 250 anomalous corner cases to ensure the symbolic rule engine strictly prevents dangerous dosage recommendations or toxic spray schedules.",
+                )}
               </p>
               <div className="pt-2 text-[0.7rem] font-mono text-healthy font-semibold">
-                ✓ 100% Rule Override Block Rate
+                {tr("✓ 100% Rule Override Block Rate")}
               </div>
             </div>
           </div>
 
           {/* Scenario Verification Table */}
-          <Panel eyebrow="Biological Law Auditing" title="Agronomic Scenario Behavior Audits">
+          <Panel
+            eyebrow={tr("Biological Law Auditing")}
+            title={tr("Agronomic Scenario Behavior Audits")}
+          >
             <div className="overflow-x-auto">
               <table className="w-full text-xs text-left">
                 <thead>
                   <tr className="border-b border-border/60 text-muted-foreground font-semibold">
-                    <th className="py-2">Intervention Setup</th>
-                    <th className="py-2">Predicted Yield Change</th>
-                    <th className="py-2">Agronomic Expectation</th>
-                    <th className="py-2">Scientific Basis</th>
-                    <th className="py-2 text-right">Validation</th>
+                    <th className="py-2">{tr("Intervention Setup")}</th>
+                    <th className="py-2">{tr("Predicted Yield Change")}</th>
+                    <th className="py-2">{tr("Agronomic Expectation")}</th>
+                    <th className="py-2">{tr("Scientific Basis")}</th>
+                    <th className="py-2 text-right">{tr("Validation")}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/20">
                   {scenarioValidations.map((val, index) => (
                     <tr key={index} className="hover:bg-muted/5">
-                      <td className="py-3 font-medium text-foreground">{val.intervention}</td>
-                      <td className="py-3 font-mono text-primary font-bold">{val.prediction}</td>
-                      <td className="py-3 text-muted-foreground">{val.expected}</td>
+                      <td className="py-3 font-medium text-foreground">{tr(val.intervention)}</td>
+                      <td className="py-3 font-mono text-primary font-bold">
+                        {tr(val.prediction)}
+                      </td>
+                      <td className="py-3 text-muted-foreground">{tr(val.expected)}</td>
                       <td className="py-3 text-[0.7rem] text-muted-foreground/80">
-                        {val.scientificBasis}
+                        {tr(val.scientificBasis)}
                       </td>
                       <td className="py-3 text-right">
                         <span className="inline-flex items-center gap-1 font-mono font-bold text-[0.65rem] text-healthy bg-healthy/10 px-2 py-0.5 rounded border border-healthy/30">
-                          <CheckCircle2 className="size-3" /> {val.status}
+                          <CheckCircle2 className="size-3" /> {tr(val.status)}
                         </span>
                       </td>
                     </tr>
@@ -1129,51 +1201,55 @@ export function ValidationRoute() {
 
           {/* Real-World Longitudinal Farm Outcome Case Study */}
           <Panel
-            eyebrow="Longitudinal Farm Validation"
-            title="Real-World Field Outcome (Active Demonstration Plot)"
+            eyebrow={tr("Longitudinal Farm Validation")}
+            title={tr("Real-World Field Outcome (Active Demonstration Plot)")}
           >
             <div className="grid gap-6 md:grid-cols-[1.2fr_1fr] items-center">
               <div className="space-y-3">
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  How Cropify's diagnostic intervention verified real-world crop salvage over a
-                  5-day cycle:
+                  {tr(
+                    "How Cropify's diagnostic intervention verified real-world crop salvage over a 5-day cycle:",
+                  )}
                 </p>
                 <div className="space-y-2 text-xs">
                   <div className="p-2.5 rounded-lg bg-surface border border-border/40 flex items-start gap-3">
                     <span className="font-mono text-[0.7rem] font-bold text-critical shrink-0">
-                      Day 1 (01 Jul)
+                      {tr("Day 1 (01 Jul)")}
                     </span>
                     <span className="text-muted-foreground">
-                      Vision model flags Early Blight in Zone B1 (82%). System raises alert, but
-                      suppresses immediate spray due to upcoming 72% rain forecast.
+                      {tr(
+                        "Vision model flags Early Blight in Zone B1 (82%). System raises alert, but suppresses immediate spray due to upcoming 72% rain forecast.",
+                      )}
                     </span>
                   </div>
                   <div className="p-2.5 rounded-lg bg-surface border border-border/40 flex items-start gap-3">
                     <span className="font-mono text-[0.7rem] font-bold text-water shrink-0">
-                      Day 2 (02 Jul)
+                      {tr("Day 2 (02 Jul)")}
                     </span>
                     <span className="text-muted-foreground">
-                      22mm rain event passes. Rain-delay rule proven correct; chemical wash-off and
-                      financial loss avoided.
+                      {tr(
+                        "22mm rain event passes. Rain-delay rule proven correct; chemical wash-off and financial loss avoided.",
+                      )}
                     </span>
                   </div>
                   <div className="p-2.5 rounded-lg bg-surface border border-border/40 flex items-start gap-3">
                     <span className="font-mono text-[0.7rem] font-bold text-primary shrink-0">
-                      Day 3 (03 Jul)
+                      {tr("Day 3 (03 Jul)")}
                     </span>
                     <span className="text-muted-foreground">
-                      Drip cycle cut in Zone C1 to drain waterlogged soil. Recommended fungicide
-                      applied to dry foliage.
+                      {tr(
+                        "Drip cycle cut in Zone C1 to drain waterlogged soil. Recommended fungicide applied to dry foliage.",
+                      )}
                     </span>
                   </div>
                   <div className="p-2.5 rounded-lg bg-surface border border-border/40 flex items-start gap-3">
                     <span className="font-mono text-[0.7rem] font-bold text-healthy shrink-0">
-                      Day 5 (05 Jul)
+                      {tr("Day 5 (05 Jul)")}
                     </span>
                     <span className="text-muted-foreground">
-                      Lesions successfully contained.{" "}
-                      <strong>Health score recovered from 54 → 61 (+7 pts)</strong>, preventing an
-                      estimated 0.35 t/acre yield loss.
+                      {tr("Lesions successfully contained.")}{" "}
+                      <strong>{tr("Health score recovered from 54 → 61 (+7 pts)")}</strong>
+                      {tr(", preventing an estimated 0.35 t/acre yield loss.")}
                     </span>
                   </div>
                 </div>
@@ -1181,28 +1257,28 @@ export function ValidationRoute() {
 
               <div className="panel p-5 bg-healthy/5 border-healthy/30 space-y-4 text-center">
                 <span className="text-[0.68rem] font-mono uppercase tracking-wider text-healthy font-bold block">
-                  Measured Outcome Impact
+                  {tr("Measured Outcome Impact")}
                 </span>
                 <div>
                   <span className="text-4xl font-bold font-display text-healthy block">
-                    +7 Points
+                    {tr("+7 Points")}
                   </span>
                   <span className="text-xs text-muted-foreground mt-1 block">
-                    Health Score Recovery (54 → 61)
+                    {tr("Health Score Recovery (54 → 61)")}
                   </span>
                 </div>
                 <div className="pt-3 border-t border-healthy/20 grid grid-cols-2 gap-2 text-left text-xs">
                   <div>
                     <span className="text-[0.65rem] text-muted-foreground block">
-                      Yield Protected:
+                      {tr("Yield Protected:")}
                     </span>
-                    <span className="font-mono font-bold text-foreground">0.35 t/acre</span>
+                    <span className="font-mono font-bold text-foreground">{tr("0.35 t/acre")}</span>
                   </div>
                   <div>
                     <span className="text-[0.65rem] text-muted-foreground block">
-                      Chemical Cost Saved:
+                      {tr("Chemical Cost Saved:")}
                     </span>
-                    <span className="font-mono font-bold text-foreground">₹1,400/acre</span>
+                    <span className="font-mono font-bold text-foreground">{tr("₹1,400/acre")}</span>
                   </div>
                 </div>
               </div>
@@ -1213,17 +1289,19 @@ export function ValidationRoute() {
 
       {/* REFERENCED DATABASES & PROVENANCE */}
       <Panel
-        eyebrow="Data Inventory & Provenance"
-        title="Referenced Databases & Live Telemetry Feeds"
+        eyebrow={tr("Data Inventory & Provenance")}
+        title={tr("Referenced Databases & Live Telemetry Feeds")}
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {dataSources.map((ds) => (
             <div key={ds.name} className="panel bg-background/25 border-border/60 p-4 space-y-3">
               <div className="flex justify-between items-start">
-                <h4 className="text-xs font-semibold font-display text-foreground">{ds.name}</h4>
-                <Chip tone="symbolic">{ds.kind}</Chip>
+                <h4 className="text-xs font-semibold font-display text-foreground">
+                  {tr(ds.name)}
+                </h4>
+                <Chip tone="symbolic">{tr(ds.kind)}</Chip>
               </div>
-              <p className="text-[0.68rem] text-muted-foreground leading-normal">{ds.note}</p>
+              <p className="text-[0.68rem] text-muted-foreground leading-normal">{tr(ds.note)}</p>
             </div>
           ))}
         </div>

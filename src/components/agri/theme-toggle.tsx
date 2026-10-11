@@ -1,6 +1,7 @@
 import { Sun, Moon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { tr } from "@/lib/i18n";
 
 export function ThemeToggle({ className }: { className?: string }) {
   const [isDark, setIsDark] = useState(false);
@@ -29,8 +30,8 @@ export function ThemeToggle({ className }: { className?: string }) {
         "inline-flex items-center justify-center gap-2 rounded-full text-sm transition-colors cursor-pointer",
         className,
       )}
-      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      aria-label="Toggle light and dark mode"
+      title={isDark ? tr("Switch to light mode") : tr("Switch to dark mode")}
+      aria-label={tr("Toggle light and dark mode")}
     >
       {isDark ? <Sun className="size-4" /> : <Moon className="size-4" />}
     </button>

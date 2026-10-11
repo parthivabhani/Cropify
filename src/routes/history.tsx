@@ -3,6 +3,7 @@ import { useState } from "react";
 import { History, Sprout, CloudSun, UserCheck, ShieldAlert, Cpu } from "lucide-react";
 import { PageHeader, Panel, SourceBadge, Disclaimer } from "@/components/agri/primitives";
 import { timeline } from "@/lib/agri-data";
+import { tr } from "@/lib/i18n";
 
 export const Route = createFileRoute("/history")({
   head: () => ({
@@ -69,9 +70,11 @@ function FarmHistory() {
   return (
     <div className="space-y-8">
       <PageHeader
-        eyebrow="Audit Trail"
-        title="Farm History & Logs"
-        subtitle="Review a longitudinal ledger of activities, observations, model inferences, and recommendation outcomes. Every log entry is stamped with its provenance origin."
+        eyebrow={tr("Audit Trail")}
+        title={tr("Farm History & Logs")}
+        subtitle={tr(
+          "Review a longitudinal ledger of activities, observations, model inferences, and recommendation outcomes. Every log entry is stamped with its provenance origin.",
+        )}
       />
 
       <div className="flex gap-2 border-b border-border/40 pb-4 overflow-x-auto">
@@ -83,7 +86,7 @@ function FarmHistory() {
               : "text-muted-foreground border-border/80 hover:bg-muted/10"
           }`}
         >
-          All Logs
+          {tr("All Logs")}
         </button>
         <button
           onClick={() => setFilterType("activity")}
@@ -93,7 +96,7 @@ function FarmHistory() {
               : "text-muted-foreground border-border/80 hover:bg-muted/10"
           }`}
         >
-          Farm Activities
+          {tr("Farm Activities")}
         </button>
         <button
           onClick={() => setFilterType("detection")}
@@ -103,7 +106,7 @@ function FarmHistory() {
               : "text-muted-foreground border-border/80 hover:bg-muted/10"
           }`}
         >
-          AI & Observations
+          {tr("AI & Observations")}
         </button>
         <button
           onClick={() => setFilterType("recommendation")}
@@ -113,7 +116,7 @@ function FarmHistory() {
               : "text-muted-foreground border-border/80 hover:bg-muted/10"
           }`}
         >
-          Recommendations
+          {tr("Recommendations")}
         </button>
       </div>
 
@@ -137,14 +140,14 @@ function FarmHistory() {
                     <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
                       <div className="flex items-center gap-3">
                         <span className="font-mono text-xs font-bold text-primary">
-                          {item.date}
+                          {tr(item.date)}
                         </span>
-                        <span className="font-display text-sm font-semibold">{item.kind}</span>
+                        <span className="font-display text-sm font-semibold">{tr(item.kind)}</span>
                       </div>
                       <SourceBadge source={item.source} />
                     </div>
                     <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
-                      {item.text}
+                      {tr(item.text)}
                     </p>
                   </div>
                 </div>
@@ -154,7 +157,7 @@ function FarmHistory() {
             <div className="text-center py-10">
               <History className="size-8 text-muted-foreground mx-auto mb-2" />
               <p className="text-sm text-muted-foreground">
-                No events found matching selected filter.
+                {tr("No events found matching selected filter.")}
               </p>
             </div>
           )}

@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { PageHeader, Panel, Stat, Chip, Disclaimer } from "@/components/agri/primitives";
 import { farm, weatherSeries } from "@/lib/agri-data";
+import { tr } from "@/lib/i18n";
 
 export const Route = createFileRoute("/weather")({
   head: () => ({
@@ -41,9 +42,11 @@ function Weather() {
   return (
     <div className="space-y-8">
       <PageHeader
-        eyebrow="Sensor Telemetry"
-        title="Weather Intelligence"
-        subtitle="Localized climate intelligence linked to agricultural rules. Atmospheric variables are evaluated continuously to detect microclimate risk windows."
+        eyebrow={tr("Sensor Telemetry")}
+        title={tr("Weather Intelligence")}
+        subtitle={tr(
+          "Localized climate intelligence linked to agricultural rules. Atmospheric variables are evaluated continuously to detect microclimate risk windows.",
+        )}
       />
 
       <div className="grid gap-4 grid-cols-2 md:grid-cols-5">
@@ -52,8 +55,11 @@ function Weather() {
             <Thermometer className="size-5" />
           </div>
           <div>
-            <p className="label-eyebrow text-[0.6rem]">Temperature</p>
-            <p className="text-lg font-semibold mt-0.5">{current.temp}°C</p>
+            <p className="label-eyebrow text-[0.6rem]">{tr("Temperature")}</p>
+            <p className="text-lg font-semibold mt-0.5">
+              {tr(current.temp)}
+              {tr("°C")}
+            </p>
           </div>
         </div>
 
@@ -62,8 +68,8 @@ function Weather() {
             <Droplet className="size-5" />
           </div>
           <div>
-            <p className="label-eyebrow text-[0.6rem]">Humidity</p>
-            <p className="text-lg font-semibold mt-0.5">{current.humidity}%</p>
+            <p className="label-eyebrow text-[0.6rem]">{tr("Humidity")}</p>
+            <p className="text-lg font-semibold mt-0.5">{tr(current.humidity)}%</p>
           </div>
         </div>
 
@@ -72,8 +78,8 @@ function Weather() {
             <CloudRain className="size-5" />
           </div>
           <div>
-            <p className="label-eyebrow text-[0.6rem]">Rainfall (48h)</p>
-            <p className="text-xs font-semibold mt-0.5">{current.rain}</p>
+            <p className="label-eyebrow text-[0.6rem]">{tr("Rainfall (48h)")}</p>
+            <p className="text-xs font-semibold mt-0.5">{tr(current.rain)}</p>
           </div>
         </div>
 
@@ -82,8 +88,10 @@ function Weather() {
             <Wind className="size-5" />
           </div>
           <div>
-            <p className="label-eyebrow text-[0.6rem]">Wind Speed</p>
-            <p className="text-lg font-semibold mt-0.5">{current.wind} km/h</p>
+            <p className="label-eyebrow text-[0.6rem]">{tr("Wind Speed")}</p>
+            <p className="text-lg font-semibold mt-0.5">
+              {tr(current.wind)} {tr("km/h")}
+            </p>
           </div>
         </div>
 
@@ -92,14 +100,14 @@ function Weather() {
             <Sun className="size-5" />
           </div>
           <div>
-            <p className="label-eyebrow text-[0.6rem]">UV Index</p>
-            <p className="text-lg font-semibold mt-0.5">{current.uv}/10</p>
+            <p className="label-eyebrow text-[0.6rem]">{tr("UV Index")}</p>
+            <p className="text-lg font-semibold mt-0.5">{tr(current.uv)}/10</p>
           </div>
         </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
-        <Panel eyebrow="Climate Trends" title="7-Day Microclimate Forecast">
+        <Panel eyebrow={tr("Climate Trends")} title={tr("7-Day Microclimate Forecast")}>
           <div className="h-72 w-full text-xs">
             <ResponsiveContainer width="100%" height="100%">
               <ComposedChart
@@ -107,13 +115,17 @@ function Weather() {
                 margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
               >
                 <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" opacity={0.3} />
-                <XAxis dataKey="day" stroke="var(--color-muted-foreground)" />
-                <YAxis yAxisId="left" stroke="var(--color-muted-foreground)" unit="°C" />
+                <XAxis
+                  dataKey="day"
+                  stroke="var(--color-muted-foreground)"
+                  tickFormatter={(v: string) => tr(v)}
+                />
+                <YAxis yAxisId="left" stroke="var(--color-muted-foreground)" unit={tr("°C")} />
                 <YAxis
                   yAxisId="right"
                   orientation="right"
                   stroke="var(--color-muted-foreground)"
-                  unit="mm"
+                  unit={tr("mm")}
                 />
                 <Tooltip
                   contentStyle={{
@@ -126,7 +138,7 @@ function Weather() {
                 <Legend verticalAlign="top" height={36} />
                 <Bar
                   yAxisId="right"
-                  name="Rainfall (mm)"
+                  name={tr("Rainfall (mm)")}
                   dataKey="rain"
                   fill="var(--color-water)"
                   fillOpacity={0.6}
@@ -135,7 +147,7 @@ function Weather() {
                 />
                 <Line
                   yAxisId="left"
-                  name="Temperature (°C)"
+                  name={tr("Temperature (°C)")}
                   type="monotone"
                   dataKey="temp"
                   stroke="var(--color-warning)"
@@ -143,7 +155,7 @@ function Weather() {
                 />
                 <Line
                   yAxisId="left"
-                  name="Humidity (%)"
+                  name={tr("Humidity (%)")}
                   type="monotone"
                   dataKey="humidity"
                   stroke="var(--color-healthy)"
@@ -154,45 +166,50 @@ function Weather() {
             </ResponsiveContainer>
           </div>
           <p className="mt-4 text-xs text-muted-foreground leading-relaxed text-center">
-            Rainfall predictions correspond to the right axis (bars), while temperature and humidity
-            curves map to the left axis (lines).
+            {tr(
+              "Rainfall predictions correspond to the right axis (bars), while temperature and humidity curves map to the left axis (lines).",
+            )}
           </p>
         </Panel>
 
         <div className="space-y-6">
-          <Panel eyebrow="Methodology Integration" title="Climate Rule Actuator">
+          <Panel eyebrow={tr("Methodology Integration")} title={tr("Climate Rule Actuator")}>
             <div className="space-y-4">
               <div className="rounded-lg border border-critical bg-critical/10 p-4 space-y-2">
                 <div className="flex items-center gap-2 text-critical">
                   <AlertTriangle className="size-4 shrink-0" />
-                  <span className="font-bold text-xs">Fungal Infection Window Active</span>
+                  <span className="font-bold text-xs">{tr("Fungal Infection Window Active")}</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Humidity is currently <strong>91%</strong> with rain in last 48 hours. Rule{" "}
-                  <strong>#018</strong> conditions are satisfied, activating blight warnings for
-                  susceptible <strong>vegetative crop</strong> blocks.
+                  {tr("Humidity is currently")} <strong>91%</strong>{" "}
+                  {tr("with rain in last 48 hours. Rule")} <strong>#018</strong>{" "}
+                  {tr("conditions are satisfied, activating blight warnings for susceptible")}{" "}
+                  <strong>{tr("vegetative crop")}</strong> {tr("blocks.")}
                 </p>
               </div>
 
               <div className="rounded-lg border border-warning bg-warning/5 p-4 space-y-2">
                 <div className="flex items-center gap-2 text-warning">
                   <AlertTriangle className="size-4 shrink-0" />
-                  <span className="font-bold text-xs">Postpone Crop Spraying (Rule #052)</span>
+                  <span className="font-bold text-xs">
+                    {tr("Postpone Crop Spraying (Rule #052)")}
+                  </span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  High rain probability within next 12 hours. Spraying fungicides/fertilizers is
-                  suppressed as rainfall causes runoff waste.
+                  {tr(
+                    "High rain probability within next 12 hours. Spraying fungicides/fertilizers is suppressed as rainfall causes runoff waste.",
+                  )}
                 </p>
               </div>
 
               <div className="rounded-lg border border-healthy/40 bg-healthy/10 p-4 space-y-2">
                 <div className="flex items-center gap-2 text-healthy">
                   <ShieldCheck className="size-4 shrink-0" />
-                  <span className="font-bold text-xs">Irrigation Recommendation</span>
+                  <span className="font-bold text-xs">{tr("Irrigation Recommendation")}</span>
                 </div>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Drip run-time in <strong>Zone C1</strong> should be reduced by 15-20 minutes to
-                  prevent high-moisture root damping.
+                  {tr("Drip run-time in")} <strong>{tr("Zone C1")}</strong>{" "}
+                  {tr("should be reduced by 15-20 minutes to prevent high-moisture root damping.")}
                 </p>
               </div>
             </div>

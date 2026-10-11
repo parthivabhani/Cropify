@@ -23,6 +23,7 @@ import { Chip } from "./primitives";
 import { cn } from "@/lib/utils";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { tr } from "@/lib/i18n";
 
 // GPS translation parameters centered on reference coordinates
 const BASE_LAT = 20.011;
@@ -386,13 +387,13 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
       prev.map((f) => {
         if (f.id !== activeFieldId) return f;
         if (f.vertices.length <= 3) {
-          toast.error("Cannot delete corner", {
-            description: "A field plot requires at least 3 vertices to outline its shape.",
+          toast.error(tr("Cannot delete corner"), {
+            description: tr("A field plot requires at least 3 vertices to outline its shape."),
           });
           return f;
         }
-        toast.info("Corner deleted", {
-          description: "Removed vertex point from the active field plot.",
+        toast.info(tr("Corner deleted"), {
+          description: tr("Removed vertex point from the active field plot."),
         });
         return {
           ...f,
@@ -449,16 +450,17 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
     };
     setFields((prev) => [...prev, newField]);
     setActiveFieldId(newId);
-    toast.success("New field polygon added!", {
-      description:
+    toast.success(tr("New field polygon added!"), {
+      description: tr(
         "Click anywhere on the map to add more boundary points, or drag the default pins.",
+      ),
     });
   };
 
   const handleDeleteField = (fId: string) => {
     if (fields.length <= 1) {
-      toast.error("Cannot delete field", {
-        description: "You must retain at least one field plot in the twin.",
+      toast.error(tr("Cannot delete field"), {
+        description: tr("You must retain at least one field plot in the twin."),
       });
       return;
     }
@@ -467,7 +469,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
       const remaining = fields.filter((f) => f.id !== fId);
       setActiveFieldId(remaining[0]!.id);
     }
-    toast.info("Field plot deleted");
+    toast.info(tr("Field plot deleted"));
   };
 
   const handleSaveMultiFieldBoundary = () => {
@@ -476,25 +478,25 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
     setSavedArea(finalArea);
     setSavedCoords(finalCoords);
     onSave(finalArea, finalCoords);
-    toast.success("Multi-field boundaries synced successfully!", {
-      description: `Cumulative Area: ${finalArea} Acres across ${fields.length} plots.`,
+    toast.success(tr("Multi-field boundaries synced successfully!"), {
+      description: tr(`Cumulative Area: ${finalArea} Acres across ${fields.length} plots.`),
     });
   };
 
   const handleViewCurrentLocation = () => {
     if (typeof navigator === "undefined" || !navigator.geolocation) {
-      toast.error("Geolocation is not supported by your browser");
+      toast.error(tr("Geolocation is not supported by your browser"));
       return;
     }
     setIsLocating(true);
-    toast.loading("Querying current device GPS fix...", { id: "gps-lock" });
+    toast.loading(tr("Querying current device GPS fix..."), { id: "gps-lock" });
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         setIsLocating(false);
-        toast.dismiss("gps-lock");
+        toast.dismiss(tr("gps-lock"));
         const { latitude, longitude, accuracy } = pos.coords;
-        toast.success(`Current location locked (±${Math.round(accuracy)}m)`, {
-          description: `${latitude.toFixed(6)}° N, ${longitude.toFixed(6)}° E`,
+        toast.success(tr(`Current location locked (±${Math.round(accuracy)}m)`), {
+          description: tr(`${latitude.toFixed(6)}° N, ${longitude.toFixed(6)}° E`),
         });
 
         if (mapRef.current) {
@@ -537,10 +539,10 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
       },
       (err) => {
         setIsLocating(false);
-        toast.dismiss("gps-lock");
+        toast.dismiss(tr("gps-lock"));
         console.warn("GPS lookup error:", err);
-        toast.error("Could not obtain device location", {
-          description: err.message || "Centering map on reference agricultural plot.",
+        toast.error(tr("Could not obtain device location"), {
+          description: tr(err.message) || tr("Centering map on reference agricultural plot."),
         });
         if (mapRef.current) {
           mapRef.current.setView([BASE_LAT, BASE_LNG], 17, { animate: true });
@@ -591,8 +593,8 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
         })
         .catch((err) => {
           console.error("Webcam hardware block:", err);
-          toast.error("Camera access failed", {
-            description: "Permission denied or hardware is in use by another app.",
+          toast.error(tr("Camera access failed"), {
+            description: tr("Permission denied or hardware is in use by another app."),
           });
         });
     }
@@ -616,7 +618,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
 
   const handleCameraCapture = () => {
     if (!videoRef.current || !stream) {
-      toast.error("Camera stream not ready");
+      toast.error(tr("Camera stream not ready"));
       return;
     }
 
@@ -682,7 +684,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
 
           setCapturedPoints((prev) => [...prev, newPt]);
           setScanStep("completed");
-          toast.success("Landmark registered with actual GPS coordinate!");
+          toast.success(tr("Landmark registered with actual GPS coordinate!"));
 
           setTimeout(() => {
             setScanStep("idle");
@@ -691,7 +693,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
       },
       (err) => {
         setScanStep("idle");
-        toast.error("GPS lock failed", { description: err.message });
+        toast.error(tr("GPS lock failed"), { description: tr(err.message) });
       },
       { enableHighAccuracy: true, timeout: 8000 },
     );
@@ -699,8 +701,8 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
 
   const handleApplyCameraBoundary = () => {
     if (capturedPoints.length < 3) {
-      toast.error("Insufficient points", {
-        description: "Must capture at least 3 corner landmarks to close the polygon.",
+      toast.error(tr("Insufficient points"), {
+        description: tr("Must capture at least 3 corner landmarks to close the polygon."),
       });
       return;
     }
@@ -724,8 +726,8 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
     setSavedCoords(finalCoords);
     onSave(finalArea, finalCoords);
 
-    toast.success("Boundary mapped from camera GPS points!", {
-      description: `Mapped area: ${finalArea} Acres centered at ${finalCoords}`,
+    toast.success(tr("Boundary mapped from camera GPS points!"), {
+      description: tr(`Mapped area: ${finalArea} Acres centered at ${finalCoords}`),
     });
   };
 
@@ -757,7 +759,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
   const addConsoleLog = (msg: string) => {
     setConsoleLogs((prev) => [
       ...prev.slice(-30),
-      `[${new Date().toLocaleTimeString([], { hour12: false })}] ${msg}`,
+      `[${new Date().toLocaleTimeString([], { hour12: false })}] ${tr(msg)}`,
     ]);
   };
 
@@ -836,7 +838,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
     if (gpsTelemetryMode === "real") {
       if (typeof navigator === "undefined" || !navigator.geolocation) {
         addConsoleLog("Error: Browser geolocation not supported.");
-        toast.error("GPS Watch failed");
+        toast.error(tr("GPS Watch failed"));
         setWalkActive(false);
         return;
       }
@@ -878,7 +880,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
         },
         (err) => {
           addConsoleLog(`GPS Error: ${err.message}`);
-          toast.error("GPS Tracking failed", { description: err.message });
+          toast.error(tr("GPS Tracking failed"), { description: tr(err.message) });
         },
         { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 },
       );
@@ -891,7 +893,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
           addConsoleLog("Simulation: Completed walk loop.");
           clearInterval(simTimerRef.current!);
           setWalkActive(false);
-          toast.success("Walk path completed!");
+          toast.success(tr("Walk path completed!"));
           return;
         }
 
@@ -934,8 +936,8 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
     const corner = loggedWalkPoints[loggedWalkPoints.length - 1];
     if (!corner) return;
     addConsoleLog(`Corner vertex marked at ${corner.lat.toFixed(6)}, ${corner.lng.toFixed(6)}`);
-    toast.success("Corner vertex logged", {
-      description: `Point ${loggedWalkPoints.length} on the walked perimeter.`,
+    toast.success(tr("Corner vertex logged"), {
+      description: tr(`Point ${loggedWalkPoints.length} on the walked perimeter.`),
     });
   };
 
@@ -952,8 +954,8 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
     setWalkActive(false);
 
     if (loggedWalkPoints.length < 3) {
-      toast.error("Insufficient walk points", {
-        description: "You must track a closed path containing at least 3 points.",
+      toast.error(tr("Insufficient walk points"), {
+        description: tr("You must track a closed path containing at least 3 points."),
       });
       return;
     }
@@ -969,8 +971,8 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
     setSavedCoords(finalCoords);
     onSave(finalArea, finalCoords);
 
-    toast.success("Walk path compiled to boundary!", {
-      description: `Mapped perimeter calculates to ${finalArea} Acres.`,
+    toast.success(tr("Walk path compiled to boundary!"), {
+      description: tr(`Mapped perimeter calculates to ${finalArea} Acres.`),
     });
   };
 
@@ -983,23 +985,28 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
             <Globe className="size-5 animate-pulse-soft" />
           </div>
           <div>
-            <p className="text-xs label-eyebrow">Active Boundary Definition</p>
-            <h4 className="text-base font-semibold mt-0.5">{savedArea} Acres Mapped</h4>
+            <p className="text-xs label-eyebrow">{tr("Active Boundary Definition")}</p>
+            <h4 className="text-base font-semibold mt-0.5">
+              {tr(savedArea)} {tr("Acres Mapped")}
+            </h4>
           </div>
         </div>
 
         <div className="flex items-center gap-6">
           <div>
-            <p className="text-[0.65rem] label-eyebrow text-right">Cumulative Mapped Plots</p>
+            <p className="text-[0.65rem] label-eyebrow text-right">
+              {tr("Cumulative Mapped Plots")}
+            </p>
             <p className="font-mono text-xs font-semibold text-primary mt-0.5 text-right">
-              {totalCalculatedArea.toFixed(2)} Acres ({fields.length} Fields)
+              {totalCalculatedArea.toFixed(2)} {tr("Acres (")}
+              {tr(fields.length)} {tr("Fields)")}
             </p>
           </div>
           <div className="h-8 w-px bg-border" />
           <div className="hidden sm:block">
-            <p className="text-[0.65rem] label-eyebrow text-right">Active Field Center</p>
+            <p className="text-[0.65rem] label-eyebrow text-right">{tr("Active Field Center")}</p>
             <p className="font-mono text-xs font-medium text-muted-foreground mt-0.5 text-right">
-              {savedCoords}
+              {tr(savedCoords)}
             </p>
           </div>
         </div>
@@ -1020,7 +1027,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
               activeTab === "satellite" ? "text-primary" : "text-muted-foreground",
             )}
           />
-          <span className="text-xs font-medium block">1. Satellite Map (Default)</span>
+          <span className="text-xs font-medium block">{tr("1. Satellite Map (Default)")}</span>
         </button>
 
         <button
@@ -1036,7 +1043,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
               activeTab === "camera" ? "text-primary" : "text-muted-foreground",
             )}
           />
-          <span className="text-xs font-medium block">2. Real Camera AR</span>
+          <span className="text-xs font-medium block">{tr("2. Real Camera AR")}</span>
         </button>
 
         <button
@@ -1049,7 +1056,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
           <Compass
             className={cn("size-5", activeTab === "gps" ? "text-primary" : "text-muted-foreground")}
           />
-          <span className="text-xs font-medium block">3. GPS Walk Mapping</span>
+          <span className="text-xs font-medium block">{tr("3. GPS Walk Mapping")}</span>
         </button>
       </div>
 
@@ -1079,9 +1086,11 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary" />
                   <span className="relative inline-flex size-2 rounded-full bg-primary" />
                 </span>
-                <span>REAL HARDWARE FEED</span>
+                <span>{tr("REAL HARDWARE FEED")}</span>
               </div>
-              <div>COMPASS DIRECTION: {compassAngle.toFixed(0)}°</div>
+              <div>
+                {tr("COMPASS DIRECTION:")} {compassAngle.toFixed(0)}°
+              </div>
             </div>
 
             <div className="relative z-10 mx-auto my-auto size-48 border border-dashed border-primary/40 flex items-center justify-center pointer-events-none">
@@ -1092,17 +1101,17 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
 
               {scanStep === "locking" && (
                 <div className="text-center bg-black/80 p-2 rounded border border-warning text-warning animate-pulse text-xs">
-                  GEOLOCATION LOCKING...
+                  {tr("GEOLOCATION LOCKING...")}
                 </div>
               )}
               {scanStep === "analyzing" && (
                 <div className="text-center bg-black/80 p-2 rounded border border-primary text-primary animate-pulse text-xs">
-                  CAPTURING FRAME...
+                  {tr("CAPTURING FRAME...")}
                 </div>
               )}
               {scanStep === "completed" && (
                 <div className="text-center bg-black/80 p-2 rounded border border-healthy text-healthy text-xs flex items-center gap-1">
-                  <CheckCircle2 className="size-3" /> LANDMARK CAPTURED
+                  <CheckCircle2 className="size-3" /> {tr("LANDMARK CAPTURED")}
                 </div>
               )}
               {scanStep === "idle" && (
@@ -1114,7 +1123,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 items-end">
                 <div>
                   <Label htmlFor="cornerSelector" className="text-xs text-muted-foreground">
-                    Select Boundary Corner
+                    {tr("Select Boundary Corner")}
                   </Label>
                   <select
                     id="cornerSelector"
@@ -1122,11 +1131,13 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                     value={targetCorner}
                     onChange={(e) => setTargetCorner(e.target.value)}
                   >
-                    <option value="South-East Ridge Line">South-East Ridge Line</option>
-                    <option value="South-West Well Pump corner">South-West Well Pump corner</option>
-                    <option value="North-West Fence Post">North-West Fence Post</option>
-                    <option value="North-East Border Stone">North-East Border Stone</option>
-                    <option value="West Edge Mango Tree">West Edge Mango Tree</option>
+                    <option value="South-East Ridge Line">{tr("South-East Ridge Line")}</option>
+                    <option value="South-West Well Pump corner">
+                      {tr("South-West Well Pump corner")}
+                    </option>
+                    <option value="North-West Fence Post">{tr("North-West Fence Post")}</option>
+                    <option value="North-East Border Stone">{tr("North-East Border Stone")}</option>
+                    <option value="West Edge Mango Tree">{tr("West Edge Mango Tree")}</option>
                   </select>
                 </div>
                 <Button
@@ -1136,10 +1147,10 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                 >
                   <Camera className="size-4" />
                   {!stream
-                    ? "Awaiting Cam Feed..."
+                    ? tr("Awaiting Cam Feed...")
                     : scanStep === "idle"
-                      ? "Capture Corner Frame"
-                      : "Querying GPS..."}
+                      ? tr("Capture Corner Frame")
+                      : tr("Querying GPS...")}
                 </Button>
               </div>
             </div>
@@ -1149,9 +1160,9 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
           <div className="panel p-5 flex flex-col justify-between">
             <div className="space-y-4">
               <div>
-                <h3 className="text-base font-semibold">Triangulated Landmarks</h3>
+                <h3 className="text-base font-semibold">{tr("Triangulated Landmarks")}</h3>
                 <p className="text-xs text-muted-foreground mt-0.5">
-                  Physical photos tagged with actual device coordinate fixes
+                  {tr("Physical photos tagged with actual device coordinate fixes")}
                 </p>
               </div>
 
@@ -1166,24 +1177,30 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                         {cp.photoUrl.startsWith("/") ? (
                           <img
                             src={cp.photoUrl}
-                            alt="landmark"
+                            alt={tr("landmark")}
                             className="size-full object-cover opacity-65"
                           />
                         ) : (
                           <img
                             src={cp.photoUrl}
-                            alt="landmark data"
+                            alt={tr("landmark data")}
                             className="size-full object-cover"
                           />
                         )}
                       </div>
                       <div className="min-w-0">
-                        <p className="text-xs font-semibold truncate leading-tight">{cp.label}</p>
+                        <p className="text-xs font-semibold truncate leading-tight">
+                          {tr(cp.label)}
+                        </p>
                         <p className="font-mono text-[0.65rem] text-muted-foreground mt-0.5 truncate">
-                          {cp.lat.toFixed(6)}° N, {cp.lng.toFixed(6)}° E
+                          {cp.lat.toFixed(6)}
+                          {tr("° N,")} {cp.lng.toFixed(6)}
+                          {tr("° E")}
                         </p>
                         <span className="text-[0.6rem] text-primary/95 font-mono">
-                          GPS Acc: ±{cp.accuracy}m · {cp.timestamp}
+                          {tr("GPS Acc: ±")}
+                          {tr(cp.accuracy)}
+                          {tr("m ·")} {tr(cp.timestamp)}
                         </span>
                       </div>
                     </div>
@@ -1192,7 +1209,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                         setCapturedPoints((prev) => prev.filter((item) => item.id !== cp.id))
                       }
                       className="text-muted-foreground hover:text-critical p-1 transition-colors cursor-pointer"
-                      title="Remove Point"
+                      title={tr("Remove Point")}
                     >
                       <Trash2 className="size-4" />
                     </button>
@@ -1203,10 +1220,10 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                   <div className="text-center py-8 border border-dashed border-border rounded-lg bg-muted/10">
                     <Camera className="size-8 text-muted-foreground/40 mx-auto mb-2" />
                     <p className="text-xs text-muted-foreground font-medium">
-                      No corner landmarks logged yet.
+                      {tr("No corner landmarks logged yet.")}
                     </p>
                     <p className="text-[0.65rem] text-muted-foreground/75 mt-0.5">
-                      Snapshot corners to register coordinates.
+                      {tr("Snapshot corners to register coordinates.")}
                     </p>
                   </div>
                 )}
@@ -1220,12 +1237,13 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                 className="w-full gap-2 cursor-pointer"
                 variant="default"
               >
-                <CheckCircle2 className="size-4" /> Apply to Field Boundary ({capturedPoints.length}{" "}
-                Points)
+                <CheckCircle2 className="size-4" /> {tr("Apply to Field Boundary (")}
+                {tr(capturedPoints.length)} {tr("Points)")}
               </Button>
               {capturedPoints.length < 3 && (
                 <p className="text-[0.65rem] text-warning flex items-center gap-1 justify-center mt-2 font-mono">
-                  <AlertTriangle className="size-3 shrink-0" /> Minimum 3 GPS points required.
+                  <AlertTriangle className="size-3 shrink-0" />{" "}
+                  {tr("Minimum 3 GPS points required.")}
                 </p>
               )}
             </div>
@@ -1242,7 +1260,9 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
             {/* Multi-Field Selector HUD */}
             <div className="panel p-3 bg-muted/10 border-border/60 flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs font-mono text-muted-foreground mr-1">ACTIVE PLOT:</span>
+                <span className="text-xs font-mono text-muted-foreground mr-1">
+                  {tr("ACTIVE PLOT:")}
+                </span>
                 {fields.map((f) => (
                   <button
                     key={f.id}
@@ -1258,7 +1278,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                       className="size-2 rounded-full border border-black/20"
                       style={{ backgroundColor: f.color }}
                     />
-                    {f.name}
+                    {tr(f.name)}
                   </button>
                 ))}
               </div>
@@ -1270,10 +1290,10 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                   size="sm"
                   className="h-8 gap-1.5 cursor-pointer text-xs font-sans bg-surface hover:bg-surface-2 border-primary/40 text-primary hover:text-primary font-medium shadow-xs"
                   disabled={isLocating}
-                  title="Center satellite view on current GPS location"
+                  title={tr("Center satellite view on current GPS location")}
                 >
                   <Crosshair className={cn("size-3.5", isLocating && "animate-spin")} />
-                  <span>{isLocating ? "Acquiring GPS..." : "View Current Location"}</span>
+                  <span>{isLocating ? tr("Acquiring GPS...") : tr("View Current Location")}</span>
                 </Button>
                 <Button
                   onClick={handleAddNewField}
@@ -1281,7 +1301,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                   size="sm"
                   className="h-8 gap-1.5 cursor-pointer text-xs font-sans"
                 >
-                  <Plus className="size-3.5" /> Add Plot
+                  <Plus className="size-3.5" /> {tr("Add Plot")}
                 </Button>
                 <Button
                   onClick={() => handleDeleteField(activeFieldId)}
@@ -1290,7 +1310,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                   className="h-8 gap-1.5 cursor-pointer text-xs text-critical hover:text-critical font-sans border-critical/20 hover:bg-critical/10"
                   disabled={fields.length <= 1}
                 >
-                  <Trash2 className="size-3.5" /> Delete Plot
+                  <Trash2 className="size-3.5" /> {tr("Delete Plot")}
                 </Button>
               </div>
             </div>
@@ -1306,9 +1326,9 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
           <div className="panel p-5 flex flex-col justify-between">
             <div className="space-y-4">
               <div>
-                <h3 className="text-base font-semibold">{activeField.name}</h3>
+                <h3 className="text-base font-semibold">{tr(activeField.name)}</h3>
                 <p className="text-xs text-muted-foreground mt-0.5">
-                  Click map to drop points. Click markers again to erase them.
+                  {tr("Click map to drop points. Click markers again to erase them.")}
                 </p>
               </div>
 
@@ -1326,7 +1346,8 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                     >
                       <div className="flex justify-between items-center mb-2">
                         <span className="font-mono text-xs font-semibold text-primary">
-                          Vertex #{idx + 1}
+                          {tr("Vertex #")}
+                          {idx + 1}
                         </span>
                         <button
                           onClick={(e) => {
@@ -1334,7 +1355,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                             handleVertexMarkerClick(v.id);
                           }}
                           className="text-muted-foreground hover:text-critical p-0.5 transition-colors cursor-pointer"
-                          title="Click to erase"
+                          title={tr("Click to erase")}
                         >
                           <Trash2 className="size-3.5" />
                         </button>
@@ -1343,7 +1364,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                       <div className="grid grid-cols-2 gap-2">
                         <div className="space-y-1">
                           <Label className="text-[0.65rem] text-muted-foreground font-mono">
-                            Latitude (°N)
+                            {tr("Latitude (°N)")}
                           </Label>
                           <Input
                             type="number"
@@ -1357,7 +1378,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                         </div>
                         <div className="space-y-1">
                           <Label className="text-[0.65rem] text-muted-foreground font-mono">
-                            Longitude (°E)
+                            {tr("Longitude (°E)")}
                           </Label>
                           <Input
                             type="number"
@@ -1378,15 +1399,15 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
 
             <div className="pt-4 border-t border-border mt-4">
               <div className="flex justify-between text-xs mb-1">
-                <span className="text-muted-foreground">Active Plot Area:</span>
+                <span className="text-muted-foreground">{tr("Active Plot Area:")}</span>
                 <span className="font-mono font-semibold text-foreground">
-                  {activeCalculatedArea.toFixed(2)} Acres
+                  {activeCalculatedArea.toFixed(2)} {tr("Acres")}
                 </span>
               </div>
               <div className="flex justify-between text-sm mb-3">
-                <span className="text-muted-foreground">Cumulative Area (All):</span>
+                <span className="text-muted-foreground">{tr("Cumulative Area (All):")}</span>
                 <span className="font-semibold text-primary">
-                  {totalCalculatedArea.toFixed(2)} Acres
+                  {totalCalculatedArea.toFixed(2)} {tr("Acres")}
                 </span>
               </div>
               <Button
@@ -1394,7 +1415,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                 className="w-full gap-2 cursor-pointer"
                 variant="default"
               >
-                <CheckCircle2 className="size-4" /> Save Mapped Area & Update Twin
+                <CheckCircle2 className="size-4" /> {tr("Save Mapped Area & Update Twin")}
               </Button>
             </div>
           </div>
@@ -1430,7 +1451,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                       walkActive && "opacity-50 cursor-not-allowed",
                     )}
                   >
-                    GPS (Real Device)
+                    {tr("GPS (Real Device)")}
                   </button>
                   <button
                     onClick={() => {
@@ -1445,7 +1466,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                       walkActive && "opacity-50 cursor-not-allowed",
                     )}
                   >
-                    Simulate Playback
+                    {tr("Simulate Playback")}
                   </button>
                 </div>
 
@@ -1459,11 +1480,11 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                       >
                         {walkPaused ? (
                           <>
-                            <Play className="size-4 text-water" /> Resume
+                            <Play className="size-4 text-water" /> {tr("Resume")}
                           </>
                         ) : (
                           <>
-                            <Pause className="size-4 text-warning" /> Pause
+                            <Pause className="size-4 text-warning" /> {tr("Pause")}
                           </>
                         )}
                       </Button>
@@ -1471,12 +1492,12 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                         onClick={handleCompleteWalk}
                         className="gap-2 bg-water hover:bg-water/80 text-white animate-pulse cursor-pointer"
                       >
-                        <Square className="size-4" /> Stop & Close Loop
+                        <Square className="size-4" /> {tr("Stop & Close Loop")}
                       </Button>
                     </>
                   ) : (
                     <Button onClick={handleStartWalk} className="gap-2 cursor-pointer">
-                      <Play className="size-4" /> Start Walk recording
+                      <Play className="size-4" /> {tr("Start Walk recording")}
                     </Button>
                   )}
                 </div>
@@ -1489,7 +1510,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                   variant="secondary"
                   className="gap-2 cursor-pointer"
                 >
-                  <PlusCircle className="size-4 text-primary" /> Log Corner Vertex
+                  <PlusCircle className="size-4 text-primary" /> {tr("Log Corner Vertex")}
                 </Button>
               </div>
             </div>
@@ -1499,9 +1520,9 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
           <div className="panel p-5 flex flex-col justify-between h-full min-h-[460px]">
             <div className="space-y-4 flex-1 flex flex-col min-h-0">
               <div>
-                <h3 className="text-base font-semibold">RTK Telemetry Output</h3>
+                <h3 className="text-base font-semibold">{tr("RTK Telemetry Output")}</h3>
                 <p className="text-xs text-muted-foreground mt-0.5">
-                  Real-time coordinates and DGPS lock status
+                  {tr("Real-time coordinates and DGPS lock status")}
                 </p>
               </div>
 
@@ -1520,7 +1541,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                             : "",
                     )}
                   >
-                    {log}
+                    {tr(log)}
                   </div>
                 ))}
               </div>
@@ -1530,26 +1551,26 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
               <div className="grid grid-cols-3 gap-2 text-xs mb-3 font-mono">
                 <div className="bg-muted/30 border border-border p-2 rounded text-center">
                   <span className="block text-[0.55rem] text-muted-foreground uppercase tracking-wider">
-                    H-Acc
+                    {tr("H-Acc")}
                   </span>
                   <span className="text-xs font-semibold text-foreground mt-0.5">
-                    {gpsAccuracy !== null ? `±${gpsAccuracy.toFixed(1)}m` : "--"}
+                    {gpsAccuracy !== null ? tr(`±${gpsAccuracy.toFixed(1)}m`) : "--"}
                   </span>
                 </div>
                 <div className="bg-muted/30 border border-border p-2 rounded text-center">
                   <span className="block text-[0.55rem] text-muted-foreground uppercase tracking-wider">
-                    Altitude
+                    {tr("Altitude")}
                   </span>
                   <span className="text-xs font-semibold text-foreground mt-0.5">
-                    {gpsAltitude !== null ? `${gpsAltitude.toFixed(0)}m` : "--"}
+                    {gpsAltitude !== null ? tr(`${gpsAltitude.toFixed(0)}m`) : "--"}
                   </span>
                 </div>
                 <div className="bg-muted/30 border border-border p-2 rounded text-center">
                   <span className="block text-[0.55rem] text-muted-foreground uppercase tracking-wider">
-                    Est Area
+                    {tr("Est Area")}
                   </span>
                   <span className="text-xs font-semibold text-water mt-0.5">
-                    {calculateGeodesicArea(loggedWalkPoints)} Ac
+                    {calculateGeodesicArea(loggedWalkPoints)} {tr("Ac")}
                   </span>
                 </div>
               </div>
@@ -1560,7 +1581,7 @@ export function BoundaryMapping({ initialArea, initialCoordinates, onSave }: Bou
                 className="w-full gap-2 cursor-pointer"
                 variant="default"
               >
-                <CheckCircle2 className="size-4" /> Save Telemetry Boundary
+                <CheckCircle2 className="size-4" /> {tr("Save Telemetry Boundary")}
               </Button>
             </div>
           </div>
